@@ -10,8 +10,6 @@
 #endif
 #include "CrossPlatformTime.h"
 
-#include <GLUT/glut.h>
-
 namespace JDHUtility
 {
     int CrossPlatformTime::getTimeMillis(void)

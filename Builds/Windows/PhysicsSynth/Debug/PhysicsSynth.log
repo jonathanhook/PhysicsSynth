@@ -1,0 +1,348 @@
+﻿Build started 30/08/2012 21:12:26.
+     1>Project "C:\GitHub\PhysicsSynth\Builds\Windows\PhysicsSynth\PhysicsSynth.vcxproj" on node 2 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\PhysicsSynth.lastbuildstate".
+       InitializeBuildStatus:
+         Touching "Debug\PhysicsSynth.unsuccessfulbuild".
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\..\Source /I..\..\..\Source\OscPack /I"..\glut-3.7.6-bin" /ZI /nologo /W3 /WX- /Od /Oy- /D _DEBUG /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\Source\Box2D\Collision\b2BroadPhase.cpp ..\..\..\Source\Box2D\Collision\b2CollideCircle.cpp ..\..\..\Source\Box2D\Collision\b2CollidePolygon.cpp ..\..\..\Source\Box2D\Collision\b2Collision.cpp ..\..\..\Source\Box2D\Collision\b2Distance.cpp ..\..\..\Source\Box2D\Collision\b2DynamicTree.cpp ..\..\..\Source\Box2D\Collision\b2TimeOfImpact.cpp ..\..\..\Source\Box2D\Collision\Shapes\b2CircleShape.cpp ..\..\..\Source\Box2D\Collision\Shapes\b2PolygonShape.cpp ..\..\..\Source\Box2D\Common\b2BlockAllocator.cpp ..\..\..\Source\Box2D\Common\b2Math.cpp ..\..\..\Source\Box2D\Common\b2Settings.cpp ..\..\..\Source\Box2D\Common\b2StackAllocator.cpp ..\..\..\Source\Box2D\Dynamics\b2Body.cpp ..\..\..\Source\Box2D\Dynamics\b2ContactManager.cpp ..\..\..\Source\Box2D\Dynamics\b2Fixture.cpp ..\..\..\Source\Box2D\Dynamics\b2Island.cpp ..\..\..\Source\Box2D\Dynamics\b2World.cpp ..\..\..\Source\Box2D\Dynamics\b2WorldCallbacks.cpp ..\..\..\Source\Box2D\Dynamics\Contacts\b2CircleContact.cpp ..\..\..\Source\Box2D\Dynamics\Contacts\b2Contact.cpp ..\..\..\Source\Box2D\Dynamics\Contacts\b2ContactSolver.cpp ..\..\..\Source\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp ..\..\..\Source\Box2D\Dynamics\Contacts\b2PolygonContact.cpp ..\..\..\Source\Box2D\Dynamics\Contacts\b2TOISolver.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2DistanceJoint.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2FrictionJoint.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2GearJoint.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2Joint.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2LineJoint.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2MouseJoint.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2PulleyJoint.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp ..\..\..\Source\Box2D\Dynamics\Joints\b2WeldJoint.cpp ..\..\..\Source\JDHUtility\Colour3f.cpp ..\..\..\Source\JDHUtility\Colour4f.cpp ..\..\..\Source\JDHUtility\CrossPlatformTime.cpp ..\..\..\Source\JDHUtility\DebugTimer.cpp ..\..\..\Source\JDHUtility\GLFontManager.cpp ..\..\..\Source\JDHUtility\GLMatrixf.cpp ..\..\..\Source\JDHUtility\GLTexture.cpp ..\..\..\Source\JDHUtility\GLTextureFont.cpp ..\..\..\Source\JDHUtility\LoadImage.cpp ..\..\..\Source\JDHUtility\Matrixf.cpp ..\..\..\Source\JDHUtility\OSCSender.cpp ..\..\..\Source\JDHUtility\Point2f.cpp ..\..\..\Source\JDHUtility\Point2i.cpp ..\..\..\Source\JDHUtility\Point3f.cpp ..\..\..\Source\JDHUtility\Singleton.cpp ..\..\..\Source\JDHUtility\Vector2f.cpp ..\..\..\Source\JDHUtility\WindowingUtils.cpp ..\..\..\Source\JDHUtility\XPlatformMutex.cpp ..\..\..\Source\MultiTouchEvents\EventSource.cpp ..\..\..\Source\MultiTouchEvents\FingerEventArgs.cpp ..\..\..\Source\MultiTouchEvents\MultiTouchEventHandler.cpp ..\..\..\Source\MultiTouchEvents\MultiTouchEventManager.cpp ..\..\..\Source\MultiTouchEvents\WMTouchEventSource.cpp ..\..\..\Source\OscPack\ip\IpEndpointName.cpp ..\..\..\Source\OscPack\ip\win32\NetworkingUtils.cpp ..\..\..\Source\OscPack\ip\win32\UdpSocket.cpp ..\..\..\Source\OscPack\osc\OscOutboundPacketStream.cpp ..\..\..\Source\OscPack\osc\OscPrintReceivedElements.cpp ..\..\..\Source\OscPack\osc\OscReceivedElements.cpp ..\..\..\Source\OscPack\osc\OscTypes.cpp ..\..\..\Source\PhysicsSynth\Bomb.cpp ..\..\..\Source\PhysicsSynth\BombMenu.cpp ..\..\..\Source\PhysicsSynth\Button.cpp ..\..\..\Source\PhysicsSynth\Canvas.cpp ..\..\..\Source\PhysicsSynth\CheckBox.cpp ..\..\..\Source\PhysicsSynth\Circle.cpp ..\..\..\Source\PhysicsSynth\CircularWorld.cpp ..\..\..\Source\PhysicsSynth\ColourPicker.cpp ..\..\..\Source\PhysicsSynth\ColourPickerItem.cpp ..\..\..\Source\PhysicsSynth\DynamicObject.cpp ..\..\..\Source\PhysicsSynth\Finger.cpp ..\..\..\Source\PhysicsSynth\FingerJoint.cpp ..\..\..\Source\PhysicsSynth\FingerQueryCallback.cpp ..\..\..\Source\PhysicsSynth\Handle.cpp ..\..\..\Source\PhysicsSynth\ImpulseEventMenu.cpp ..\..\..\Source\PhysicsSynth\ImpulseSoundEvent.cpp ..\..\..\Source\PhysicsSynth\LabelledUIElement.cpp ..\..\..\Source\PhysicsSynth\LoopPointer.cpp ..\..\..\Source\PhysicsSynth\MainMenu.cpp ..\..\..\Source\PhysicsSynth\Manager.cpp ..\..\..\Source\PhysicsSynth\MappingButton.cpp ..\..\..\Source\PhysicsSynth\MappingGrid.cpp ..\..\..\Source\PhysicsSynth\Menu.cpp ..\..\..\Source\PhysicsSynth\ObjectMenu.cpp ..\..\..\Source\PhysicsSynth\ObjectPicker.cpp ..\..\..\Source\PhysicsSynth\ObjectPickerItem.cpp ..\..\..\Source\PhysicsSynth\OptionGrid.cpp ..\..\..\Source\PhysicsSynth\OptionGridItem.cpp ..\..\..\Source\PhysicsSynth\ParticleEmitter.cpp ..\..\..\Source\PhysicsSynth\ParticleEmitterMenu.cpp ..\..\..\Source\PhysicsSynth\PatternPicker.cpp ..\..\..\Source\PhysicsSynth\PatternPickerItem.cpp ..\..\..\Source\PhysicsSynth\PersistenceManager.cpp ..\..\..\Source\PhysicsSynth\PhysicsDebugger.cpp ..\..\..\Source\PhysicsSynth\PhysicsObject.cpp ..\..\..\Source\PhysicsSynth\PointQueryCallback.cpp ..\..\..\Source\PhysicsSynth\PressAndHold.cpp ..\..\..\Source\PhysicsSynth\PushButton.cpp ..\..\..\Source\PhysicsSynth\RegionQueryCallback.cpp ..\..\..\Source\PhysicsSynth\RSTObject.cpp ..\..\..\Source\PhysicsSynth\SettingsMenu.cpp ..\..\..\Source\PhysicsSynth\SimpleObject.cpp ..\..\..\Source\PhysicsSynth\SimpleObjectMenu.cpp ..\..\..\Source\PhysicsSynth\Slider.cpp ..\..\..\Source\PhysicsSynth\SoundConfig.cpp ..\..\..\Source\PhysicsSynth\SoundEvent.cpp ..\..\..\Source\PhysicsSynth\SoundMenu.cpp ..\..\..\Source\PhysicsSynth\Sounds.cpp ..\..\..\Source\PhysicsSynth\Square.cpp ..\..\..\Source\PhysicsSynth\SquareWorld.cpp ..\..\..\Source\PhysicsSynth\Stick.cpp ..\..\..\Source\PhysicsSynth\Synchronizer.cpp ..\..\..\Source\PhysicsSynth\TargetButton.cpp ..\..\..\Source\PhysicsSynth\Triangle.cpp ..\..\..\Source\PhysicsSynth\UIElement.cpp ..\..\..\Source\PhysicsSynth\Wheel.cpp ..\..\..\Source\PhysicsSynth\WheelMenu.cpp ..\..\..\Source\PhysicsSynth\World.cpp ..\..\..\Source\PhysicsSynth\WorldMenu.cpp ..\main.cpp
+         main.cpp
+         WorldMenu.cpp
+         World.cpp
+     1>c:\github\physicssynth\source\physicssynth\world.cpp(477): warning C4244: 'argument' : conversion from 'const double' to 'float32', possible loss of data
+         WheelMenu.cpp
+         Wheel.cpp
+         UIElement.cpp
+         Triangle.cpp
+         TargetButton.cpp
+         Synchronizer.cpp
+         Stick.cpp
+         SquareWorld.cpp
+         Square.cpp
+         Sounds.cpp
+         SoundMenu.cpp
+         SoundEvent.cpp
+         SoundConfig.cpp
+         Slider.cpp
+         SimpleObjectMenu.cpp
+         SimpleObject.cpp
+         SettingsMenu.cpp
+         Generating Code...
+         Compiling...
+         RSTObject.cpp
+         RegionQueryCallback.cpp
+         PushButton.cpp
+         PressAndHold.cpp
+         PointQueryCallback.cpp
+         PhysicsObject.cpp
+         PhysicsDebugger.cpp
+         PersistenceManager.cpp
+     1>c:\github\physicssynth\source\physicssynth\persistencemanager.cpp(31): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
+     1>c:\github\physicssynth\source\physicssynth\persistencemanager.cpp(125): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
+     1>c:\github\physicssynth\source\physicssynth\persistencemanager.cpp(275): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(325) : see declaration of 'sscanf'
+     1>c:\github\physicssynth\source\physicssynth\persistencemanager.cpp(285): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(325) : see declaration of 'sscanf'
+     1>c:\github\physicssynth\source\physicssynth\persistencemanager.cpp(320): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(325) : see declaration of 'sscanf'
+     1>c:\github\physicssynth\source\physicssynth\persistencemanager.cpp(337): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(325) : see declaration of 'sscanf'
+     1>c:\github\physicssynth\source\physicssynth\persistencemanager.cpp(365): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(325) : see declaration of 'sscanf'
+     1>c:\github\physicssynth\source\physicssynth\persistencemanager.cpp(392): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(325) : see declaration of 'sscanf'
+     1>c:\github\physicssynth\source\physicssynth\persistencemanager.cpp(408): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(325) : see declaration of 'sscanf'
+         PatternPickerItem.cpp
+         PatternPicker.cpp
+         ParticleEmitterMenu.cpp
+         ParticleEmitter.cpp
+         OptionGridItem.cpp
+         OptionGrid.cpp
+         ObjectPickerItem.cpp
+         ObjectPicker.cpp
+         ObjectMenu.cpp
+         Menu.cpp
+         MappingGrid.cpp
+         MappingButton.cpp
+         Generating Code...
+         Compiling...
+         Manager.cpp
+         MainMenu.cpp
+         LoopPointer.cpp
+         LabelledUIElement.cpp
+         ImpulseSoundEvent.cpp
+         ImpulseEventMenu.cpp
+         Handle.cpp
+         FingerQueryCallback.cpp
+         FingerJoint.cpp
+         Finger.cpp
+         DynamicObject.cpp
+         ColourPickerItem.cpp
+         ColourPicker.cpp
+         CircularWorld.cpp
+         Circle.cpp
+         CheckBox.cpp
+         Canvas.cpp
+     1>c:\github\physicssynth\source\physicssynth\canvas.cpp(555): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+         Button.cpp
+         BombMenu.cpp
+         Bomb.cpp
+         Generating Code...
+         Compiling...
+         OscTypes.cpp
+         OscReceivedElements.cpp
+         OscPrintReceivedElements.cpp
+     1>c:\github\physicssynth\source\oscpack\osc\oscprintreceivedelements.cpp(117): warning C4996: 'ctime': This function or variable may be unsafe. Consider using ctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\time.inl(86) : see declaration of 'ctime'
+     1>c:\github\physicssynth\source\oscpack\osc\oscprintreceivedelements.cpp(120): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+         OscOutboundPacketStream.cpp
+     1>c:\github\physicssynth\source\oscpack\osc\oscoutboundpacketstream.cpp(339): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\github\physicssynth\source\oscpack\osc\oscoutboundpacketstream.cpp(581): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\github\physicssynth\source\oscpack\osc\oscoutboundpacketstream.cpp(601): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+         UdpSocket.cpp
+         NetworkingUtils.cpp
+         IpEndpointName.cpp
+     1>c:\github\physicssynth\source\oscpack\ip\ipendpointname.cpp(46): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\github\physicssynth\source\oscpack\ip\ipendpointname.cpp(52): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\github\physicssynth\source\oscpack\ip\ipendpointname.cpp(61): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\github\physicssynth\source\oscpack\ip\ipendpointname.cpp(67): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\github\physicssynth\source\oscpack\ip\ipendpointname.cpp(71): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\github\physicssynth\source\oscpack\ip\ipendpointname.cpp(78): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+         WMTouchEventSource.cpp
+     1>c:\github\physicssynth\source\multitouchevents\wmtoucheventsource.cpp(126): warning C4482: nonstandard extension used: enum 'MultiTouchEvents::FingerEventArgs::EventType' used in qualified name
+     1>c:\github\physicssynth\source\multitouchevents\wmtoucheventsource.cpp(137): warning C4482: nonstandard extension used: enum 'MultiTouchEvents::FingerEventArgs::EventType' used in qualified name
+     1>c:\github\physicssynth\source\multitouchevents\wmtoucheventsource.cpp(148): warning C4482: nonstandard extension used: enum 'MultiTouchEvents::FingerEventArgs::EventType' used in qualified name
+     1>c:\github\physicssynth\source\multitouchevents\wmtoucheventsource.cpp(160): warning C4800: 'BOOL' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\github\physicssynth\source\multitouchevents\wmtoucheventsource.cpp(171): warning C4800: 'BOOL' : forcing value to bool 'true' or 'false' (performance warning)
+         MultiTouchEventManager.cpp
+     1>c:\github\physicssynth\source\multitouchevents\multitoucheventmanager.cpp(182): warning C4482: nonstandard extension used: enum 'MultiTouchEvents::FingerEventArgs::EventType' used in qualified name
+     1>c:\github\physicssynth\source\multitouchevents\multitoucheventmanager.cpp(185): warning C4482: nonstandard extension used: enum 'MultiTouchEvents::FingerEventArgs::EventType' used in qualified name
+     1>c:\github\physicssynth\source\multitouchevents\multitoucheventmanager.cpp(188): warning C4482: nonstandard extension used: enum 'MultiTouchEvents::FingerEventArgs::EventType' used in qualified name
+         MultiTouchEventHandler.cpp
+         FingerEventArgs.cpp
+         EventSource.cpp
+         XPlatformMutex.cpp
+         WindowingUtils.cpp
+     1>c:\github\physicssynth\source\jdhutility\windowingutils.cpp(25): warning C4172: returning address of local variable or temporary
+     1>c:\github\physicssynth\source\jdhutility\windowingutils.cpp(33): warning C4172: returning address of local variable or temporary
+         Vector2f.cpp
+         Singleton.cpp
+         Point3f.cpp
+         Point2i.cpp
+     1>c:\github\physicssynth\source\jdhutility\point2i.cpp(22): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\github\physicssynth\source\jdhutility\point2i.cpp(22): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\github\physicssynth\source\jdhutility\point2i.cpp(96): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\github\physicssynth\source\jdhutility\point2i.cpp(97): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         Point2f.cpp
+         OSCSender.cpp
+         Generating Code...
+         Compiling...
+         Matrixf.cpp
+         LoadImage.cpp
+         GLTextureFont.cpp
+         GLTexture.cpp
+     1>c:\github\physicssynth\source\jdhutility\gltexture.cpp(36): warning C4244: 'argument' : conversion from 'GLenum' to 'GLfloat', possible loss of data
+     1>c:\github\physicssynth\source\jdhutility\gltexture.cpp(37): warning C4244: 'argument' : conversion from 'GLenum' to 'GLfloat', possible loss of data
+         GLMatrixf.cpp
+         GLFontManager.cpp
+     1>c:\github\physicssynth\source\jdhutility\glfontmanager.cpp(54): warning C4482: nonstandard extension used: enum 'JDHUtility::GLFontManager::Font' used in qualified name
+     1>c:\github\physicssynth\source\jdhutility\glfontmanager.cpp(57): warning C4482: nonstandard extension used: enum 'JDHUtility::GLFontManager::Font' used in qualified name
+     1>c:\github\physicssynth\source\jdhutility\glfontmanager.cpp(60): warning C4482: nonstandard extension used: enum 'JDHUtility::GLFontManager::Font' used in qualified name
+     1>c:\github\physicssynth\source\jdhutility\glfontmanager.cpp(75): warning C4482: nonstandard extension used: enum 'JDHUtility::GLFontManager::Font' used in qualified name
+     1>c:\github\physicssynth\source\jdhutility\glfontmanager.cpp(78): warning C4482: nonstandard extension used: enum 'JDHUtility::GLFontManager::Font' used in qualified name
+     1>c:\github\physicssynth\source\jdhutility\glfontmanager.cpp(81): warning C4482: nonstandard extension used: enum 'JDHUtility::GLFontManager::Font' used in qualified name
+         DebugTimer.cpp
+         CrossPlatformTime.cpp
+         Colour4f.cpp
+         Colour3f.cpp
+         b2WeldJoint.cpp
+         b2RevoluteJoint.cpp
+         b2PulleyJoint.cpp
+         b2PrismaticJoint.cpp
+         b2MouseJoint.cpp
+         b2LineJoint.cpp
+         b2Joint.cpp
+         b2GearJoint.cpp
+         b2FrictionJoint.cpp
+         b2DistanceJoint.cpp
+         Generating Code...
+         Compiling...
+         b2TOISolver.cpp
+         b2PolygonContact.cpp
+         b2PolygonAndCircleContact.cpp
+         b2ContactSolver.cpp
+         b2Contact.cpp
+         b2CircleContact.cpp
+         b2WorldCallbacks.cpp
+         b2World.cpp
+         b2Island.cpp
+         b2Fixture.cpp
+         b2ContactManager.cpp
+         b2Body.cpp
+         b2StackAllocator.cpp
+         b2Settings.cpp
+         b2Math.cpp
+         b2BlockAllocator.cpp
+         b2PolygonShape.cpp
+         b2CircleShape.cpp
+         b2TimeOfImpact.cpp
+         b2DynamicTree.cpp
+         Generating Code...
+         Compiling...
+         b2Distance.cpp
+         b2Collision.cpp
+         b2CollidePolygon.cpp
+         b2CollideCircle.cpp
+         b2BroadPhase.cpp
+         Generating Code...
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\GitHub\PhysicsSynth\Builds\Windows\PhysicsSynth\Debug\PhysicsSynth.exe" /NOLOGO /LIBPATH:"..\glut-3.7.6-bin" ws2_32.lib opengl32.lib glu32.lib glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\PhysicsSynth.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\GitHub\PhysicsSynth\Builds\Windows\PhysicsSynth\Debug\PhysicsSynth.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\GitHub\PhysicsSynth\Builds\Windows\PhysicsSynth\Debug\PhysicsSynth.lib" /MACHINE:X86 Debug\b2BroadPhase.obj
+         Debug\b2CollideCircle.obj
+         Debug\b2CollidePolygon.obj
+         Debug\b2Collision.obj
+         Debug\b2Distance.obj
+         Debug\b2DynamicTree.obj
+         Debug\b2TimeOfImpact.obj
+         Debug\b2CircleShape.obj
+         Debug\b2PolygonShape.obj
+         Debug\b2BlockAllocator.obj
+         Debug\b2Math.obj
+         Debug\b2Settings.obj
+         Debug\b2StackAllocator.obj
+         Debug\b2Body.obj
+         Debug\b2ContactManager.obj
+         Debug\b2Fixture.obj
+         Debug\b2Island.obj
+         Debug\b2World.obj
+         Debug\b2WorldCallbacks.obj
+         Debug\b2CircleContact.obj
+         Debug\b2Contact.obj
+         Debug\b2ContactSolver.obj
+         Debug\b2PolygonAndCircleContact.obj
+         Debug\b2PolygonContact.obj
+         Debug\b2TOISolver.obj
+         Debug\b2DistanceJoint.obj
+         Debug\b2FrictionJoint.obj
+         Debug\b2GearJoint.obj
+         Debug\b2Joint.obj
+         Debug\b2LineJoint.obj
+         Debug\b2MouseJoint.obj
+         Debug\b2PrismaticJoint.obj
+         Debug\b2PulleyJoint.obj
+         Debug\b2RevoluteJoint.obj
+         Debug\b2WeldJoint.obj
+         Debug\Colour3f.obj
+         Debug\Colour4f.obj
+         Debug\CrossPlatformTime.obj
+         Debug\DebugTimer.obj
+         Debug\GLFontManager.obj
+         Debug\GLMatrixf.obj
+         Debug\GLTexture.obj
+         Debug\GLTextureFont.obj
+         Debug\LoadImage.obj
+         Debug\Matrixf.obj
+         Debug\OSCSender.obj
+         Debug\Point2f.obj
+         Debug\Point2i.obj
+         Debug\Point3f.obj
+         Debug\Singleton.obj
+         Debug\Vector2f.obj
+         Debug\WindowingUtils.obj
+         Debug\XPlatformMutex.obj
+         Debug\EventSource.obj
+         Debug\FingerEventArgs.obj
+         Debug\MultiTouchEventHandler.obj
+         Debug\MultiTouchEventManager.obj
+         Debug\WMTouchEventSource.obj
+         Debug\IpEndpointName.obj
+         Debug\NetworkingUtils.obj
+         Debug\UdpSocket.obj
+         Debug\OscOutboundPacketStream.obj
+         Debug\OscPrintReceivedElements.obj
+         Debug\OscReceivedElements.obj
+         Debug\OscTypes.obj
+         Debug\Bomb.obj
+         Debug\BombMenu.obj
+         Debug\Button.obj
+         Debug\Canvas.obj
+         Debug\CheckBox.obj
+         Debug\Circle.obj
+         Debug\CircularWorld.obj
+         Debug\ColourPicker.obj
+         Debug\ColourPickerItem.obj
+         Debug\DynamicObject.obj
+         Debug\Finger.obj
+         Debug\FingerJoint.obj
+         Debug\FingerQueryCallback.obj
+         Debug\Handle.obj
+         Debug\ImpulseEventMenu.obj
+         Debug\ImpulseSoundEvent.obj
+         Debug\LabelledUIElement.obj
+         Debug\LoopPointer.obj
+         Debug\MainMenu.obj
+         Debug\Manager.obj
+         Debug\MappingButton.obj
+         Debug\MappingGrid.obj
+         Debug\Menu.obj
+         Debug\ObjectMenu.obj
+         Debug\ObjectPicker.obj
+         Debug\ObjectPickerItem.obj
+         Debug\OptionGrid.obj
+         Debug\OptionGridItem.obj
+         Debug\ParticleEmitter.obj
+         Debug\ParticleEmitterMenu.obj
+         Debug\PatternPicker.obj
+         Debug\PatternPickerItem.obj
+         Debug\PersistenceManager.obj
+         Debug\PhysicsDebugger.obj
+         Debug\PhysicsObject.obj
+         Debug\PointQueryCallback.obj
+         Debug\PressAndHold.obj
+         Debug\PushButton.obj
+         Debug\RegionQueryCallback.obj
+         Debug\RSTObject.obj
+         Debug\SettingsMenu.obj
+         Debug\SimpleObject.obj
+         Debug\SimpleObjectMenu.obj
+         Debug\Slider.obj
+         Debug\SoundConfig.obj
+         Debug\SoundEvent.obj
+         Debug\SoundMenu.obj
+         Debug\Sounds.obj
+         Debug\Square.obj
+         Debug\SquareWorld.obj
+         Debug\Stick.obj
+         Debug\Synchronizer.obj
+         Debug\TargetButton.obj
+         Debug\Triangle.obj
+         Debug\UIElement.obj
+         Debug\Wheel.obj
+         Debug\WheelMenu.obj
+         Debug\World.obj
+         Debug\WorldMenu.obj
+         Debug\main.obj
+         PhysicsSynth.vcxproj -> C:\GitHub\PhysicsSynth\Builds\Windows\PhysicsSynth\Debug\PhysicsSynth.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\GitHub\PhysicsSynth\Builds\Windows\PhysicsSynth\Debug\PhysicsSynth.exe;#1" /manifest Debug\PhysicsSynth.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\PhysicsSynth.unsuccessfulbuild".
+         Touching "Debug\PhysicsSynth.lastbuildstate".
+     1>Done Building Project "C:\GitHub\PhysicsSynth\Builds\Windows\PhysicsSynth\PhysicsSynth.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:01:00.74

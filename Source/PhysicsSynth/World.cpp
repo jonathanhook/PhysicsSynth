@@ -323,7 +323,7 @@ namespace PhysicsSynth
 			renderObjects();
 		}
 
-		if(renderMode == DEBUG || renderMode == BOTH)
+		if(renderMode == DEBUG_RENDER || renderMode == BOTH)
 		{
 			world->DrawDebugData();
 		}
