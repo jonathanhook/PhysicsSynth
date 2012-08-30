@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/repos/!svn/ver/14276/PhysicsSynth_XPlatform/Source/MultiTouchEvents
+END
+FingerEventArgs.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/MultiTouchEvents/FingerEventArgs.h
+END
+WMTouchEventSource.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/MultiTouchEvents/WMTouchEventSource.h
+END
+MultiTouchEventManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repos/!svn/ver/14264/PhysicsSynth_XPlatform/Source/MultiTouchEvents/MultiTouchEventManager.h
+END
+EventSource.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/MultiTouchEvents/EventSource.cpp
+END
+MultiTouchEventHandler.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repos/!svn/ver/14276/PhysicsSynth_XPlatform/Source/MultiTouchEvents/MultiTouchEventHandler.h
+END
+EventSource.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/MultiTouchEvents/EventSource.h
+END
+FingerEventArgs.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/MultiTouchEvents/FingerEventArgs.cpp
+END
+WMTouchEventSource.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/MultiTouchEvents/WMTouchEventSource.cpp
+END
+FastDelegateBind.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/MultiTouchEvents/FastDelegateBind.h
+END
+MultiTouchEventManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/repos/!svn/ver/14241/PhysicsSynth_XPlatform/Source/MultiTouchEvents/MultiTouchEventManager.cpp
+END
+FastDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/MultiTouchEvents/FastDelegate.h
+END
+MultiTouchEventHandler.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/MultiTouchEvents/MultiTouchEventHandler.cpp
+END

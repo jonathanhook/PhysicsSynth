@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc
+END
+OscTypes.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscTypes.h
+END
+OscHostEndianness.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscHostEndianness.h
+END
+OscPrintReceivedElements.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscPrintReceivedElements.cpp
+END
+OscPacketListener.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscPacketListener.h
+END
+MessageMappingOscPacketListener.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/MessageMappingOscPacketListener.h
+END
+OscException.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscException.h
+END
+OscOutboundPacketStream.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscOutboundPacketStream.cpp
+END
+OscReceivedElements.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscReceivedElements.cpp
+END
+OscTypes.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscTypes.cpp
+END
+OscPrintReceivedElements.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscPrintReceivedElements.h
+END
+OscOutboundPacketStream.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscOutboundPacketStream.h
+END
+OscReceivedElements.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/OscPack/osc/OscReceivedElements.h
+END

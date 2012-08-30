@@ -1,0 +1,245 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/14276/PhysicsSynth_XPlatform/Source/JDHUtility
+END
+Colour3f.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Colour3f.h
+END
+XPlatformMutex.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repos/!svn/ver/14243/PhysicsSynth_XPlatform/Source/JDHUtility/XPlatformMutex.h
+END
+Singleton.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Singleton.h
+END
+PointInclusion.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/PointInclusion.cpp
+END
+Matrixf.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Matrixf.h
+END
+GLTextureFont.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/repos/!svn/ver/14266/PhysicsSynth_XPlatform/Source/JDHUtility/GLTextureFont.h
+END
+Point3f.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Point3f.cpp
+END
+CrossPlatformTime.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/CrossPlatformTime.h
+END
+GLTexture.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/GLTexture.cpp
+END
+GLFontManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repos/!svn/ver/14266/PhysicsSynth_XPlatform/Source/JDHUtility/GLFontManager.cpp
+END
+OSCSender.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/OSCSender.cpp
+END
+Ndelete.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Ndelete.h
+END
+Point2f.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Point2f.h
+END
+LoadImage.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/LoadImage.h
+END
+OpenGL.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/OpenGL.h
+END
+Point2i.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Point2i.h
+END
+WindowingUtils.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/WindowingUtils.h
+END
+DebugTimer.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/DebugTimer.h
+END
+Colour3f.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Colour3f.cpp
+END
+Vector2f.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Vector2f.h
+END
+XPlatformMutex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/!svn/ver/14243/PhysicsSynth_XPlatform/Source/JDHUtility/XPlatformMutex.cpp
+END
+Singleton.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Singleton.cpp
+END
+GLMatrixf.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/GLMatrixf.h
+END
+Colour4f.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Colour4f.h
+END
+Matrixf.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Matrixf.cpp
+END
+GLTextureFont.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repos/!svn/ver/14276/PhysicsSynth_XPlatform/Source/JDHUtility/GLTextureFont.cpp
+END
+CrossPlatformTime.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/CrossPlatformTime.cpp
+END
+Point2f.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Point2f.cpp
+END
+LoadImage.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/LoadImage.cpp
+END
+PointInclusion.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/PointInclusion.h
+END
+Point2i.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Point2i.cpp
+END
+WindowingUtils.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/WindowingUtils.cpp
+END
+Point3f.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Point3f.h
+END
+DebugTimer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/DebugTimer.cpp
+END
+GLTexture.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/GLTexture.h
+END
+GLFontManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/repos/!svn/ver/14266/PhysicsSynth_XPlatform/Source/JDHUtility/GLFontManager.h
+END
+OSCSender.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/OSCSender.h
+END
+Vector2f.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Vector2f.cpp
+END
+Colour4f.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/Colour4f.cpp
+END
+GLMatrixf.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/repos/!svn/ver/14230/PhysicsSynth_XPlatform/Source/JDHUtility/GLMatrixf.cpp
+END

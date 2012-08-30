@@ -1,0 +1,42 @@
+10
+
+dir
+0
+http://di.ncl.ac.uk/svn/repos/PhysicsSynth_XPlatform/Builds/OSX/PhysicsSynth
+http://di.ncl.ac.uk/svn/repos
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+36005f84-b800-0410-853c-ed718d833d66
+
+PhysicsSynth.xcodeproj
+dir
+
+
+
+add
+
+PhysicsSynth
+dir
+
+
+
+add
+

@@ -1,0 +1,225 @@
+/**
+ * Class:	GLTextureFont
+ * Author:	Jonathan David Hook
+ * Email:	j.d.hook@ncl.ac.uk
+ * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
+ */
+
+#include <assert.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include "WindowingUtils.h"
+#include "Ndelete.h"
+#include "GLTexture.h"
+#include "GLTextureFont.h"
+
+namespace JDHUtility
+{
+	GLTextureFont::GLTextureFont(const std::string &fontPath, const std::string &texturePath)
+	{
+		texture = new GLTexture(texturePath);
+		parseFontInfo(fontPath);
+	}
+
+	GLTextureFont::~GLTextureFont(void)
+	{
+		for(std::map<unsigned int, FontInfo *>::iterator it = info.begin(); it != info.end(); it++)
+		{
+			NDELETE((*it).second);
+		}
+		info.clear();
+
+		NDELETE(texture);
+	}
+
+	void GLTextureFont::renderString(const std::string &text, const Point2f &position) const
+	{
+		if(texture->isTexture())
+		{
+			glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+			texture->bind();
+
+			float cx = position.getX();
+			float cy = position.getY();
+			
+			for(unsigned int i = 0; i < text.size(); i++)
+			{
+				char letter = text[i];
+
+				std::map<unsigned int, FontInfo *>::const_iterator it = info.find(letter);
+				if (it != info.end())
+				{
+					FontInfo *f = it->second;
+
+					float u0 = (float)f->x / (float)scaleW;
+					float v0 = 1.0f - ((float)f->y / (float)scaleH);
+					float u1 = (float)(f->x + f->width) / (float)scaleW;
+					float v1 = 1.0f - ((float)(f->y + f->height) / (float)scaleH);
+
+					float w		= getSizef(f->width);
+					float h		= getSizef(f->height);
+					float ox	= getSizef(f->xOffset);
+					float oy	= getSizef(f->yOffset);
+
+					glMatrixMode(GL_MODELVIEW);
+					glPushMatrix();
+					glTranslatef(cx + ox, cy + oy, 0.0f);
+					glScalef(w, h, 1.0f);
+					
+					glBegin(GL_QUADS);
+						glTexCoord2f(u0, v0); glVertex3f(0.0f, 0.0f, 0.0f);
+						glTexCoord2f(u1, v0); glVertex3f(1.0f, 0.0f, 0.0f);
+						glTexCoord2f(u1, v1); glVertex3f(1.0f, 1.0f, 0.0f);
+						glTexCoord2f(u0, v1); glVertex3f(0.0f, 1.0f, 0.0f);
+					glEnd();
+
+					glPopMatrix();
+
+					cx += getSizef(f->xAdvance);
+				}
+			}
+
+			glPopAttrib();
+		}
+	}
+
+	Vector2f GLTextureFont::queryBox(const std::string &text) const
+	{
+		float width = 0.0f;
+		float height = 0.0f;
+
+		for(unsigned int i = 0; i < text.size(); i++)
+		{
+			char letter = text[i];
+
+			std::map<unsigned int, FontInfo *>::const_iterator it = info.find(letter);
+			if (it != info.end())
+			{
+				FontInfo *f = it->second;
+				assert(f);
+				
+				width += getSizef(f->xAdvance);
+	
+				float h = getSizef(f->height + f->yOffset);
+				if(h > height)
+				{
+					height = h;
+				}
+			}
+		}
+
+		return Vector2f(width, height);
+	}
+
+	float GLTextureFont::getSizef(int val) const
+	{
+		float w = WindowingUtils::getWindowDimensions().getX();
+		return (float)val / w;
+	}
+
+	void GLTextureFont::parseFontInfo(const std::string &infoPath)
+	{
+		std::ifstream f;
+		f.open (infoPath.c_str(), std::ios::in);
+		
+		if (f.is_open())
+		{
+			while (f.good())
+			{
+				std::string line, read, key, value;
+				std::stringstream lineStream;
+				std::size_t i;
+
+				std::getline(f, line);
+				lineStream << line;
+				lineStream >> read;
+
+				if(read == "common")
+				{
+					while(!lineStream.eof())
+					{
+						lineStream >> read;
+						i = read.find('=');
+
+						key = read.substr(0, i);
+						value = read.substr(i + 1);
+
+						std::stringstream converter;
+						converter << value;
+						if(key == "lineHeight")
+						{
+							converter >> lineHeight;
+						}
+						else if(key == "base")
+						{
+							converter >> base;
+						}
+						else if(key == "scaleW")
+						{
+							converter >> scaleW;
+						}
+						else if(key == "scaleH")
+						{
+							converter >> scaleH;
+						}
+					}
+				}
+				else if(read == "char")
+				{	
+					FontInfo *fi = new FontInfo;
+
+					while(!lineStream.eof())
+					{
+						lineStream >> read;
+						i = read.find('=');
+
+						key = read.substr(0, i);
+						value = read.substr(i + 1);
+
+						std::stringstream converter;
+						converter << value;
+						if(key == "id")
+						{
+							converter >> fi->id;
+						}
+						else if(key == "x")
+						{
+							converter >> fi->x;
+						}
+						else if(key == "y")
+						{
+							converter >> fi->y;
+						}
+						else if(key == "width")
+						{
+							converter >> fi->width;
+						}
+						else if(key == "height")
+						{
+							converter >> fi->height;
+						}
+						else if(key == "xoffset")
+						{
+							converter >> fi->xOffset;
+						}
+						else if(key == "yoffset")
+						{
+							converter >> fi->yOffset;
+						}
+						else if(key == "xadvance")
+						{
+							converter >> fi->xAdvance;
+						}
+					}
+
+					info[fi->id] = fi;
+				}
+			}	
+			f.close();
+		}
+	}
+}
