@@ -20,13 +20,13 @@ namespace JDHUtility
 		XPlatformMutex(void);
 		~XPlatformMutex(void);
 
-		void wait	(void) const;
-		void release(void) const;
+		void wait	(void);
+		void release(void);
 
 #ifdef _WIN32
 		void *hMutex;
 #else
-        pthread_mutex_t *mutex;
+        pthread_mutex_t mutex;
 #endif
 	};
 }

@@ -455,8 +455,7 @@ namespace PhysicsSynth
 			SoundEvent *se = soundEvents.front();
 			assert(se);
 
-            // TODO: MAC FIX
-			//se->send();
+			se->send();
 
 			soundEvents.pop();
 			NDELETE(se);

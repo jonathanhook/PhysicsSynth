@@ -234,8 +234,6 @@ void toggleFullscreen(void)
 	fullscreen = !fullscreen;
 }
 
-static int gt = 0;
-static long ct = 0;
 void update(void)
 {
 	assert(manager);

@@ -34,25 +34,22 @@ namespace JDHUtility
 #else
    	XPlatformMutex::XPlatformMutex(void)
 	{
-		//pthread_mutex_init(mutex, NULL);
+		pthread_mutex_init(&mutex, NULL);
 	}
     
 	XPlatformMutex::~XPlatformMutex(void)
 	{
-		if (mutex != NULL)
-		{
-			 //pthread_mutex_destroy(mutex);
-		}
+        pthread_mutex_destroy(&mutex);
 	}
     
-	void XPlatformMutex::wait(void) const
+	void XPlatformMutex::wait(void)
 	{
-		//pthread_mutex_lock(mutex);
+        pthread_mutex_lock(&mutex);
 	}
     
-	void XPlatformMutex::release(void) const
+	void XPlatformMutex::release(void)
 	{
-		//pthread_mutex_unlock(mutex);
+		pthread_mutex_unlock(&mutex);
 	}
 #endif
 }
