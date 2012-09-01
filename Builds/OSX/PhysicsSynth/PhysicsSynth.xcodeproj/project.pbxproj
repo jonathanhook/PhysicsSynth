@@ -135,6 +135,7 @@
 		FC0A29AE15EECFDC00030CB2 /* WorldMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0A292E15EECFDC00030CB2 /* WorldMenu.cpp */; };
 		FC0A29B015EED06900030CB2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0A29AF15EED06900030CB2 /* OpenGL.framework */; };
 		FC0A29B215EED06F00030CB2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0A29B115EED06F00030CB2 /* GLUT.framework */; };
+		FC4DF63515F227380039B19E /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC4DF63415F227380039B19E /* libGLEW.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -417,6 +418,7 @@
 		FC0A292F15EECFDC00030CB2 /* WorldMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldMenu.h; sourceTree = "<group>"; };
 		FC0A29AF15EED06900030CB2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		FC0A29B115EED06F00030CB2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/GLUT.framework; sourceTree = DEVELOPER_DIR; };
+		FC4DF63415F227380039B19E /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGLEW.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -426,6 +428,7 @@
 			files = (
 				FC0A29B215EED06F00030CB2 /* GLUT.framework in Frameworks */,
 				FC0A29B015EED06900030CB2 /* OpenGL.framework in Frameworks */,
+				FC4DF63515F227380039B19E /* libGLEW.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +438,7 @@
 		FC0A280015EECF9800030CB2 = {
 			isa = PBXGroup;
 			children = (
+				FC4DF63415F227380039B19E /* libGLEW.a */,
 				FC0A29B115EED06F00030CB2 /* GLUT.framework */,
 				FC0A29AF15EED06900030CB2 /* OpenGL.framework */,
 				FC0A281015EECFB000030CB2 /* PhysicsSynth */,
@@ -1055,6 +1059,10 @@
 					"../../../Source/**",
 					"../../../Source/OscPack/**",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1081,6 +1089,10 @@
 					"../../../Source/**",
 					"../../../Source/OscPack/**",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1106,6 +1118,7 @@
 				FC0A281715EECFB000030CB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
