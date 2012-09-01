@@ -4,10 +4,11 @@
  * Email:	j.d.hook@ncl.ac.uk
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
+#include <stdlib.h>
 #include "Ndelete.h"
 #include "GLPrimitives.h"
 
-#include <stdio.h>
+#include  <stdio.h>
 
 namespace JDHUtility
 {
@@ -35,30 +36,30 @@ namespace JDHUtility
 	}
 
 	/* Public Member Functions */
-	void GLPrimitives::renderSquare(void) const
+	void GLPrimitives::renderSquare(void)
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, squareVbo);
-		glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_VERTEX_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, 0);
-		glDrawArrays(GL_QUADS, 0, 4);
+        glDrawArrays(GL_QUADS, 0, 4);
 		glDisableClientState(GL_VERTEX_ARRAY);
-		glBindBuffer(GL_ARRAY_BUFFER, NULL);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
 	/* Private Member Functions */
 	void GLPrimitives::initSquare(void)
 	{
-		GLfloat data[12] = 
+        const GLfloat data[12] =
 		{ 
 			0.0f, 0.0f, 0.0f,
-			1.0f, 0.0f, 0.0f,
-			1.0f, 1.0f, 0.0f,
-			0.0f, 1.0f, 0.0f
+			0.5f, 0.0f, 0.0f,
+			0.5f, 0.5f, 0.0f,
+			0.0f, 0.5f, 0.0f
 		};
 
 		glGenBuffers(1, &squareVbo);
-		glBindBuffer(GL_ARRAY_BUFFER, squareVbo);
-		glBufferData(squareVbo, sizeof(GLfloat) * 12, &data, 0x88E4);
-		glBindBuffer(GL_ARRAY_BUFFER, NULL);
+        glBindBuffer(GL_ARRAY_BUFFER, squareVbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 12, &data, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 }

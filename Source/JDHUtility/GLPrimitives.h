@@ -13,10 +13,9 @@ namespace JDHUtility
 	{
 	public:
 		static GLPrimitives *instance;
-
 		static GLPrimitives *getInstance(void);
 
-		void renderSquare(void) const;
+		void renderSquare(void);
 
 	private:
 		GLPrimitives(void);

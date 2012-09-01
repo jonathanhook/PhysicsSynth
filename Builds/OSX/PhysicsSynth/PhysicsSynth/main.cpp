@@ -8,6 +8,7 @@
 #include <JDHUtility/Point2i.h>
 #include <JDHUtility/GLTextureFont.h>
 #include <JDHUtility/WindowingUtils.h>
+#include <JDHUtility/GLPrimitives.h>
 #include <MultiTouchEvents/FingerEventArgs.h>
 #include <PhysicsSynth/Manager.h>
 #include <PhysicsSynth/Synchronizer.h>
@@ -175,7 +176,9 @@ void render(void)
     
 	manager->render();
     
-	glutSwapBuffers();
+    GLPrimitives::getInstance()->renderSquare();
+
+    glutSwapBuffers();
     
 #ifdef _DEBUG
 	GLenum error = glGetError();
