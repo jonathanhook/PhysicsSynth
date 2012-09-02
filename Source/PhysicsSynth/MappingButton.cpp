@@ -9,6 +9,7 @@
 #include <JDHUtility/Ndelete.h>
 #include <JDHUtility/Vector2f.h>
 #include <JDHUtility/GLFontManager.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "MappingButton.h"
 #include "PushButton.h"
 
@@ -27,11 +28,9 @@ namespace PhysicsSynth
 		this->from		= from;
 		this->options	= options;
 
-		labelDl			= -1;
 		mappingChanged	= NULL;
 		to				= options[0];
 		toId			= 0;
-		valueDl			= -1;
 
 		initButtons();
 	}
@@ -67,28 +66,14 @@ namespace PhysicsSynth
 		glTranslatef(px + buttonDim + border, py + border, 0.0f);
 		glScalef(width, height - border, 1.0f);
 
-		// label
-		if(labelDl == -1)
-		{
-			labelDl = glGenLists(1);
-			glNewList(labelDl, GL_COMPILE);
+        glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        LIGHT_COLOUR.use();
+        GLPrimitives::getInstance()->renderSquare();
 
-			glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			LIGHT_COLOUR.use();
-
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f, 0.0f, 0.0f);		
-				glVertex3f(1.0f, 0.0f, 0.0f);
-				glVertex3f(1.0f, 1.0f, 0.0f);
-				glVertex3f(0.0f, 1.0f, 0.0f);
-			glEnd();
-
-			glPopAttrib();
-			glEndList();
-		}
-		glCallList(labelDl);
+        glPopAttrib();
 		glPopMatrix();
 
 		glMatrixMode(GL_MODELVIEW);

@@ -8,6 +8,7 @@
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/Vector2f.h>
 #include <JDHUtility/GLFontManager.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "OptionGridItem.h"
 
 namespace PhysicsSynth
@@ -19,8 +20,6 @@ namespace PhysicsSynth
 		this->option = option;
 
 		checked		= false;
-		checkBoxDl	= -1;
-		labelDl		= -1;
 	}
 
 	OptionGridItem::~OptionGridItem(void)
@@ -62,7 +61,10 @@ namespace PhysicsSynth
 		glScalef(pos + dim, pos + dim, 1.0f);
 
 		// check box
-		glPushAttrib(GL_CURRENT_BIT);
+		glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
 		if(checked)
 		{
 			VALUE_COLOUR.use();
@@ -72,26 +74,8 @@ namespace PhysicsSynth
 			LIGHT_COLOUR.use();
 		}
 		
-		if(checkBoxDl == -1)
-		{
-			checkBoxDl = glGenLists(1);
-			glNewList(checkBoxDl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	1.0f,	0.0f);
-				glVertex3f(0.0f,	1.0f,	0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(checkBoxDl);
+        GLPrimitives::getInstance()->renderSquare();
+        
 		glPopMatrix();
 		glPopAttrib(); // GL_CURRENT_BIT
 
@@ -106,7 +90,10 @@ namespace PhysicsSynth
 		glTranslatef(px + posX, py + posY, 0.0f);
 		glScalef(dimX, posY + dimY, 1.0f);
 
-		glPushAttrib(GL_CURRENT_BIT);
+		glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
 		if(selected)
 		{
 			LIGHT_COLOUR.use();
@@ -116,57 +103,12 @@ namespace PhysicsSynth
 			DARK_COLOUR.use();
 		}
 
-		if(labelDl == -1)
-		{
-			labelDl = glGenLists(1);
-			glNewList(labelDl, GL_COMPILE);
+        GLPrimitives::getInstance()->renderSquare();
 
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	1.0f,	0.0f);
-				glVertex3f(0.0f,	1.0f,	0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(labelDl);
 		glPopAttrib();
 		glPopMatrix();
 
 		// label
-		/*
-		float fontHeight = getSizef(dimensions.getY());
-
-		glMatrixMode(GL_MODELVIEW);
-		glPushMatrix();
-		glTranslatef(fontHeight, 0.0f, 0.0f);
-
-		glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
-		glLineWidth(TEXT_LINE_WIDTH);
-		glEnable(GL_BLEND);
-		glEnable(GL_LINE_SMOOTH);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		FONT2_COLOUR.use();
-
-		GLFontManager *f = GLFontManager::getInstance();
-		assert(f);
-		
-		std::string *label = &option.label;
-		assert(label);
-
-		float textWidth = getSizef(getTextWidth()) * (float)(*label).size();
-		f->renderString(FONT2, *label, Vector2f(textWidth, fontHeight), FONT2_BORDER);
-
-		glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT
-		glPopMatrix();
-		*/
-
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glTranslatef(px + dim, py, 0.0f);

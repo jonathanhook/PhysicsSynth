@@ -35,8 +35,7 @@ namespace PhysicsSynth
 		CheckedCallback		checkedCallback;
 		unsigned int		checkedDl;
 		SoundConfig			*colour;
-		unsigned int		colourDl;
-		unsigned int		colourSelectedDl;
+		
 	};
 }
 

@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #include <JDHUtility/OpenGL.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "PatternPickerItem.h"
 
 namespace PhysicsSynth
@@ -49,9 +50,11 @@ namespace PhysicsSynth
 		glTranslatef(px + border, py + border, 0.0f);
 		glScalef(width - border, height - border, 1.0f);
 
-		glPushAttrib(GL_CURRENT_BIT);
-
-		if(checked)
+		glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        if(checked)
 		{
 			VALUE_COLOUR.use();
 		}
@@ -60,27 +63,7 @@ namespace PhysicsSynth
 			DARK_COLOUR.use();
 		}
 
-		static unsigned int dl = -1;
-		if(dl == -1)
-		{
-			dl = glGenLists(1);
-			glNewList(dl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	0.0f,	0.0f);	
-				glVertex3f(1.0f,	1.0f,	0.0f);
-				glVertex3f(0.0f,	1.0f,	0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(dl);
+        GLPrimitives::getInstance()->renderSquare();
 
 		glPopAttrib(); // GL_CURRENT_BIT
 		glPopMatrix();

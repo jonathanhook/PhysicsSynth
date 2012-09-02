@@ -28,8 +28,6 @@ namespace PhysicsSynth
 		void	setValueChangedCallback	(ValueChangedCallback valueChanged);
 
 	private:
-		unsigned int			sliderBarDl;
-		unsigned int			sliderDl;
 		float					value;
 		ValueChangedCallback	valueChanged;
 

@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #include <JDHUtility/OpenGL.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "ColourPickerItem.h"
 #include "SoundConfig.h"
 
@@ -22,8 +23,6 @@ namespace PhysicsSynth
 
 		checked				= false;
 		checkedDl			= -1;
-		colourDl			= -1;
-		colourSelectedDl	= -1;
 	}
 
 	ColourPickerItem::~ColourPickerItem(void)
@@ -65,57 +64,21 @@ namespace PhysicsSynth
 		glTranslatef(px + border, py + border, 0.0f);
 		glScalef(w - border, h - border, 0.0f);
 
-		if(colourDl == -1)
-		{
-			colourDl = glGenLists(1);
-			glNewList(colourDl, GL_COMPILE);
+        glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        const Colour3f &sc = colour->getColour();
+        glColor4f(sc.getR(), sc.getG(), sc.getB(), COLOUR_ITEM_OPACITY);
+        GLPrimitives::getInstance()->renderSquare();
 
-			const Colour3f &sc = colour->getColour();
-			glColor4f(sc.getR(), sc.getG(), sc.getB(), COLOUR_ITEM_OPACITY);
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	1.0f,	0.0f);
-				glVertex3f(0.0f,	1.0f,	0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
-			glEndList();
-		}
-		glCallList(colourDl);
-
-		if(selected)
-		{
-			if(colourSelectedDl == -1)
-			{
-				colourSelectedDl = glGenLists(1);
-				glNewList(colourSelectedDl, GL_COMPILE);
-
-				float border	= getSizef(BORDER);
-				float w			= getSizef(dimensions.getX());
-				float h			= getSizef(dimensions.getY());
-
-				glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-				LIGHT_COLOUR.use();
-				glBegin(GL_QUADS);
-					glVertex3f(0.0f,	0.0f,	0.0f);
-					glVertex3f(1.0f,	0.0f,	0.0f);
-					glVertex3f(1.0f,	1.0f,	0.0f);
-					glVertex3f(0.0f,	1.0f,	0.0f);
-				glEnd();
-
-				glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
-				glEndList();
-			}
-			glCallList(colourSelectedDl);
-		}
+        if(selected)
+        {
+            LIGHT_COLOUR.use();
+            GLPrimitives::getInstance()->renderSquare();
+        }
+        
+        glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
 		glPopMatrix();
 
 		if(checked)
@@ -123,7 +86,6 @@ namespace PhysicsSynth
 			float border	= getSizef(BORDER);
 			float w			= getSizef(dimensions.getX());
 			float h			= getSizef(dimensions.getY());
-			float rim		= getSizef(RIM);
 
 			glMatrixMode(GL_MODELVIEW);
 			glPushMatrix();

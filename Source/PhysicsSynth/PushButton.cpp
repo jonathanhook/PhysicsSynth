@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLTexture.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "PushButton.h"
 
 namespace PhysicsSynth
@@ -49,19 +50,11 @@ namespace PhysicsSynth
 		{
 			DARK_COLOUR.use();
 		}
+        
+        GLPrimitives::getInstance()->renderSquare();
 
-		if(dl == -1) 
+		if(dl == -1)
 		{
-			dl = glGenLists(1);
-			glNewList(dl, GL_COMPILE);
-
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f, 0.0f, 0.0f);
-				glVertex3f(1.0f, 0.0f, 0.0f);
-				glVertex3f(1.0f, 1.0f, 0.0f);
-				glVertex3f(0.0f, 1.0f, 0.0f);
-			glEnd();
-
 			assert(texture);
 			if(texture->isTexture())
 			{

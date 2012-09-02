@@ -28,9 +28,8 @@ namespace PhysicsSynth
 		void			setTargetPosition		(const Vector2f &targetPosition);
 
 	private:
-		static const float			SNAP_THRESHOLD;
+		static const float SNAP_THRESHOLD;
 
-		unsigned int			backgroundDl;
 		unsigned int			hLineDisplayList;
 		unsigned int			vLineDisplayList;
 		TargetChangedCallback	targetChanged;

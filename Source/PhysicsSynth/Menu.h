@@ -51,7 +51,6 @@ namespace PhysicsSynth
 		static const Colour4f BORDER_COLOUR;
 
 		Point2i			addCursor;
-		unsigned int	backgroundDl;
 		unsigned int	maxY;
 	};
 }

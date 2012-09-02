@@ -4,11 +4,12 @@
  * Email:	j.d.hook@ncl.ac.uk
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
+#include <assert.h>
 #include <stdlib.h>
 #include "Ndelete.h"
+#include "GLVbo.h"
 #include "GLPrimitives.h"
 
-#include  <stdio.h>
 
 namespace JDHUtility
 {
@@ -27,39 +28,41 @@ namespace JDHUtility
 	/* Constructors */
 	GLPrimitives::GLPrimitives(void)
 	{
-		initSquare();
+		initPrimitives();
 	}
 
 	GLPrimitives::~GLPrimitives(void)
 	{
-		glDeleteBuffers(1, &squareVbo);
-	}
+		NDELETE(squareVbo);
+        NDELETE(squareOutlineVbo);
+    }
 
 	/* Public Member Functions */
-	void GLPrimitives::renderSquare(void)
+	void GLPrimitives::renderSquare(void) const
 	{
-		glBindBuffer(GL_ARRAY_BUFFER, squareVbo);
-        glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(3, GL_FLOAT, 0, 0);
-        glDrawArrays(GL_QUADS, 0, 4);
-		glDisableClientState(GL_VERTEX_ARRAY);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		assert(squareVbo);
+        squareVbo->render();
+	}
+    
+    void GLPrimitives::renderSquareOutline(void) const
+	{
+		assert(squareOutlineVbo);
+        squareOutlineVbo->render();
 	}
 
 	/* Private Member Functions */
-	void GLPrimitives::initSquare(void)
+	void GLPrimitives::initPrimitives(void)
 	{
-        const GLfloat data[12] =
+        GLfloat data[12] =
 		{ 
 			0.0f, 0.0f, 0.0f,
-			0.5f, 0.0f, 0.0f,
-			0.5f, 0.5f, 0.0f,
-			0.0f, 0.5f, 0.0f
+			1.0f, 0.0f, 0.0f,
+			1.0f, 1.0f, 0.0f,
+			0.0f, 1.0f, 0.0f
 		};
 
-		glGenBuffers(1, &squareVbo);
-        glBindBuffer(GL_ARRAY_BUFFER, squareVbo);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 12, &data, GL_STATIC_DRAW);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+        squareVbo = new GLVbo(GL_QUADS, GL_STATIC_DRAW, data, 4);
+        squareOutlineVbo = new GLVbo(GL_LINE_LOOP, GL_STATIC_DRAW, data, 4);
+        
 	}
 }

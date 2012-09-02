@@ -893,22 +893,6 @@ namespace PhysicsSynth
 		}
 		glCallList(borderDl);
 
-		/*
-		GLFontManager *fm = GLFontManager::getInstance();
-		assert(fm);
-
-		glMatrixMode(GL_MODELVIEW);
-		glPushMatrix();
-		glTranslatef(-0.025f, -0.015f, 0.0f);
-		glColor4f(1.0, 1.0f, 1.0f, 0.1f);
-
-		char t[3];
-		sprintf(t, "%d", track);
-
-		fm->renderString(TRACK_FONT, t, Vector2f(0.05f, 0.05f));
-		*/
-		//glPopMatrix();
-
 		glPopAttrib(); // GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT
 	}
 

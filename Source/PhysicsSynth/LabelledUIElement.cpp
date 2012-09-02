@@ -10,6 +10,7 @@
 #include <JDHUtility/Vector2f.h>
 #include <JDHUtility/GLTextureFont.h>
 #include <JDHUtility/GLFontManager.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "LabelledUIElement.h"
 
 namespace PhysicsSynth
@@ -19,8 +20,6 @@ namespace PhysicsSynth
 		UIElement(position, Point2i(width, getLabelHeight()))
 	{
 		this->label = label;
-
-		dl = -1;
 	}
 
 	LabelledUIElement::~LabelledUIElement(void)
@@ -46,27 +45,9 @@ namespace PhysicsSynth
 		glEnable(GL_LINE_SMOOTH);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
-		if(dl == -1)
-		{
-			dl = glGenLists(1);
-			glNewList(dl, GL_COMPILE);
-
-			float borderf		= getSizef(BORDER);
-			float labelHeightf	= getSizef(getLabelHeight());
-			float width			= getSizef(dimensions.getX());
-			
-			LIGHT_COLOUR.use();
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f, 0.0f, 0.0f);
-				glVertex3f(1.0f, 0.0f, 0.0f);
-				glVertex3f(1.0f, 1.0f, 0.0f);
-				glVertex3f(0.0f, 1.0f, 0.0f);
-			glEnd();
-
-			glEndList();
-		}
-		glCallList(dl);
-
+        LIGHT_COLOUR.use();
+        GLPrimitives::getInstance()->renderSquare();
+        
 		glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT
 		glPopMatrix();
 

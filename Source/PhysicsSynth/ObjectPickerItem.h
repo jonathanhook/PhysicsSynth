@@ -23,6 +23,5 @@ namespace PhysicsSynth
 
 	private:
 		PhysicsObject			*object;
-		unsigned int			opiDl;
 	};
 }

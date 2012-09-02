@@ -5,24 +5,28 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #pragma once
-#include <JDHUtility/OpenGL.h>
 
 namespace JDHUtility
 {
+    class GLVbo;
+    
 	class GLPrimitives
 	{
 	public:
 		static GLPrimitives *instance;
 		static GLPrimitives *getInstance(void);
 
-		void renderSquare(void);
+		void renderSquare           (void) const;
+        void renderSquareOutline    (void) const;
 
 	private:
 		GLPrimitives(void);
 		~GLPrimitives(void);
 
-		void initSquare(void);
-		
-		GLuint squareVbo;
+		void initPrimitives(void);
+        
+        GLVbo *squareVbo;
+        GLVbo *squareOutlineVbo;
+        
 	};
 }

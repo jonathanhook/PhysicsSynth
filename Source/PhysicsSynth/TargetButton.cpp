@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #include <math.h>
+#include <GLPrimitives.h>
 #include "TargetButton.h"
 
 namespace PhysicsSynth
@@ -16,7 +17,6 @@ namespace PhysicsSynth
 	TargetButton::TargetButton(std::string text, const Point2i &position, unsigned int width) :
 		LabelledUIElement(text, position, width)
 	{
-		backgroundDl		= -1;	
 		hLineDisplayList	= -1;
 		vLineDisplayList	= -1;
 	
@@ -68,27 +68,14 @@ namespace PhysicsSynth
 		glTranslatef(px, py, 0.0f);
 		glScalef(width, height, 1.0f);
 
-		if(backgroundDl == -1)
-		{
-			backgroundDl = glGenLists(1);
-			glNewList(backgroundDl, GL_COMPILE);
+        glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			DARK_COLOUR.use();
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	1.0f,	0.0f);
-				glVertex3f(0.0f,	1.0f,	0.0f);
-			glEnd();
-
-			glPopAttrib();
-			glEndList();
-		}
-		glCallList(backgroundDl);
+        DARK_COLOUR.use();
+        GLPrimitives::getInstance()->renderSquare();
+        
+        glPopAttrib();
 
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();

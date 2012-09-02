@@ -6,6 +6,7 @@
  */
 #include <assert.h>
 #include <JDHUtility/OpenGL.h>
+#include <JDHUtility/GLPrimitives.h>
 #include <JDHUtility/Ndelete.h>
 #include "Menu.h"
 
@@ -27,7 +28,6 @@ namespace PhysicsSynth
 		this->mode			= mode;
 
 		addCursor		= Point2i(0, 0);
-		backgroundDl	= -1;
 		maxY			= 0;
 		menuDl			= -1;
 	}
@@ -67,40 +67,14 @@ namespace PhysicsSynth
 		float height	= getSizef(dimensions.getY() + (BORDER * 3));
 		glScalef(width, height, 1.0f);
 
-		if(backgroundDl == -1)
-		{
-			backgroundDl = glGenLists(1);
-			glNewList(backgroundDl, GL_COMPILE);
+        glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        BACKGROUND_MASK_COLOUR.use();
+        GLPrimitives::getInstance()->renderSquare();
 
-			BACKGROUND_MASK_COLOUR.use();
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	1.0f,	0.0f);
-				glVertex3f(0.0f,	1.0f,	0.0f);
-			glEnd();
-
-			// Coloured background when selected
-			//if(mode != CREATE)
-			//{
-			//	glColor4f(VALUE_COLOUR.getR(), VALUE_COLOUR.getG(), VALUE_COLOUR.getB(), 0.15f);				
-			//
-			//	glBegin(GL_QUADS);
-			//		glVertex3f(0.0f,	0.0f,	0.0f);
-			//		glVertex3f(1.0f,	0.0f,	0.0f);
-			//		glVertex3f(1.0f,	1.0f,	0.0f);
-			//		glVertex3f(0.0f,	1.0f,	0.0f);
-			//	glEnd();
-			//}
-
-			glPopAttrib();
-			glEndList();
-		}
-		glCallList(backgroundDl);
+        glPopAttrib();
 
 		if(menuDl == -1)
 		{

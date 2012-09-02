@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #include <assert.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "ObjectPickerItem.h"
 #include "PhysicsObject.h"
 
@@ -15,8 +16,6 @@ namespace PhysicsSynth
 		Button("", position, width)
 	{
 		this->object = object;
-
-		opiDl = 0;
 	}
 
 	ObjectPickerItem::~ObjectPickerItem(void)
@@ -56,22 +55,14 @@ namespace PhysicsSynth
 		{
 			DARK_COLOUR.use();
 		}
-
-		if(!opiDl)
-		{
-			opiDl = glGenLists(1);
-			glNewList(opiDl, GL_COMPILE);
-
-			glBegin(GL_QUADS);
-				glTexCoord2f(0.0f, 0.0f);	glVertex3f(0.0f, 0.0f, 0.0f);
-				glTexCoord2f(1.0f, 0.0f);	glVertex3f(1.0f, 0.0f, 0.0f);
-				glTexCoord2f(1.0f, 1.0f);	glVertex3f(1.0f, 1.0f, 0.0f);
-				glTexCoord2f(0.0f, 1.0f);	glVertex3f(0.0f, 1.0f, 0.0f);
-			glEnd();
-
-			glEndList();
-		}
-		glCallList(opiDl);
+        
+        // TODO: textured vbo
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0f, 0.0f);	glVertex3f(0.0f, 0.0f, 0.0f);
+            glTexCoord2f(1.0f, 0.0f);	glVertex3f(1.0f, 0.0f, 0.0f);
+            glTexCoord2f(1.0f, 1.0f);	glVertex3f(1.0f, 1.0f, 0.0f);
+            glTexCoord2f(0.0f, 1.0f);	glVertex3f(0.0f, 1.0f, 0.0f);
+        glEnd();
 
 		glTranslatef(0.5f, 0.5f, 0.0f);	
 		glScalef(1.0f / (width - border), 1.0f, 1.0f);

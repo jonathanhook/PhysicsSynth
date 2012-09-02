@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #include <JDHUtility/OpenGL.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "Slider.h"
 
 namespace PhysicsSynth
@@ -13,8 +14,6 @@ namespace PhysicsSynth
 	Slider::Slider(std::string label, const Point2i &position, unsigned int width) :
 		LabelledUIElement(label, position, width)
 	{
-		sliderDl	= -1;
-		sliderBarDl	= -1;
 		value		= 0.0f;
 
 		dimensions.setY(getLabelHeight() * 2);
@@ -76,22 +75,10 @@ namespace PhysicsSynth
 		{
 			DARK_COLOUR.use();
 		}
-
-		if(sliderDl == -1)
-		{
-			sliderDl = glGenLists(1);
-			glNewList(sliderDl, GL_COMPILE);
-
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f, 0.0f, 0.0f);
-				glVertex3f(1.0f, 0.0f, 0.0f);
-				glVertex3f(1.0f, 1.0f, 0.0f);
-				glVertex3f(0.0f, 1.0f, 0.0f);
-			glEnd();
-
-			glEndList();
-		}
-		glCallList(sliderDl);
+        
+        GLPrimitives::getInstance()->renderSquare();
+        
+         
 		glPopMatrix();
 
 		border		= getSizef(BORDER);
@@ -103,22 +90,9 @@ namespace PhysicsSynth
 		glTranslatef(px + border, py + border, 0.0f);
 		glScalef((width - border) * value, labelHeight - border, 1.0f);
 
-		if(sliderBarDl == -1)
-		{
-			sliderBarDl = glGenLists(1);
-			glNewList(sliderBarDl, GL_COMPILE);
-
-			VALUE_COLOUR.use();
-			glBegin(GL_QUADS);
-				glVertex3f(0.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	0.0f,	0.0f);
-				glVertex3f(1.0f,	1.0f,	0.0f);
-				glVertex3f(0.0f,	1.0f,	0.0f);
-			glEnd();
-
-			glEndList();
-		}
-		glCallList(sliderBarDl);
+        VALUE_COLOUR.use();
+        GLPrimitives::getInstance()->renderSquare();
+        
 		glPopMatrix();
 		glPopAttrib(); // GL_CURRENT_BIT | GL_ENABLE_BIT
 	}
@@ -137,7 +111,6 @@ namespace PhysicsSynth
 	void Slider::updateValue(const FingerEventArgs &e)
 	{
 		float fingerX			= e.getPosition().getX();
-		float fingerY			= e.getPosition().getY();
 		float targetRegionX		= getSizef(position.getX() + BORDER);
 		float targetRegionWidth	= getSizef(dimensions.getX() - (BORDER * 2));
 		float tx				= (fingerX - targetRegionX) / targetRegionWidth;

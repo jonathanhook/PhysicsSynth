@@ -33,14 +33,12 @@ namespace PhysicsSynth
 		static const std::string RIGHT_TEXTURE_PATH;
 
 		MappingGrid::MappingGridItem				from;
-		unsigned int								labelDl;
 		PushButton									*leftButton;
 		MappingChangedCallback						mappingChanged;
 		std::vector<MappingGrid::MappingGridItem>	options;
 		PushButton									*rightButton;
 		MappingGrid::MappingGridItem				to;
 		unsigned int								toId;
-		unsigned int								valueDl;
 
 		void initButtons		(void);
 		void leftButton_Clicked	(UIElement *sender);

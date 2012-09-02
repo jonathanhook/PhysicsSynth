@@ -33,8 +33,6 @@ namespace PhysicsSynth
 	private:
 		CheckedCallback		checkedCallback;
 		bool				checked;
-		unsigned int		checkBoxDl;
-		unsigned int		labelDl;
 		OptionGrid::Option	option;
 	};
 }

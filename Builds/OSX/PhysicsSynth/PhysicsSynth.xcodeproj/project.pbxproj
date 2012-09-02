@@ -135,6 +135,7 @@
 		FC0A29AE15EECFDC00030CB2 /* WorldMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0A292E15EECFDC00030CB2 /* WorldMenu.cpp */; };
 		FC0A29B015EED06900030CB2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0A29AF15EED06900030CB2 /* OpenGL.framework */; };
 		FC0A29B215EED06F00030CB2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0A29B115EED06F00030CB2 /* GLUT.framework */; };
+		FC0F806115F3C94A005F3B72 /* GLVbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0F805F15F3C94A005F3B72 /* GLVbo.cpp */; };
 		FC69F38115F28CC600CC6603 /* GLPrimitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC69F37F15F28CC600CC6603 /* GLPrimitives.cpp */; };
 /* End PBXBuildFile section */
 
@@ -418,6 +419,8 @@
 		FC0A292F15EECFDC00030CB2 /* WorldMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldMenu.h; sourceTree = "<group>"; };
 		FC0A29AF15EED06900030CB2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		FC0A29B115EED06F00030CB2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/GLUT.framework; sourceTree = DEVELOPER_DIR; };
+		FC0F805F15F3C94A005F3B72 /* GLVbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLVbo.cpp; sourceTree = "<group>"; };
+		FC0F806015F3C94A005F3B72 /* GLVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVbo.h; sourceTree = "<group>"; };
 		FC69F37F15F28CC600CC6603 /* GLPrimitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLPrimitives.cpp; sourceTree = "<group>"; };
 		FC69F38015F28CC600CC6603 /* GLPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLPrimitives.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -639,6 +642,8 @@
 				FC0A288C15EECFDC00030CB2 /* WindowingUtils.h */,
 				FC0A288D15EECFDC00030CB2 /* XPlatformMutex.cpp */,
 				FC0A288E15EECFDC00030CB2 /* XPlatformMutex.h */,
+				FC0F805F15F3C94A005F3B72 /* GLVbo.cpp */,
+				FC0F806015F3C94A005F3B72 /* GLVbo.h */,
 			);
 			name = JDHUtility;
 			path = ../../../../Source/JDHUtility;
@@ -1018,6 +1023,7 @@
 				FC0A29AD15EECFDC00030CB2 /* World.cpp in Sources */,
 				FC0A29AE15EECFDC00030CB2 /* WorldMenu.cpp in Sources */,
 				FC69F38115F28CC600CC6603 /* GLPrimitives.cpp in Sources */,
+				FC0F806115F3C94A005F3B72 /* GLVbo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
