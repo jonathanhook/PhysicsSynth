@@ -53,16 +53,26 @@ namespace JDHUtility
 	/* Private Member Functions */
 	void GLPrimitives::initPrimitives(void)
 	{
-        GLfloat data[12] =
+        // square
+        GLfloat squareData[12] =
 		{ 
 			0.0f, 0.0f, 0.0f,
 			1.0f, 0.0f, 0.0f,
 			1.0f, 1.0f, 0.0f,
 			0.0f, 1.0f, 0.0f
 		};
+        
+        GLfloat squareTextureData[12] =
+		{
+			0.0f, 0.0f,
+			1.0f, 0.0f,
+			1.0f, 1.0f,
+			0.0f, 1.0f
+		};
 
-        squareVbo = new GLVbo(GL_QUADS, GL_STATIC_DRAW, data, 4);
-        squareOutlineVbo = new GLVbo(GL_LINE_LOOP, GL_STATIC_DRAW, data, 4);
+        squareVbo = new GLVbo(GL_QUADS, GL_STATIC_DRAW, squareData, 4, squareTextureData);
+        squareOutlineVbo = new GLVbo(GL_LINE_LOOP, GL_STATIC_DRAW, squareData, 4, squareTextureData);
+    
         
 	}
 }

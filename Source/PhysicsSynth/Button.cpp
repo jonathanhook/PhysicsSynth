@@ -9,6 +9,7 @@
 #include <JDHUtility/Ndelete.h>
 #include <JDHUtility/Vector2f.h>
 #include <JDHUtility/GLFontManager.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "Button.h"
 
 namespace PhysicsSynth
@@ -18,9 +19,7 @@ namespace PhysicsSynth
 		UIElement(position, Point2i(width, 0))
 	{
 		this->label = label;
-
-		buttonDl = -1;
-
+        
 		dimensions.setY(getLabelHeight() * 2);
 	}
 
@@ -57,21 +56,8 @@ namespace PhysicsSynth
 			DARK_COLOUR.use();
 		}
 
-		if(buttonDl == -1)
-		{
-			buttonDl = glGenLists(1);
-			glNewList(buttonDl, GL_COMPILE);
+        GLPrimitives::getInstance()->renderSquare();
 
-			glBegin(GL_QUADS);
-				glTexCoord2f(0.0f, 0.0f);	glVertex3f(0.0f,	0.0f,	0.0f);
-				glTexCoord2f(1.0f, 0.0f);	glVertex3f(1.0f,	0.0f,	0.0f);
-				glTexCoord2f(1.0f, 1.0f);	glVertex3f(1.0f,	1.0f,	0.0f);
-				glTexCoord2f(0.0f, 1.0f);	glVertex3f(0.0f,	1.0f,	0.0f);
-			glEnd();
-
-			glEndList();
-		}
-		glCallList(buttonDl);
 		glPopAttrib(); // GL_CURRENT_BIT | GL_ENABLE_BIT
 		glPopMatrix();
 

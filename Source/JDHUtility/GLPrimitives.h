@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #pragma once
+#include <OpenGL.h>
 
 namespace JDHUtility
 {
@@ -24,7 +25,7 @@ namespace JDHUtility
 		~GLPrimitives(void);
 
 		void initPrimitives(void);
-        
+       
         GLVbo *squareVbo;
         GLVbo *squareOutlineVbo;
         

@@ -21,8 +21,7 @@ namespace PhysicsSynth
 
 		virtual void render(void);
 
-	private:
-		unsigned int	buttonDl;
+    private:
 		std::string		label;
 	};
 }

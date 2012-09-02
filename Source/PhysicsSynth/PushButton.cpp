@@ -15,8 +15,7 @@ namespace PhysicsSynth
 	/* Constructors */
 	PushButton::PushButton(std::string texturePath, const Point2i &position, const Point2i &dimensions) :
 		UIElement(position, dimensions)
-	{
-		dl		= -1;
+    {
 		texture = new GLTexture(texturePath);
 	}
 
@@ -53,25 +52,12 @@ namespace PhysicsSynth
         
         GLPrimitives::getInstance()->renderSquare();
 
-		if(dl == -1)
-		{
-			assert(texture);
-			if(texture->isTexture())
-			{
-				texture->bind(GL_REPLACE);
-	
-				glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-				glBegin(GL_QUADS);
-					glTexCoord2f(0.0f, 1.0f);	glVertex3f(0.0f, 0.0f,	0.0f);
-					glTexCoord2f(1.0f, 1.0f);	glVertex3f(1.0f, 0.0f,	0.0f);
-					glTexCoord2f(1.0f, 0.0f);	glVertex3f(1.0f, 1.0f,	0.0f);
-					glTexCoord2f(0.0f, 0.0f);	glVertex3f(0.0f, 1.0f,	0.0f);
-				glEnd();
-			}
-
-			glEndList();
-		}
-		glCallList(dl);
+        assert(texture);
+        if(texture->isTexture())
+        {
+            texture->bind(GL_REPLACE);
+            GLPrimitives::getInstance()->renderSquare();
+        }
 
 		glPopAttrib();
 		glPopMatrix();

@@ -21,8 +21,7 @@ namespace PhysicsSynth
 		void render(void);
 
 	private:
-		unsigned int	dl;
-		GLTexture		*texture;
+		GLTexture *texture;
 
 	};
 }

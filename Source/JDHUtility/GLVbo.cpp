@@ -10,31 +10,43 @@ namespace JDHUtility
 {
     /* Constants */
     const GLuint GLVbo::COORDS_IN_VERTEX = 3;
+    const GLuint GLVbo::COORDS_IN_UV = 2;
     
     /* Constructors */
-    GLVbo::GLVbo(GLenum mode, GLenum usage, GLfloat *vertices, GLsizei count)
+    GLVbo::GLVbo(GLenum mode, GLenum usage, GLfloat *vertices, GLsizei count, GLfloat *textureCoords)
     {
         glGenBuffers(1, &id);
-        update(mode, usage, vertices, count);
+        glGenBuffers(1, &textureId);
+        
+        update(mode, usage, vertices, count, textureCoords);
     }
     
     GLVbo::~GLVbo(void)
     {
         glDeleteBuffers(1, &id);
+        glDeleteBuffers(1, &textureId);
     }
     
     /* Public member functions */
     void GLVbo::render(void) const
     {
-        glBindBuffer(GL_ARRAY_BUFFER, id);
         glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(3, GL_FLOAT, 0, 0);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+        glBindBuffer(GL_ARRAY_BUFFER, id);
+		glVertexPointer(COORDS_IN_VERTEX, GL_FLOAT, 0, 0);
+        
+        glBindBuffer(GL_ARRAY_BUFFER, textureId);
+        glTexCoordPointer(COORDS_IN_UV, GL_FLOAT, 0, 0);
+        
         glDrawArrays(mode, 0, count);
-		glDisableClientState(GL_VERTEX_ARRAY);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+        
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+        glDisableClientState(GL_VERTEX_ARRAY);
     }
     
-    void GLVbo::update(GLenum mode, GLenum usage, GLfloat *vertices, GLsizei count)
+    void GLVbo::update(GLenum mode, GLenum usage, GLfloat *vertices, GLsizei count, GLfloat *textureCoords)
     {
         this->mode  = mode;
         this->count = count;
@@ -42,5 +54,12 @@ namespace JDHUtility
         glBindBuffer(GL_ARRAY_BUFFER, id);
         glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * COORDS_IN_VERTEX * count, vertices, usage);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+        
+        if(textureCoords != NULL)
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, textureId);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * COORDS_IN_UV * count, textureCoords, usage);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+        }
     }
 }
