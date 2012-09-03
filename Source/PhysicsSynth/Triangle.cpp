@@ -10,9 +10,11 @@
 #include <Box2D/Dynamics/b2Body.h>
 #include <Box2D/Dynamics/b2Fixture.h>
 #include <Box2D/Dynamics/b2World.h>
+#include <JDHUtility/Ndelete.h>
 #include <JDHUtility/Colour4f.h>
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLMatrixf.h>
+#include <JDHUtility/GLVbo.h>
 #include <math.h>
 #include <JDHUtility/Vector2f.h>
 #include "Manager.h"
@@ -27,12 +29,14 @@ namespace PhysicsSynth
 	Triangle::Triangle(bool isStatic, float size, SoundConfig *sound, float friction, float restitution) :
 		SimpleObject(isStatic, size, sound, friction, restitution)
 	{
-		backgroundDl	= -1;
-		borderDl		= -1; 	
+        fill    = NULL;
+        outline = NULL;
 	}
 
 	Triangle::~Triangle(void)
 	{
+        NDELETE(fill);
+        NDELETE(outline);
 	}
 
 	/* Public Member Functions */
@@ -177,9 +181,24 @@ namespace PhysicsSynth
 		points[2].setX(cos((float)M_PI * 0.83f) * rs);
 		points[2].setY(sin((float)M_PI * 0.83f) * rs);
 
-		// reset display lists
-		backgroundDl = -1;
-		borderDl = -1;
+        
+        GLfloat verts[9] =
+        {
+            points[0].getX(), points[0].getY(), 0.0f,
+            points[1].getX(), points[1].getY(), 0.0f,
+            points[2].getX(), points[2].getY(), 0.0f
+        };
+        
+        if(fill == NULL && outline == NULL)
+        {
+            fill    = new GLVbo(GL_TRIANGLES, GL_DYNAMIC_DRAW, verts, 3);
+            outline = new GLVbo(GL_LINE_LOOP, GL_DYNAMIC_DRAW, verts, 3);
+        }
+        else
+        {
+            fill->update(GL_TRIANGLES, GL_DYNAMIC_DRAW, verts, 3);
+            outline->update(GL_LINE_LOOP, GL_DYNAMIC_DRAW, verts, 3);
+        }
 	}
 
 	void Triangle::renderShape(void)
@@ -190,25 +209,14 @@ namespace PhysicsSynth
 		const Colour3f &sc = sound->getColour();
 		glColor4f(sc.getR(), sc.getG(), sc.getB(), 0.5f);
 
-		if(backgroundDl == -1)
-		{
-			backgroundDl = glGenLists(1);
-			glNewList(backgroundDl, GL_COMPILE);
+        glPushAttrib(GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        assert(fill);
+        fill->render();
 
-			glBegin(GL_TRIANGLES);
-				glVertex3f(points[0].getX(), points[0].getY(), 0.0f);
-				glVertex3f(points[1].getX(), points[1].getY(), 0.0f);
-				glVertex3f(points[2].getX(), points[2].getY(), 0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(backgroundDl);
+        glPopAttrib(); // GL_ENABLE_BIT
 
 		if(isSelected)
 		{
@@ -221,27 +229,15 @@ namespace PhysicsSynth
 			glLineWidth(1.0f);
 		}
 
-		if(borderDl == -1)
-		{
-			borderDl = glGenLists(1);
-			glNewList(borderDl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glEnable(GL_LINE_SMOOTH);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glPushAttrib(GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			
-			glBegin(GL_LINE_LOOP);
-				glVertex3f(points[0].getX(), points[0].getY(), 0.0f);
-				glVertex3f(points[1].getX(), points[1].getY(), 0.0f);
-				glVertex3f(points[2].getX(), points[2].getY(), 0.0f);
-			glEnd();
+        assert(outline);
+        outline->render();
 
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(borderDl);
-
+        glPopAttrib(); // GL_ENABLE_BIT
 		glPopAttrib(); // GL_CURRENT_BIT | GL_LINE_BIT
 	}
 

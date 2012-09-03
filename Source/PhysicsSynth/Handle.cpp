@@ -10,6 +10,7 @@
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLMatrixf.h>
 #include <JDHUtility/GLTexture.h>
+#include <JDHUtility/GLPrimitives.h>
 #include <math.h>
 #include <JDHUtility/Ndelete.h>
 #include "Finger.h"
@@ -119,32 +120,15 @@ namespace PhysicsSynth
 		saveTransform();
 
 		// background mask
-		static unsigned int backgroundMaskDl = -1;
-		if(backgroundMaskDl == -1)
-		{
-			backgroundMaskDl = glGenLists(1);
-			glNewList(backgroundMaskDl, GL_COMPILE);
-			
-			glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glColor4f(0.0f, 0.0f, 0.0f, BACKGROUND_MASK_ALPHA);
+        glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glColor4f(0.0f, 0.0f, 0.0f, BACKGROUND_MASK_ALPHA);
 
-			glBegin(GL_POLYGON);
-				for(unsigned int i = 0; i < CIRCLE_VERTICES; i++)
-				{
-					float theta = (((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES) * (float)i; 
-					float x		= cos(theta) * size;
-					float y		= sin(theta) * size;
-
-					glVertex3f(x, y, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib(); // GL_CURRENT_BIT | GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(backgroundMaskDl);
+        glScalef(size, size, 1.0f);
+        GLPrimitives::getInstance()->renderCircle();
+        
+        glPopAttrib(); // GL_CURRENT_BIT | GL_ENABLE_BIT
 
 		// border
 		float alphaModifier = fingerDown ? SELECTED_ALPHA_MODIFIER : NON_SELECTED_ALPHA_MODIFIER;
@@ -152,46 +136,23 @@ namespace PhysicsSynth
 		glPushAttrib(GL_CURRENT_BIT);
 		glColor4f(VALUE_COLOUR.getR(), VALUE_COLOUR.getG(), VALUE_COLOUR.getB(), alphaModifier);
 
-		static unsigned int borderDl = -1;
-		if(borderDl == -1)
-		{
-			borderDl = glGenLists(1);
-			glNewList(borderDl, GL_COMPILE);
+        glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glLineWidth(1.0f);
 
-			glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glEnable(GL_LINE_SMOOTH);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glLineWidth(1.0f);
+        GLPrimitives::getInstance()->renderCircleOutline();
 
-			glBegin(GL_LINE_LOOP);
-				for(unsigned int i = 0; i < CIRCLE_VERTICES; i++)
-				{
-					float theta = (((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES) * (float)i; 
-					float x		= cos(theta) * size;
-					float y		= sin(theta) * size;
-
-					glVertex3f(x, y, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib(); // GL_LINE_BIT | GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(borderDl);
+        glPopAttrib(); // GL_LINE_BIT | GL_ENABLE_BIT
+/*
 		
 		// texture
 		glColor4f(1.0f, 1.0f, 1.0f, BACKGROUND_ALPHA * alphaModifier);
 
-		static unsigned int textureDl = -1;
-		if(textureDl == -1)
-		{
 			// texture on stack so only ever loaded once
 			GLTexture texture(TEXTURE_PATH);
 	
-			textureDl = glGenLists(1);
-			glNewList(textureDl, GL_COMPILE);
-
 			glPushAttrib(GL_ENABLE_BIT);
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -212,10 +173,7 @@ namespace PhysicsSynth
 			glEnd();
 
 			glPopAttrib();
-			glEndList();
-		}
-		glCallList(textureDl);
-
+*/
 		glPopAttrib(); // GL_CURRENT_BIT
 		glPopMatrix();
 	}

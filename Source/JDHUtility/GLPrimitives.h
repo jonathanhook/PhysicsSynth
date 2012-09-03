@@ -14,9 +14,13 @@ namespace JDHUtility
 	class GLPrimitives
 	{
 	public:
+        static const GLsizei CIRCLE_VERTICES;
+        
 		static GLPrimitives *instance;
 		static GLPrimitives *getInstance(void);
 
+        void renderCircle           (void) const;
+        void renderCircleOutline    (void) const;
 		void renderSquare           (void) const;
         void renderSquareOutline    (void) const;
 
@@ -26,6 +30,8 @@ namespace JDHUtility
 
 		void initPrimitives(void);
        
+        GLVbo *circleVbo;
+        GLVbo *circleOutlineVbo;
         GLVbo *squareVbo;
         GLVbo *squareOutlineVbo;
         

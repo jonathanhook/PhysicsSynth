@@ -27,9 +27,6 @@ namespace PhysicsSynth
 		void				setSize			(float size);
 
 	private:
-		unsigned int backgroundDl;
-		unsigned int borderDl;
-
 		void renderShape(void);
 		void setupShape	(b2Shape *shape);
 	};

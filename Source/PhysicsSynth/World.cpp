@@ -455,7 +455,7 @@ namespace PhysicsSynth
 			SoundEvent *se = soundEvents.front();
 			assert(se);
 
-			se->send();
+			//se->send();
 
 			soundEvents.pop();
 			NDELETE(se);

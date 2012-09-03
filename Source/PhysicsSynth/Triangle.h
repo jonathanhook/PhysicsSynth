@@ -7,6 +7,8 @@
 #pragma once
 #include "SimpleObject.h"
 
+namespace JDHUtility { class GLVbo; }
+
 namespace PhysicsSynth
 {
 	class Triangle :
@@ -30,15 +32,14 @@ namespace PhysicsSynth
 	private:
 		static const float THUMBNAIL_SCALE;
 
-		unsigned int	backgroundDl;
-		unsigned int	borderDl;
-		Point2f			points[3];
-
 		bool barrycentricInclusion	(const Point2f &p, const Point2f &a, const Point2f &b, const Point2f &c) const; 
 		void initPoints				(void);
-
 		void renderShape(void);
 		void setupShape	(b2Shape *shape);
+        
+        Point2f	points[3];
+        GLVbo *fill;
+        GLVbo *outline;
 	};
 }
 

@@ -13,6 +13,7 @@
 #include <JDHUtility/Colour4f.h>
 #include <JDHUtility/GLMatrixf.h>
 #include <JDHUtility/OpenGL.h>
+#include <JDHUtility/GLPrimitives.h>
 #include <math.h>
 #include "Manager.h"
 #include "Square.h"
@@ -22,9 +23,7 @@ namespace PhysicsSynth
 	/* Constructors */
 	Square::Square(bool isStatic, float size, SoundConfig *sound, float friction, float restitution) :
 		SimpleObject(isStatic, size, sound, friction, restitution)
-	{
-		backgroundDl	= -1;
-		borderDl		= -1; 	
+	{	
 	}
 
 	Square::~Square(void)
@@ -71,26 +70,6 @@ namespace PhysicsSynth
 			float scale			= modelview->getXScale();
 
 			return d <= renderSize + (fSize / scale);
-
-			/*b2Body *body = bodies[0];
-			assert(body != NULL);
-			assert(modelview != NULL);
-
-			Point2f p	= e.getPosition();
-			float angle	= body->GetAngle();
-
-			modelview->unTranslatePoint(p);
-			modelview->unScalePoint(p);
-			p.rotate(-angle);
-
-			float x	= p.getX();
-			float y	= p.getY();
-
-			float rs = getRenderSize();
-			return	(x >= -rs) &&
-					(x <= rs)	&&
-					(y >= -rs) &&
-					(y <= rs);*/
 		}
 		else
 		{
@@ -148,32 +127,21 @@ namespace PhysicsSynth
 	/* Private Member Functions */
 	void Square::renderShape(void)
 	{
-		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT);
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glTranslatef(-1.0f, -1.0f, 0.0f);
+        glScalef(2.0f, 2.0f, 1.0f);
+        
+		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		assert(sound);
 		const Colour3f sc = sound->getColour();
 		glColor4f(sc.getR(), sc.getG(), sc.getB(), 0.5f);
-
-		if(backgroundDl == -1)
-		{
-			backgroundDl = glGenLists(1);
-			glNewList(backgroundDl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glBegin(GL_QUADS);
-				glVertex3f(-1.0f,	-1.0f,	0.0f);
-				glVertex3f(1.0f,	-1.0f,	0.0f);
-				glVertex3f(1.0f,	1.0f,	0.0f);
-				glVertex3f(-1.0f,	1.0f,	0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(backgroundDl);
+        
+        GLPrimitives::getInstance()->renderSquare();
 
 		if(isSelected)
 		{
@@ -185,30 +153,11 @@ namespace PhysicsSynth
 			sound->getColour().use();
 			glLineWidth(1.0f);
 		}
-
-		if(borderDl == -1)
-		{
-			borderDl = glGenLists(1);
-			glNewList(borderDl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glEnable(GL_LINE_SMOOTH);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			
-			glBegin(GL_LINE_LOOP);
-				glVertex3f(-1.0f,	-1.0f,	0.0f);
-				glVertex3f(1.0f,	-1.0f,	0.0f);
-				glVertex3f(1.0f,	1.0f,	0.0f);
-				glVertex3f(-1.0f,	1.0f,	0.0f);
-			glEnd();
+        GLPrimitives::getInstance()->renderSquareOutline();
 
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(borderDl);
-
-		glPopAttrib(); // GL_CURRENT_BIT | GL_LINE_BIT
+		glPopAttrib();
+        glPopMatrix();
 	}
 
 	void Square::setupShape(b2Shape *shape)
