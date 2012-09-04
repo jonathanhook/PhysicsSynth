@@ -81,7 +81,7 @@ namespace JDHUtility
 			0.0f, 1.0f, 0.0f
 		};
         
-        GLfloat squareTextureData[12] =
+        GLfloat squareTextureData[8] =
 		{
 			0.0f, 0.0f,
 			1.0f, 0.0f,
