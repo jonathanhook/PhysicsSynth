@@ -6,10 +6,11 @@
  */
 #define _SHOW_FINGERS
 #define _USE_MATH_DEFINES
+#include <math.h>
 #include <assert.h>
 #include <JDHUtility/CrossPlatformTime.h>
 #include <JDHUtility/OpenGL.h>
-#include <math.h>
+#include <JDHUtility/GLPrimitives.h>
 #include <JDHUtility/Ndelete.h>
 #include <JDHUtility/Vector2f.h>
 #include "Canvas.h"
@@ -108,7 +109,6 @@ namespace PhysicsSynth
 		this->width = width;
 
 		canvas		= new Canvas(width / MENU_WIDTH);
-		fingerDl	= 0;
 		frames		= 0;
 		lastRender	= CrossPlatformTime::getTimeMillis();
 
@@ -242,34 +242,17 @@ namespace PhysicsSynth
 			glMatrixMode(GL_MODELVIEW);
 			glPushMatrix();
 			glTranslatef(x, y, 0.0f);
+            glScalef(FINGER_SIZE, FINGER_SIZE, 1.0f);
 
-			if(!fingerDl)
-			{
-				fingerDl = glGenLists(1);
-				glNewList(fingerDl, GL_COMPILE);
+            glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
+            glEnable(GL_BLEND);
+            glEnable(GL_LINE_SMOOTH);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glColor4f(1.0f, 1.0f, 1.0f, OPACITY);
 
-				glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
-				glEnable(GL_BLEND);
-				glEnable(GL_LINE_SMOOTH);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				glColor4f(1.0f, 1.0f, 1.0f, OPACITY);
+            GLPrimitives::getInstance()->renderCircleOutline();
 
-				glBegin(GL_LINE_STRIP);
-					for(unsigned int i = 0; i <= CIRCLE_SEGS; i++)
-					{
-						float theta = ((2.0f * (float)M_PI) / (float)CIRCLE_SEGS) * (float)i; 
-						float ix = cos(theta) * FINGER_SIZE;
-						float iy = sin(theta) * FINGER_SIZE;
-
-						glVertex3f(ix, iy, 0.0f);
-					}
-				glEnd();
-
-				glPopAttrib();
-				glEndList();
-			}
-			glCallList(fingerDl);
-
+            glPopAttrib();
 			glPopMatrix();
 		}
 #endif

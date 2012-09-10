@@ -26,7 +26,6 @@ namespace PhysicsSynth
 
 	private:
 		CheckedChangedCallback	checkedChanged;
-		unsigned int			checkedDl;
 		bool					isChecked;
 	};
 }

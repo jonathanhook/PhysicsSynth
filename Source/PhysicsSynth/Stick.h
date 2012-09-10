@@ -30,9 +30,6 @@ namespace PhysicsSynth
 	private:
 		static const float STICK_THICKNESS;
 
-		unsigned int backgroundDl;
-		unsigned int borderDl;
-
 		void renderShape(void);
 		void setupShape	(b2Shape *shape);
 	};

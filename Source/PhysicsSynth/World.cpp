@@ -26,7 +26,6 @@
 #include "Handle.h"
 #include "Manager.h"
 #include "ParticleEmitter.h"
-#include "PhysicsDebugger.h"
 #include "PressAndHold.h"
 #include "Sounds.h"
 #include "FingerQueryCallback.h"
@@ -85,7 +84,6 @@ namespace PhysicsSynth
 		modelview				= new GLMatrixf();
 		objectSelected			= NULL;
 		outlineDl				= -1;
-		physicsDebugger			= new PhysicsDebugger();
 		remainder				= 0.0;
 		renderMode				= GRAPHICS;
 		selected				= false;
@@ -576,7 +574,6 @@ namespace PhysicsSynth
 	{
 		b2Vec2 b2Gravity(gravity.getX(), gravity.getY());
 		world = new b2World(b2Gravity, DO_SLEEP);
-		world->SetDebugDraw(physicsDebugger);
 		world->SetContactListener(this);
 	}
 

@@ -5,14 +5,15 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #define _USE_MATH_DEFINES
+#include <math.h>
 #include <assert.h>
 #include <JDHUtility/CrossPlatformTime.h>
 #include <JDHUtility/Colour4f.h>
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLMatrixf.h>
 #include <JDHUtility/GLTexture.h>
+#include <JDHUtility/GLPrimitives.h>
 #include <JDHUtility/WindowingUtils.h>
-#include <math.h>
 #include <JDHUtility/Ndelete.h>
 #include <JDHUtility/PointInclusion.h>
 #include "DynamicObject.h"
@@ -43,13 +44,11 @@ namespace PhysicsSynth
 		this->rate			= rate;
 		this->pattern		= pattern;
 
-		backgroundDl	= -1;
-		borderDl		= -1;
 		finger			= NULL;
 		fingerDown		= false;
 		lastTick		= 0;
 		loop			= new LoopPointer(0.0f);
-		textureDl		= -1;
+        texture         = new GLTexture(texturePath);
 
 		Synchronizer *sync = Synchronizer::getInstance();
 		assert(sync);
@@ -59,6 +58,7 @@ namespace PhysicsSynth
 
 	DynamicObject::~DynamicObject(void)
 	{
+        NDELETE(texture);
 		NDELETE(loop);
 	}
 
@@ -213,7 +213,6 @@ namespace PhysicsSynth
 		assert(loop);
 		loop->update(rate);
 
-		float tickIncrement		= 1.0f / (PATTERN_LENGTH);
 		unsigned int loopPos	= (unsigned int)(loop->getLoopPosition() * PATTERN_LENGTH);
 
 		if(loopPos != lastTick)
@@ -236,71 +235,31 @@ namespace PhysicsSynth
 	/* Private Member Functions */
 	void DynamicObject::renderIcon(void)
 	{
-		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT);
-		
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glScalef(ICON_SIZE, ICON_SIZE, 1.0f);
+        
+		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
 		assert(sound);
 		const Colour3f &sc = sound->getColour();
 		glColor4f(sc.getR(), sc.getG(), sc.getB(), 0.5f);
+        
+        GLPrimitives::getInstance()->renderCircle();
+        
+        texture->bind(GL_REPLACE);
+        GLPrimitives::getInstance()->renderCircle();
+        
+        glPopAttrib();
 
-		if(backgroundDl == -1)
-		{
-			backgroundDl = glGenLists(1);
-			glNewList(backgroundDl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glBegin(GL_POLYGON);
-				float angleIncrement = ((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES;
-				for(unsigned int i = 0; i < CIRCLE_VERTICES; i++)
-				{
-					float theta = angleIncrement * (float)i; 
-					float px	= cos(theta) * ICON_SIZE;
-					float py	= sin(theta) * ICON_SIZE;
-
-					glVertex3f(px, py, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib();
-			glEndList();
-		}
-		glCallList(backgroundDl);
-
-		if(textureDl == -1)
-		{
-			GLTexture texture(texturePath);
-			
-			textureDl = glGenLists(1);
-			glNewList(textureDl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			texture.bind(GL_REPLACE);
-			glBegin(GL_POLYGON);
-				float angleIncrement = ((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES;
-				for(unsigned int i = 0; i < CIRCLE_VERTICES; i++)
-				{
-					float theta = angleIncrement * (float)i; 
-					float px	= cos(theta) * ICON_SIZE;
-					float py	= sin(theta) * ICON_SIZE;
-					float u		= (px + ICON_SIZE) / (ICON_SIZE * 2.0f);
-					float v		= (py + ICON_SIZE) / (ICON_SIZE * 2.0f);
-
-					glTexCoord2f(u, v);
-					glVertex3f(px, py, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib();
-			glEndList();
-		}
-		glCallList(textureDl);
-
-		if(isSelected)
+        glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        if(isSelected)
 		{
 			VALUE_COLOUR.use();
 			glLineWidth(2.0f);
@@ -310,34 +269,10 @@ namespace PhysicsSynth
 			sound->getColour().use();
 			glLineWidth(1.0f);
 		}
-
-		if(borderDl == -1)
-		{
-			borderDl = glGenLists(1);
-			glNewList(borderDl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glEnable(GL_LINE_SMOOTH);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glBegin(GL_LINE_LOOP);
-				float angleIncrement = ((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES;
-				for(unsigned int i = 0; i < CIRCLE_VERTICES; i++)
-				{
-					float theta = angleIncrement * (float)i; 
-					float px	= cos(theta) * ICON_SIZE;
-					float py	= sin(theta) * ICON_SIZE;
-
-					glVertex3f(px, py, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(borderDl);
+        
+        GLPrimitives::getInstance()->renderCircleOutline();
 
 		glPopAttrib(); // GL_CURRENT_BIT | GL_LINE_BIT
+        glPopMatrix();
 	}
 }

@@ -59,7 +59,6 @@ namespace PhysicsSynth
 		static unsigned char	trackIds;
 
 		Canvas								*canvas;
-		unsigned int						fingerDl;
 		std::map<unsigned int, Finger *>	fingers;
 		unsigned int						frames;
 		unsigned int						lastRender;

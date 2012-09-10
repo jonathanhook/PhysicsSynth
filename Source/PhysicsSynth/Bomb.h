@@ -46,8 +46,6 @@ namespace PhysicsSynth
 		static const std::string	TEXTURE_PATH;
 
 		unsigned int	backgroundDl;
-		unsigned int	blastAreaDl;
-		unsigned int	blastRadDl;
 		unsigned int	borderDl;
 		b2Fixture		*fixture;
 		float			intensity;

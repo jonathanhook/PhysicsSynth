@@ -11,6 +11,7 @@
 #include <Box2D/Dynamics/b2World.h>
 #include <JDHUtility/Colour4f.h>
 #include <JDHUtility/OpenGL.h>
+#include <JDHUtility/GLPrimitives.h>
 #include <math.h>
 #include "Manager.h"
 #include "Stick.h"
@@ -23,9 +24,7 @@ namespace PhysicsSynth
 	/* Constructors */
 	Stick::Stick(bool isStatic, float size, SoundConfig *sound, float friction, float restitution) :
 		SimpleObject(isStatic, size, sound, friction, restitution)
-	{
-		backgroundDl	= -1;
-		borderDl		= -1;
+    {
 	}
 
 	Stick::~Stick(void)
@@ -120,6 +119,10 @@ namespace PhysicsSynth
 	{
 		float w	= getRenderSize();
 		float h	= STICK_THICKNESS;
+        
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glScalef(w, h, 1.0f);
 
 		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT);
 		
@@ -127,26 +130,13 @@ namespace PhysicsSynth
 		const Colour3f sc = sound->getColour();
 		glColor4f(sc.getR(), sc.getG(), sc.getB(), 0.5f);
 
-		if(backgroundDl == -1)
-		{
-			backgroundDl = glGenLists(1);
-			glNewList(backgroundDl, GL_COMPILE);
+        glPushAttrib(GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glBegin(GL_QUADS);
-				glVertex3f(-w,	-h,	0.0f);
-				glVertex3f(w,	-h,	0.0f);
-				glVertex3f(w,	h,	0.0f);
-				glVertex3f(-w,	h,	0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(backgroundDl);
+        GLPrimitives::getInstance()->renderSquare();
+        
+        glPopAttrib(); // GL_ENABLE_BIT
 
 		if(isSelected)
 		{
@@ -158,30 +148,16 @@ namespace PhysicsSynth
 			sound->getColour().use();
 			glLineWidth(1.0f);
 		}
-
-		if(borderDl == -1)
-		{
-			borderDl = glGenLists(1);
-			glNewList(borderDl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glEnable(GL_LINE_SMOOTH);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        glPushAttrib(GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			
-			glBegin(GL_LINE_LOOP);
-				glVertex3f(-w,	-h,	0.0f);
-				glVertex3f(w,	-h,	0.0f);
-				glVertex3f(w,	h,	0.0f);
-				glVertex3f(-w,	h,	0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(borderDl);
+        GLPrimitives::getInstance()->renderSquareOutline();
 
 		glPopAttrib(); // GL_CURRENT_BIT | GL_LINE_BIT
+        glPopMatrix();
 	}
 	
 	void Stick::setupShape(b2Shape *shape)

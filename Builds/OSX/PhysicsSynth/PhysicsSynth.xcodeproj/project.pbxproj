@@ -107,7 +107,6 @@
 		FC0A299215EECFDC00030CB2 /* PatternPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0A28F615EECFDC00030CB2 /* PatternPicker.cpp */; };
 		FC0A299315EECFDC00030CB2 /* PatternPickerItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0A28F815EECFDC00030CB2 /* PatternPickerItem.cpp */; };
 		FC0A299415EECFDC00030CB2 /* PersistenceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0A28FA15EECFDC00030CB2 /* PersistenceManager.cpp */; };
-		FC0A299515EECFDC00030CB2 /* PhysicsDebugger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0A28FC15EECFDC00030CB2 /* PhysicsDebugger.cpp */; };
 		FC0A299615EECFDC00030CB2 /* PhysicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0A28FE15EECFDC00030CB2 /* PhysicsObject.cpp */; };
 		FC0A299715EECFDC00030CB2 /* PointQueryCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0A290015EECFDC00030CB2 /* PointQueryCallback.cpp */; };
 		FC0A299815EECFDC00030CB2 /* PressAndHold.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0A290215EECFDC00030CB2 /* PressAndHold.cpp */; };
@@ -365,8 +364,6 @@
 		FC0A28F915EECFDC00030CB2 /* PatternPickerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternPickerItem.h; sourceTree = "<group>"; };
 		FC0A28FA15EECFDC00030CB2 /* PersistenceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PersistenceManager.cpp; sourceTree = "<group>"; };
 		FC0A28FB15EECFDC00030CB2 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceManager.h; sourceTree = "<group>"; };
-		FC0A28FC15EECFDC00030CB2 /* PhysicsDebugger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsDebugger.cpp; sourceTree = "<group>"; };
-		FC0A28FD15EECFDC00030CB2 /* PhysicsDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsDebugger.h; sourceTree = "<group>"; };
 		FC0A28FE15EECFDC00030CB2 /* PhysicsObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsObject.cpp; sourceTree = "<group>"; };
 		FC0A28FF15EECFDC00030CB2 /* PhysicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsObject.h; sourceTree = "<group>"; };
 		FC0A290015EECFDC00030CB2 /* PointQueryCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointQueryCallback.cpp; sourceTree = "<group>"; };
@@ -790,8 +787,6 @@
 				FC0A28F915EECFDC00030CB2 /* PatternPickerItem.h */,
 				FC0A28FA15EECFDC00030CB2 /* PersistenceManager.cpp */,
 				FC0A28FB15EECFDC00030CB2 /* PersistenceManager.h */,
-				FC0A28FC15EECFDC00030CB2 /* PhysicsDebugger.cpp */,
-				FC0A28FD15EECFDC00030CB2 /* PhysicsDebugger.h */,
 				FC0A28FE15EECFDC00030CB2 /* PhysicsObject.cpp */,
 				FC0A28FF15EECFDC00030CB2 /* PhysicsObject.h */,
 				FC0A290015EECFDC00030CB2 /* PointQueryCallback.cpp */,
@@ -996,7 +991,6 @@
 				FC0A299215EECFDC00030CB2 /* PatternPicker.cpp in Sources */,
 				FC0A299315EECFDC00030CB2 /* PatternPickerItem.cpp in Sources */,
 				FC0A299415EECFDC00030CB2 /* PersistenceManager.cpp in Sources */,
-				FC0A299515EECFDC00030CB2 /* PhysicsDebugger.cpp in Sources */,
 				FC0A299615EECFDC00030CB2 /* PhysicsObject.cpp in Sources */,
 				FC0A299715EECFDC00030CB2 /* PointQueryCallback.cpp in Sources */,
 				FC0A299815EECFDC00030CB2 /* PressAndHold.cpp in Sources */,

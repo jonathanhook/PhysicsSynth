@@ -7,6 +7,8 @@
 #pragma once
 #include "PhysicsObject.h"
 
+namespace JDHUtility { class GLTexture; }
+
 namespace PhysicsSynth
 {
 	class Finger;
@@ -58,12 +60,10 @@ namespace PhysicsSynth
 		static const unsigned int	CIRCLE_VERTICES;
 		static const float			THUMBNAIL_SCALE;
 
-		unsigned int	backgroundDl;
-		unsigned int	borderDl;
 		Finger			*finger;
 		bool			fingerDown;
 		unsigned int	lastTick;
-		unsigned int	textureDl;
+        GLTexture       *texture;
 		std::string		texturePath;	
 
 		void renderIcon(void);

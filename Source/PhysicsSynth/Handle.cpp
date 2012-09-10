@@ -5,13 +5,14 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #define _USE_MATH_DEFINES
+#include <math.h>
 #include <assert.h>
 #include <JDHUtility/Colour4f.h>
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLMatrixf.h>
 #include <JDHUtility/GLTexture.h>
 #include <JDHUtility/GLPrimitives.h>
-#include <math.h>
+#include <JDHUtility/GLTexture.h>
 #include <JDHUtility/Ndelete.h>
 #include "Finger.h"
 #include "Handle.h"
@@ -36,12 +37,14 @@ namespace PhysicsSynth
 		finger		= NULL;
 		fingerDown	= false;
 		modelview	= new GLMatrixf();
+        texture     = new GLTexture(TEXTURE_PATH);
 	}
 
 	Handle::~Handle(void)
 	{
 		NDELETE(finger);
 		NDELETE(modelview);
+        NDELETE(texture);
 	}
 
 	/* Public Member Functions */
@@ -145,35 +148,18 @@ namespace PhysicsSynth
         GLPrimitives::getInstance()->renderCircleOutline();
 
         glPopAttrib(); // GL_LINE_BIT | GL_ENABLE_BIT
-/*
+
 		
 		// texture
 		glColor4f(1.0f, 1.0f, 1.0f, BACKGROUND_ALPHA * alphaModifier);
+        glPushAttrib(GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			// texture on stack so only ever loaded once
-			GLTexture texture(TEXTURE_PATH);
-	
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        texture->bind(GL_MODULATE);
+        GLPrimitives::getInstance()->renderCircle();
 
-			texture.bind(GL_MODULATE);
-			glBegin(GL_POLYGON);
-				for(unsigned int i = 0; i < CIRCLE_VERTICES; i++)
-				{
-					float theta = (((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES) * (float)i; 
-					float x		= cos(theta) * size;
-					float y		= sin(theta) * size;
-					float u		= (x + size) / (size * 2.0f);
-					float v		= (y + size) / (size * 2.0f);
-
-					glTexCoord2f(u, v);
-					glVertex3f(x, y, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib();
-*/
+        glPopAttrib();
 		glPopAttrib(); // GL_CURRENT_BIT
 		glPopMatrix();
 	}

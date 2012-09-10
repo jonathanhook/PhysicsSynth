@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #define _USE_MATH_DEFINES
+#include <math.h>
 #include <Box2D/Dynamics/b2Body.h>
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
 #include <Box2D/Dynamics/b2Fixture.h>
@@ -12,7 +13,7 @@
 #include <JDHUtility/Colour4f.h>
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLMatrixf.h>
-#include <math.h>
+#include <JDHUtility/GLPrimitives.h>
 #include "Circle.h"
 #include "Manager.h"
 
@@ -25,8 +26,6 @@ namespace PhysicsSynth
 	Circle::Circle(bool isStatic, float size, SoundConfig *sound, float friction, float restitution) :
 		SimpleObject(isStatic, size, sound, friction, restitution)
 	{
-		backgroundDl	= -1;
-		borderDl		= -1;
 	}
 
 	Circle::~Circle(void)
@@ -136,32 +135,14 @@ namespace PhysicsSynth
 		const Colour3f &sc = sound->getColour();
 		glColor4f(sc.getR(), sc.getG(), sc.getB(), 0.5f);
 
-		if(backgroundDl == -1)
-		{
-			backgroundDl = glGenLists(1);
-			glNewList(backgroundDl, GL_COMPILE);
+        glPushAttrib(GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        GLPrimitives::getInstance()->renderCircle();
 
-			glBegin(GL_POLYGON);
-				float angleIncrement = ((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES;
-				for(unsigned int i = 0; i < CIRCLE_VERTICES; i++)
-				{
-					float theta = angleIncrement * (float)i; 
-					float px	= cos(theta) * 1.0f;
-					float py	= sin(theta) * 1.0f;
-
-					glVertex3f(px, py, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(backgroundDl);
-
+        glPopAttrib(); // GL_ENABLE_BIT
+        
 		if(isSelected)
 		{
 			VALUE_COLOUR.use();
@@ -173,35 +154,14 @@ namespace PhysicsSynth
 			glLineWidth(1.0f);
 		}
 
-		if(borderDl == -1)
-		{
-			borderDl = glGenLists(1);
-			glNewList(borderDl, GL_COMPILE);
+        glPushAttrib(GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glEnable(GL_LINE_SMOOTH);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glBegin(GL_LINE_STRIP);
-				float angleIncrement = ((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES;
-				for(unsigned int i = 0; i <= CIRCLE_VERTICES; i++)
-				{
-					float theta = angleIncrement * (float)i; 
-					float px	= cos(theta) * 1.0f;
-					float py	= sin(theta) * 1.0f;
-
-					glVertex3f(px, py, 0.0f);
-				}
-
-				glVertex3f(0.0f, 0.0f, 0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(borderDl);
-
+        GLPrimitives::getInstance()->renderCircleOutline();
+        
+        glPopAttrib(); // GL_ENABLE_BIT
 		glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT
 	}
 

@@ -15,6 +15,7 @@
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLMatrixf.h>
 #include <JDHUtility/GLTexture.h>
+#include <JDHUtility/GLPrimitives.h>
 #include <math.h>
 #include "Bomb.h"
 #include "Manager.h"
@@ -42,8 +43,6 @@ namespace PhysicsSynth
 	{
 		this->intensity = intensity;
 
-		blastAreaDl		= -1;
-		blastRadDl		= -1;
 		lastBlastTime	= 0;
 	}
 
@@ -121,64 +120,24 @@ namespace PhysicsSynth
 		glPushMatrix();
 		glScalef(blSize, blSize, 1.0f);
 
-		if(blastRadDl == -1)
-		{
-			blastRadDl = glGenLists(1);
-			glNewList(blastRadDl, GL_COMPILE);
-			
-			glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
-			glEnable(GL_BLEND);
-			glEnable(GL_LINE_SMOOTH);
-			glEnable(GL_LINE_STIPPLE);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
+        glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
+        glEnable(GL_LINE_STIPPLE);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glLineStipple(LINE_STIPPLE_FACTOR, LINE_PATTERN);
-			glLineWidth(1.0f);
-			glColor4f(1.0f, 1.0f, 1.0f, BLAST_RADIUS_OPACITY);
-			glBegin(GL_LINE_STRIP);
-				float angleIncrement = ((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES;
-				for(unsigned int i = 0; i <= CIRCLE_VERTICES; i++)
-				{
-					float theta = angleIncrement * (float)i; 
-					float px	= cos(theta) * 1.0f;
-					float py	= sin(theta) * 1.0f;
-
-					glVertex3f(px, py, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT
-			glEndList();
-		}
-		glCallList(blastRadDl);
+        glLineStipple(LINE_STIPPLE_FACTOR, LINE_PATTERN);
+        glLineWidth(1.0f);
+        glColor4f(1.0f, 1.0f, 1.0f, BLAST_RADIUS_OPACITY);
+		
+        GLPrimitives::getInstance()->renderCircleOutline();
 
 		glColor4f(1.0f, 1.0f, 1.0f, blastAlpha);
-		if(blastAreaDl == -1)
-		{
-			blastAreaDl = glGenLists(1);
-			glNewList(blastAreaDl, GL_COMPILE);
-			
-			glPushAttrib(GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glBegin(GL_POLYGON);
-				float angleIncrement = ((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES;
-				for(unsigned int i = 0; i <= CIRCLE_VERTICES; i++)
-				{
-					float theta = angleIncrement * (float)i; 
-					float px	= cos(theta) * 0.95f;
-					float py	= sin(theta) * 0.95f;
-
-					glVertex3f(px, py, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(blastAreaDl);
-
+        glScalef(0.95f, 0.95f, 1.0f);
+        
+        GLPrimitives::getInstance()->renderCircle();
+        
+        glPopAttrib(); // GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT
 		glPopMatrix();
 	}
 

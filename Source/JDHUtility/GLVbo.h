@@ -24,9 +24,9 @@ namespace JDHUtility
         
     private:
         
+        bool    hasTexture;
         GLuint  id;
         GLuint  textureId;
-        
         GLenum  mode;
         GLsizei count;
     };

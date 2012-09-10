@@ -95,7 +95,11 @@ namespace JDHUtility
         // circle
         GLsizei circleVertexCount = CIRCLE_VERTICES * 3;
         GLfloat circleData[circleVertexCount];
+        
+        GLsizei circleTextureCount = CIRCLE_VERTICES * 2;
+        GLfloat circleTextureData[circleTextureCount];
 
+        unsigned int j = 0;
         float angleIncrement = ((float)M_PI * 2.0f) / (float)CIRCLE_VERTICES;
         for(unsigned int i = 0; i < circleVertexCount; i+=3)
         {
@@ -106,10 +110,12 @@ namespace JDHUtility
             circleData[i]       = px;
             circleData[i + 1]   = py;
             circleData[i + 2]   = 0.0f;
+            
+            circleTextureData[j++] = (px + 1.0f) / 2.0f;
+            circleTextureData[j++] = (py + 1.0f) / 2.0f;
         }
         
-        circleVbo           = new GLVbo(GL_POLYGON, GL_STATIC_DRAW, circleData, CIRCLE_VERTICES);
+        circleVbo           = new GLVbo(GL_POLYGON, GL_STATIC_DRAW, circleData, CIRCLE_VERTICES, circleTextureData);
         circleOutlineVbo    = new GLVbo(GL_LINE_LOOP, GL_STATIC_DRAW, circleData, CIRCLE_VERTICES);
-        
 	}
 }

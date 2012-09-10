@@ -10,7 +10,8 @@
 
 namespace JDHUtility 
 { 
-	class GLMatrixf; 
+	class GLMatrixf;
+    class GLTexture;
 	class Colour4f;
 }
 
@@ -57,6 +58,7 @@ namespace PhysicsSynth
 		Point2f			position;
 		PressedCallback pressed;
 		float			size;
+        GLTexture       *texture;
 
 		void saveTransform(void);
 	};

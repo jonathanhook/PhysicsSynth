@@ -15,6 +15,8 @@ namespace JDHUtility
     /* Constructors */
     GLVbo::GLVbo(GLenum mode, GLenum usage, GLfloat *vertices, GLsizei count, GLfloat *textureCoords)
     {
+        hasTexture = false;
+        
         glGenBuffers(1, &id);
         glGenBuffers(1, &textureId);
         
@@ -36,14 +38,21 @@ namespace JDHUtility
         glBindBuffer(GL_ARRAY_BUFFER, id);
 		glVertexPointer(COORDS_IN_VERTEX, GL_FLOAT, 0, 0);
         
-        glBindBuffer(GL_ARRAY_BUFFER, textureId);
-        glTexCoordPointer(COORDS_IN_UV, GL_FLOAT, 0, 0);
+        if(hasTexture)
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, textureId);
+            glTexCoordPointer(COORDS_IN_UV, GL_FLOAT, 0, 0);
+        }
         
         glDrawArrays(mode, 0, count);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
         glDisableClientState(GL_VERTEX_ARRAY);
+        
+        if(hasTexture)
+        {
+            glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+        }
     }
     
     void GLVbo::update(GLenum mode, GLenum usage, GLfloat *vertices, GLsizei count, GLfloat *textureCoords)
@@ -60,6 +69,8 @@ namespace JDHUtility
             glBindBuffer(GL_ARRAY_BUFFER, textureId);
             glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * COORDS_IN_UV * count, textureCoords, usage);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
+            
+            hasTexture = true;
         }
     }
 }
