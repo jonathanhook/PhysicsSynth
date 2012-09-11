@@ -12,6 +12,7 @@ class b2MouseJoint;
 struct b2Vec2;
 class b2World;
 
+namespace JDHUtility { class GLVbo; }
 using namespace JDHUtility;
 
 namespace PhysicsSynth
@@ -38,6 +39,8 @@ namespace PhysicsSynth
 		b2MouseJoint	*joint;
 		PhysicsObject	*object;
 		b2World			*world;
+        GLVbo           *pointVbo;
+        GLVbo           *lineVbo;
 		
 		void init(const b2Vec2 &target);
 	};

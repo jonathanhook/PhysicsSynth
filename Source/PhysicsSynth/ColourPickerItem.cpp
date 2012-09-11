@@ -4,8 +4,11 @@
  * Email:	j.d.hook@ncl.ac.uk
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
+
+#include <JDHUtility/Ndelete.h>
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLPrimitives.h>
+#include <JDHUtility/GLVbo.h>
 #include "ColourPickerItem.h"
 #include "SoundConfig.h"
 
@@ -22,11 +25,32 @@ namespace PhysicsSynth
 		this->colour = colour;
 
 		checked				= false;
-		checkedDl			= -1;
+		
+        GLfloat vertices[48] =
+        {
+            0.0f,           0.0f,           0.0f,
+            1.0f,           0.0f,           0.0f,
+            1.0f,           0.1f,           0.0f,
+            0.0f,           0.1f,           0.0f,
+            0.0f,           1.0f - 0.1f,	0.0f,
+            1.0f,           1.0f - 0.1f,	0.0f,
+            1.0f,           1.0f,			0.0f,
+            0.0f,           1.0f,			0.0f,
+            0.0f,           0.1f,			0.0f,
+            0.1f,           0.1f,			0.0f,
+            0.1f,           1.0f - 0.1f,	0.0f,
+            0.0f,           1.0f - 0.1f,	0.0f,
+            1.0f - 0.1f,    0.1f,			0.0f,
+            1.0f,           0.1f,			0.0f,
+            1.0f,           1.0f - 0.1f,	0.0f,
+            1.0f- 0.1f,     1.0f - 0.1f,	0.0f
+        };
+        checkedVbo = new GLVbo(GL_QUADS, GL_STATIC_DRAW, vertices, 16);
 	}
 
 	ColourPickerItem::~ColourPickerItem(void)
 	{
+        NDELETE(checkedVbo);
 	}
 
 	/* Public Member Functions */
@@ -92,46 +116,14 @@ namespace PhysicsSynth
 			glTranslatef(px + border, py + border, 0.0f);
 			glScalef(w - border, h - border, 0.0f);
 
-			if(checkedDl == -1)
-			{
-				checkedDl = glGenLists(1);
-				glNewList(checkedDl, GL_COMPILE);
+            glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_ONE, GL_ZERO);
 
-				glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_ONE, GL_ZERO);
+            VALUE_COLOUR.use();
+            checkedVbo->render();
 
-				VALUE_COLOUR.use();
-				glBegin(GL_QUADS);
-					// top
-					glVertex3f(0.0f,	0.0f,	0.0f);
-					glVertex3f(1.0f,	0.0f,	0.0f);
-					glVertex3f(1.0f,	0.1f,	0.0f);
-					glVertex3f(0.0f,	0.1f,	0.0f);
-
-					// bottom
-					glVertex3f(0.0f,	1.0f - 0.1f,	0.0f);
-					glVertex3f(1.0f,	1.0f - 0.1f,	0.0f);
-					glVertex3f(1.0f,	1.0f,			0.0f);
-					glVertex3f(0.0f,	1.0f,			0.0f);
-
-					// left
-					glVertex3f(0.0f,	0.1f,			0.0f);
-					glVertex3f(0.1f,	0.1f,			0.0f);
-					glVertex3f(0.1f,	1.0f - 0.1f,	0.0f);
-					glVertex3f(0.0f,	1.0f - 0.1f,	0.0f);
-
-					// right
-					glVertex3f(1.0f - 0.1f,	0.1f,			0.0f);
-					glVertex3f(1.0f,		0.1f,			0.0f);
-					glVertex3f(1.0f,		1.0f - 0.1f,	0.0f);
-					glVertex3f(1.0f- 0.1f,	1.0f - 0.1f,	0.0f);
-				glEnd();
-
-				glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
-				glEndList();
-			}
-			glCallList(checkedDl);
+            glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
 			glPopMatrix();
 		}
 	}

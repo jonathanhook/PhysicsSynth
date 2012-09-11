@@ -16,7 +16,8 @@
 namespace JDHUtility 
 { 
 	class GLMatrixf;
-	class GLTexture; 
+	class GLTexture;
+    class GLVbo;
 }
 
 using namespace fastdelegate;
@@ -81,6 +82,7 @@ namespace PhysicsSynth
 		static const float			WORLD_DRAG_THRESHOLD;
 
 		GLTexture								*background;
+        GLVbo                                   *backgroundVbo;
 		float									fps;
 		MenuState								lastMenuState;
 		MainMenu								*mainMenu;
@@ -91,6 +93,7 @@ namespace PhysicsSynth
 		ObjectMenu								*objectCreateMenu;
 		ObjectMenu								*objectInspectMenu;
 		GLTexture								*overlay;
+        GLVbo                                   *overlayVbo;
 		std::map<unsigned int, PressAndHold *>	pressAndHolds;	
 		SavedCallback							saved;
 		SettingsMenu							*settingsMenu;

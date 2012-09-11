@@ -88,15 +88,11 @@ namespace PhysicsSynth
 		if(selectedSound->getType() == SoundConfig::IMPULSE)
 		{
 			borderState	= (TOP | LEFT | RIGHT);
-			menuDl		= -1;
-	
 			registerEventHandler(impulseMenu);
 		}
 		else
 		{
 			borderState	= (TOP | BOTTOM | LEFT | RIGHT);
-			menuDl		= -1;
-
 			registerEventHandler(impulseMenu);
 		}
 	}

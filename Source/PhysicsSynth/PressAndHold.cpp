@@ -110,6 +110,7 @@ namespace PhysicsSynth
 			glPopAttrib();
 			glPopMatrix();
 			glEndList();
+            
 			dirty = false;
 		}
 		glCallList(dl);

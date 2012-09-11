@@ -19,12 +19,7 @@ namespace JDHUtility
 		public Singleton
 	{
 	public:
-		static enum Font
-		{
-			LARGE,
-			MEDIUM,
-			SMALL
-		};
+        enum Font { LARGE, MEDIUM, SMALL };
 
 		static GLFontManager *getInstance(void);
 		

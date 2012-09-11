@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLPrimitives.h>
+#include <JDHUtility/GLVbo.h>
 #include <JDHUtility/Ndelete.h>
 #include "Menu.h"
 
@@ -29,11 +30,43 @@ namespace PhysicsSynth
 
 		addCursor		= Point2i(0, 0);
 		maxY			= 0;
-		menuDl			= -1;
+
+        GLfloat topv[6] =
+        {
+            0.0f,	0.0f,	0.0f,
+            1.0f,	0.0f,	0.0f
+        };
+        topVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, topv, 2);
+        
+        GLfloat bottomv[6] =
+        {
+            1.0f,	1.0f,	0.0f,
+            0.0f,	1.0f,	0.0f
+        };
+        bottomVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, bottomv, 2);
+        
+        GLfloat leftv[6] =
+        {
+            0.0f,	0.0f,	0.0f,
+            0.0f,	1.0f,	0.0f
+        };
+        leftVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, leftv, 2);
+        
+        GLfloat rightv[6] =
+        {
+            1.0f,	0.0f,	0.0f,
+            1.0f,	1.0f,	0.0f
+        };
+        rightVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, rightv, 2);
 	}
 
 	Menu::~Menu(void)
 	{
+        NDELETE(topVbo);
+        NDELETE(bottomVbo);
+        NDELETE(leftVbo);
+        NDELETE(rightVbo);
+        
 		for(unsigned int i = 0; i < menuItems.size(); i++)
 		{
 			NDELETE(menuItems[i]);
@@ -75,62 +108,47 @@ namespace PhysicsSynth
         GLPrimitives::getInstance()->renderSquare();
 
         glPopAttrib();
-
-		if(menuDl == -1)
-		{
-			menuDl = glGenLists(1);
-			glNewList(menuDl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				
-			if(mode == CREATE)
-			{
-				BORDER_COLOUR.use();
-				glLineWidth(1.0f);
-			}
-			else
-			{
-				VALUE_COLOUR.use();
-				glLineWidth(2.0f);
-			}
+        if(mode == CREATE)
+        {
+            BORDER_COLOUR.use();
+            glLineWidth(1.0f);
+        }
+        else
+        {
+            VALUE_COLOUR.use();
+            glLineWidth(2.0f);
+        }
 
-			glBegin(GL_LINES);
-				// top
-				if(TOP & borderState)
-				{
-					glVertex3f(0.0f,	0.0f,	0.0f);
-					glVertex3f(1.0f,	0.0f,	0.0f);
-				}
+		// top
+		if(TOP & borderState)
+		{
+            topVbo->render();
+        }
 
-				// bottom
-				if(BOTTOM & borderState)
-				{
-					glVertex3f(1.0f,	1.0f,	0.0f);
-					glVertex3f(0.0f,	1.0f,	0.0f);
-				}
+        // bottom
+        if(BOTTOM & borderState)
+        {
+            bottomVbo->render();
+        }
+        
+        // left
+        if(LEFT & borderState)
+        {
+            leftVbo->render();
+        }
+        
+        // right
+        if(RIGHT & borderState)
+        {
+            rightVbo->render();
+        }
 
-				// left
-				if(LEFT & borderState)
-				{
-					glVertex3f(0.0f,	0.0f,	0.0f);
-					glVertex3f(0.0f,	1.0f,	0.0f);
-				}
-
-				// right
-				if(RIGHT & borderState)
-				{
-					glVertex3f(1.0f,	0.0f,	0.0f);
-					glVertex3f(1.0f,	1.0f,	0.0f);
-				}
-			glEnd();
-
-			glPopAttrib();
-			glEndList();
-		}
-		glCallList(menuDl);
-
+        glPopAttrib();
 		glPopMatrix();
 
 		// render children

@@ -7,6 +7,8 @@
 #pragma once
 #include "UIElement.h"
 
+namespace JDHUtility { class GLVbo; }
+
 namespace PhysicsSynth
 {
 	class SoundConfig;
@@ -32,8 +34,8 @@ namespace PhysicsSynth
 		static const unsigned int	RIM;
 	
 		bool				checked;
+        GLVbo               *checkedVbo;
 		CheckedCallback		checkedCallback;
-		unsigned int		checkedDl;
 		SoundConfig			*colour;
 		
 	};

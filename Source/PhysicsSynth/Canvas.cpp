@@ -12,6 +12,7 @@
 #include <JDHUtility/Ndelete.h>
 #include <JDHUtility/Vector2f.h>
 #include <JDHUtility/GLFontManager.h>
+#include <JDHUtility/GLVbo.h>
 #include <JDHUtility/WindowingUtils.h>
 #include "Canvas.h"
 #include "Circle.h"
@@ -69,6 +70,34 @@ namespace PhysicsSynth
 		worldInspectMenu	= NULL;
 		worldsDraggable		= true;
 
+        
+        GLfloat vertices[12] =
+        {
+            0.0f, 0.0f, 0.0f,
+            SIZE, 0.0f, 0.0f,
+            SIZE, SIZE, 0.0f,
+            0.0f, SIZE, 0.0f
+        };
+        
+        GLfloat uv[8] =
+        {
+            0.0f,                   0.0f,
+            (float)TEXTURE_REPEATS,	0.0f,
+            (float)TEXTURE_REPEATS, (float)TEXTURE_REPEATS,
+            0.0f,                   (float)TEXTURE_REPEATS
+        };
+        
+        GLfloat overlayUv[8] =
+        {
+            0.0f, 0.0f,
+            1.0f, 0.0f,
+            1.0f, 1.0f,
+            0.0f, 1.0f
+        };
+
+        backgroundVbo   = new GLVbo(GL_QUADS, GL_STATIC_DRAW, vertices, 12, uv);
+        overlayVbo      = new GLVbo(GL_QUADS, GL_STATIC_DRAW, vertices, 12, overlayUv);
+        
 		initMenus();
 	}
 
@@ -510,41 +539,22 @@ namespace PhysicsSynth
 		glPushMatrix();
 		glMultMatrixf(transform);
 		saveTransform();
+        
+        glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
-		static unsigned int dl = -1;
-		if(dl == -1)
-		{
-			dl = glGenLists(1);
-			glNewList(dl, GL_COMPILE);
-
-			glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-
-			// background
-			background->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
-			glBegin(GL_QUADS);
-				glTexCoord2f(0.0f,						0.0f);						glVertex3f(0.0f, 0.0f, 0.0f);
-				glTexCoord2f((float)TEXTURE_REPEATS,	0.0f);						glVertex3f(SIZE, 0.0f, 0.0f);
-				glTexCoord2f((float)TEXTURE_REPEATS,	(float)TEXTURE_REPEATS);	glVertex3f(SIZE, SIZE, 0.0f);
-				glTexCoord2f(0.0f,						(float)TEXTURE_REPEATS);	glVertex3f(0.0f, SIZE, 0.0f);
-			glEnd();
-
-			// overlay
-			overlay->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
-			glBegin(GL_QUADS);
-				glTexCoord2f(0.0f, 0.0f);	glVertex3f(0.0f, 0.0f, 0.0f);
-				glTexCoord2f(1.0f, 0.0f);	glVertex3f(SIZE, 0.0f, 0.0f);
-				glTexCoord2f(1.0f, 1.0f);	glVertex3f(SIZE, SIZE, 0.0f);
-				glTexCoord2f(0.0f, 1.0f);	glVertex3f(0.0f, SIZE, 0.0f);
-			glEnd();
-	
-			glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
-			glEndList();
-		}
-		glCallList(dl);
-
+        // background
+        background->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
+        backgroundVbo->render();
+    
+        // overlay
+        overlay->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
+        overlayVbo->render();
+        
+        glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
+        
 		renderWorlds();
 		glPopMatrix();
 	}
@@ -751,11 +761,6 @@ namespace PhysicsSynth
 
 			if(w->getIsMarkedForDelete())
 			{
-				if(w->isCaptured())
-				{
-					int i =0;
-				}
-
 				unregisterEventHandler(w);
 				NDELETE(w);
 

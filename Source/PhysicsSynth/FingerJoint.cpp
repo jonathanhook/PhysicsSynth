@@ -8,6 +8,7 @@
 #include <Box2D/Dynamics/b2World.h>
 #include <Box2D/Dynamics/Joints/b2MouseJoint.h>
 #include <JDHUtility/OpenGL.h>
+#include <JDHUtility/GLVbo.h>
 #include "FingerJoint.h"
 #include "Manager.h"
 
@@ -23,6 +24,10 @@ namespace PhysicsSynth
 		this->object	= object;
 		this->body		= body;
 		this->world		= world;
+        
+        GLfloat dummyVertices[6];
+        pointVbo = new GLVbo(GL_POINT, GL_DYNAMIC_DRAW, dummyVertices, 2);
+        lineVbo = new GLVbo(GL_POINT, GL_DYNAMIC_DRAW, dummyVertices, 2);
 
 		init(target);
 	}
@@ -63,16 +68,16 @@ namespace PhysicsSynth
 		
 		VALUE_COLOUR.use();
 
-		glPointSize(END_POINT_SIZE);
-		glBegin(GL_POINTS);
-			glVertex3f(p1x, p1y, 0.0f);
-			glVertex3f(p2x, p2y, 0.0f);
-		glEnd();
-
-		glBegin(GL_LINES);
-			glVertex3f(p1x, p1y, 0.0f);
-			glVertex3f(p2x, p2y, 0.0f);
-		glEnd();
+        GLfloat vertices[6] =
+        {
+            p1x, p1y, 0.0f,
+            p2x, p2y, 0.0f
+        };
+        pointVbo->update(GL_POINTS, GL_DYNAMIC_DRAW, vertices, 2);
+        lineVbo->update(GL_LINES, GL_DYNAMIC_DRAW, vertices, 2);
+        
+        pointVbo->render();
+        lineVbo->render();
 
 		glPopAttrib();
 	}

@@ -7,6 +7,8 @@
 #pragma once
 #include "UIElement.h"
 
+namespace JDHUtility { class GLVbo; }
+
 namespace PhysicsSynth
 {
 	class Menu : 
@@ -40,7 +42,6 @@ namespace PhysicsSynth
 		static const std::string	ERASE_TEXTURE;
 
 		unsigned char				borderState;
-		unsigned int				menuDl;
 		std::vector<UIElement *>	menuItems;
 		MenuMode					mode;
 
@@ -52,6 +53,10 @@ namespace PhysicsSynth
 
 		Point2i			addCursor;
 		unsigned int	maxY;
+        GLVbo           *topVbo;
+        GLVbo           *bottomVbo;
+        GLVbo           *leftVbo;
+        GLVbo           *rightVbo;
 	};
 }
 
