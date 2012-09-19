@@ -8,6 +8,8 @@
 #include <JDHUtility/Vector2f.h>
 #include "Button.h"
 
+namespace JDHUtility { class GLVbo; }
+
 namespace PhysicsSynth
 {
 	class TargetButton :
@@ -30,11 +32,12 @@ namespace PhysicsSynth
 	private:
 		static const float SNAP_THRESHOLD;
 
-		unsigned int			hLineDisplayList;
-		unsigned int			vLineDisplayList;
 		TargetChangedCallback	targetChanged;
 		Vector2f				targetPosition;
-
+        GLVbo                   *hVbo;
+        GLVbo                   *vVbo;
+        
+        
 		void updateTargetPosition(const FingerEventArgs &e);
 	};
 }

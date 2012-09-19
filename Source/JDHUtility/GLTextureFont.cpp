@@ -13,6 +13,7 @@
 #include "Ndelete.h"
 #include "GLTexture.h"
 #include "GLTextureFont.h"
+#include "GLVbo.h"
 
 namespace JDHUtility
 {
@@ -20,6 +21,16 @@ namespace JDHUtility
 	{
 		texture = new GLTexture(texturePath);
 		parseFontInfo(fontPath);
+        
+        GLfloat verts[12] =
+        {
+            0.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+            1.0f, 1.0f, 0.0f,
+            0.0f, 1.0f, 0.0f
+        };
+        vbo = new GLVbo(GL_QUADS, GL_DYNAMIC_DRAW, verts, 4);
+        
 	}
 
 	GLTextureFont::~GLTextureFont(void)
@@ -70,13 +81,18 @@ namespace JDHUtility
 					glTranslatef(cx + ox, cy + oy, 0.0f);
 					glScalef(w, h, 1.0f);
 					
-					glBegin(GL_QUADS);
-						glTexCoord2f(u0, v0); glVertex3f(0.0f, 0.0f, 0.0f);
-						glTexCoord2f(u1, v0); glVertex3f(1.0f, 0.0f, 0.0f);
-						glTexCoord2f(u1, v1); glVertex3f(1.0f, 1.0f, 0.0f);
-						glTexCoord2f(u0, v1); glVertex3f(0.0f, 1.0f, 0.0f);
-					glEnd();
-
+                    GLfloat uvs[8] =
+                    {
+                        u0, v0,
+                        u1, v0,
+                        u1, v1,
+                        u0, v1
+                    };
+                    
+                    // TODO: this is inefficient
+                    vbo->update(GL_QUADS, GL_DYNAMIC_DRAW, NULL, 4, uvs);
+                    vbo->render();
+      
 					glPopMatrix();
 
 					cx += getSizef(f->xAdvance);

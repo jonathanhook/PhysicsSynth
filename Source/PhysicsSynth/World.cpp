@@ -16,6 +16,7 @@
 #include <JDHUtility/Colour4f.h>
 #include <JDHUtility/CrossPlatformTime.h>
 #include <JDHUtility/GLMatrixf.h>
+#include <JDHUtility/GLVbo.h>
 #include <JDHUtility/OpenGL.h>
 #include <math.h>
 #include <JDHUtility/Ndelete.h>
@@ -70,8 +71,6 @@ namespace PhysicsSynth
 		this->gravity		= gravity;
 		this->size			= size;
 
-		backgroundDl			= -1;
-		borderDl				= -1;
 		createObjectRequested	= NULL;
 		finger					= NULL;
 		fingerDown				= false;
@@ -83,13 +82,16 @@ namespace PhysicsSynth
 		limitBody				= NULL;
 		modelview				= new GLMatrixf();
 		objectSelected			= NULL;
-		outlineDl				= -1;
 		remainder				= 0.0;
 		renderMode				= GRAPHICS;
 		selected				= false;
 		selectedCallback		= NULL;
 		selectedDl				= -1;
 		sizeChanged				= false;
+        
+        outlineVbo      = NULL;
+        borderVbo       = NULL;
+        backgroundVbo   = NULL;
 
 		init();
 	}
@@ -521,7 +523,7 @@ namespace PhysicsSynth
 
 		b2PolygonShape shape;
 
-		unsigned int limitsSize = limits.size();
+		unsigned int limitsSize = (unsigned int)limits.size();
 		for(unsigned int i = 0; i < limitsSize; i++)
 		{
 			Point2f *start	= limits[(i - 1) % limitsSize];
@@ -540,6 +542,8 @@ namespace PhysicsSynth
 			fixtureDef.density		= 0.0f;
 			limitBody->CreateFixture(&fixtureDef);
 		}
+        
+        updateVertices();
 	}
 
 	/* Private Member Functions */
@@ -775,121 +779,27 @@ namespace PhysicsSynth
 			glLineWidth(1.0f);
 		}
 		
-		if(outlineDl == -1)
-		{
-			outlineDl = glGenLists(1);
-			glNewList(outlineDl, GL_COMPILE);
-
-			glBegin(GL_LINES);
-				unsigned int limitsSize = limits.size();
-				for(unsigned int i = 0; i < limitsSize; i++)
-				{
-					Point2f *p0 = limits[i];	
-					assert(p0 != NULL);
-
-					Point2f *p1 = limits[(i + 1) % limitsSize];	
-					assert(p1 != NULL);
-
-					// innner
-					float ix0 = p0->getX();
-					float iy0 = p0->getY();
-					glVertex3f(ix0, iy0, 0.0f);
-
-					float ix1 = p1->getX();
-					float iy1 = p1->getY();
-					glVertex3f(ix1, iy1, 0.0f);
-					
-					// outer
-					Vector2f v0(ix0, iy0);
-					float magnitude0	= v0.getMagnitude();
-					float d0			= 1.0f + (BORDER / magnitude0);
-
-					float ox0 = p0->getX() * d0;
-					float oy0 = p0->getY() * d0;
-					glVertex3f(ox0, oy0, 0.0f);
-
-					Vector2f v1(ix1, iy1);
-					float magnitude1	= v1.getMagnitude();
-					float d1			= 1.0f + (BORDER / magnitude1);
-
-					float ox1 = p1->getX() * d1;
-					float oy1 = p1->getY() * d1;
-					glVertex3f(ox1, oy1, 0.0f);
-				}
-			glEnd();
-
-			glEndList();
-		}
-		glCallList(outlineDl);
-
+        outlineVbo->render();
+        
 		glColor4f(1.0f, 1.0f, 1.0f, BACKGROUND_ALPHA * alphaModifier);
-		if(backgroundDl == -1)
-		{
-			backgroundDl = glGenLists(1);
-			glNewList(backgroundDl, GL_COMPILE);
+        glPushAttrib(GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glPushAttrib(GL_ENABLE_BIT);	
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        backgroundVbo->render();
 
-			glBegin(GL_POLYGON);
-				unsigned int limitsSize = limits.size();
-				for(unsigned int i = 0; i <= limitsSize; i++)
-				{
-					Point2f *p = limits[i % limitsSize];	
-					assert(p != NULL);
-
-					float x = p->getX();
-					float y = p->getY();
-
-					glVertex3f(x, y, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib();
-			glEndList();
-		}
-		glCallList(backgroundDl);
+        glPopAttrib();
+        glEndList();
 
 		// TODO: can this be in DL now?
 		glColor4f(1.0f, 1.0f, 1.0f, BORDER_ALPHA * alphaModifier);
-		if(borderDl == -1)
-		{
-			borderDl = glGenLists(1);
-			glNewList(borderDl, GL_COMPILE);
+        glPushAttrib(GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glPushAttrib(GL_ENABLE_BIT);	
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        borderVbo->render();
 
-			glBegin(GL_QUAD_STRIP);
-				unsigned int limitsSize = limits.size();
-				for(unsigned int i = 0; i <= limitsSize; i++)
-				{
-					Point2f *p = limits[i % limitsSize];	
-					assert(p != NULL);
-
-					// inner
-					float px0 = p->getX();
-					float py0 = p->getY();
-					glVertex3f(px0, py0, 0.0f);
-
-					// outer
-					Vector2f v(px0, py0);
-					float magnitude	= v.getMagnitude();
-					float d			= 1.0f + (BORDER / magnitude);
-
-					float px1 = p->getX() * d;
-					float py1 = p->getY() * d;
-					glVertex3f(px1, py1, 0.0f);
-				}
-			glEnd();
-
-			glPopAttrib(); // GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(borderDl);
-
+        glPopAttrib(); // GL_ENABLE_BIT
 		glPopAttrib(); // GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT
 	}
 
@@ -929,13 +839,136 @@ namespace PhysicsSynth
 		initLimits();
 		setupLimits();
 		initHandles();
-
-		backgroundDl	= -1;
-		borderDl		= -1;
-		outlineDl		= -1;
+        updateVertices();
 
 		sizeChanged = true;
 	}
+    
+    void World::updateVertices(void)
+    {
+        unsigned int limitsSize = (unsigned int)limits.size();
+        
+        // background
+        GLfloat backgroundVerts[limits.size() * 3];
+        
+        unsigned int j = 0;
+        for(unsigned int i = 0; i < limitsSize; i++)
+        {
+            Point2f *p = limits[i % limitsSize];
+            assert(p != NULL);
+            
+            float x = p->getX();
+            float y = p->getY();
+            
+            backgroundVerts[j++] = x;
+            backgroundVerts[j++] = y;
+            backgroundVerts[j++] = 0.0f;
+        }
+        
+        if(backgroundVbo == NULL)
+        {
+            backgroundVbo = new GLVbo(GL_POLYGON, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
+        }
+        else
+        {
+            backgroundVbo->update(GL_POLYGON, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
+        }
+        
+        // border
+        GLfloat borderVerts[(limits.size() + 1) * 6];
+        
+        j = 0;
+        for(unsigned int i = 0; i <= limitsSize; i++)
+        {
+            Point2f *p = limits[i % limitsSize];
+            assert(p != NULL);
+            
+            // inner
+            float px0 = p->getX();
+            float py0 = p->getY();
+            
+            borderVerts[j++] = px0;
+            borderVerts[j++] = py0;
+            borderVerts[j++] = 0.0f;
+            
+            // outer
+            Vector2f v(px0, py0);
+            float magnitude	= v.getMagnitude();
+            float d			= 1.0f + (BORDER / magnitude);
+            
+            float px1 = p->getX() * d;
+            float py1 = p->getY() * d;
+            
+            borderVerts[j++] = px1;
+            borderVerts[j++] = py1;
+            borderVerts[j++] = 0.0f;
+        }
+        
+        if(borderVbo == NULL)
+        {
+            borderVbo = new GLVbo(GL_QUAD_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
+        }
+        else
+        {
+            borderVbo->update(GL_QUAD_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
+        }
+        
+        // outlines
+        GLfloat outlineVerts[limits.size() * 12];
+        
+        j = 0;
+        for(unsigned int i = 0; i < limitsSize; i++)
+        {
+            Point2f *p0 = limits[i];
+            assert(p0 != NULL);
+            
+            Point2f *p1 = limits[(i + 1) % limitsSize];
+            assert(p1 != NULL);
+            
+            // innner
+            float ix0 = p0->getX();
+            float iy0 = p0->getY();
+            outlineVerts[j++] = ix0;
+            outlineVerts[j++] = iy0;
+            outlineVerts[j++] = 0.0f;
+            
+            float ix1 = p1->getX();
+            float iy1 = p1->getY();
+            outlineVerts[j++] = ix1;
+            outlineVerts[j++] = iy1;
+            outlineVerts[j++] = 0.0f;
+            
+            // outer
+            Vector2f v0(ix0, iy0);
+            float magnitude0	= v0.getMagnitude();
+            float d0			= 1.0f + (BORDER / magnitude0);
+            
+            float ox0 = p0->getX() * d0;
+            float oy0 = p0->getY() * d0;
+            outlineVerts[j++] = ox0;
+            outlineVerts[j++] = oy0;
+            outlineVerts[j++] = 0.0f;
+            
+            Vector2f v1(ix1, iy1);
+            float magnitude1	= v1.getMagnitude();
+            float d1			= 1.0f + (BORDER / magnitude1);
+            
+            float ox1 = p1->getX() * d1;
+            float oy1 = p1->getY() * d1;
+            outlineVerts[j++] = ox1;
+            outlineVerts[j++] = oy1;
+            outlineVerts[j++] = 0.0f;
+        }
+        
+        if(outlineVbo == NULL)
+        {
+            outlineVbo = new GLVbo(GL_LINES, GL_DYNAMIC_DRAW, outlineVerts, (GLsizei)limits.size() * 4);
+        }
+        else
+        {
+            outlineVbo->update(GL_LINES, GL_DYNAMIC_DRAW, outlineVerts, (GLsizei)limits.size() * 4);
+        }
+    }
 
 	void World::wakeAll(void)
 	{

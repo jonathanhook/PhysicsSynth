@@ -16,8 +16,8 @@ using namespace JDHUtility;
 namespace PhysicsSynth
 {
 	/* Private Constants */
-	const float LoopPointer::DEFAULT_RATE		= 0.5f;
-	const float LoopPointer::RATE_MULTIPLIER	= 2.0f;
+	const double LoopPointer::DEFAULT_RATE		= 0.5;
+	const double LoopPointer::RATE_MULTIPLIER	= 2.0;
 
 	/* Constructors */
 	LoopPointer::LoopPointer(float loopPosition)
@@ -32,27 +32,27 @@ namespace PhysicsSynth
 	}
 
 	/* Public Member Functions */
-	float LoopPointer::getLoopPosition(void) const
+	double LoopPointer::getLoopPosition(void) const
 	{
 		return loopPosition;
 	}
 
-	void LoopPointer::setLoopPosition(float loopPosition)
+	void LoopPointer::setLoopPosition(double loopPosition)
 	{
 		this->loopPosition = loopPosition;
 	}
 
-	void LoopPointer::update(float rate)
+	void LoopPointer::update(double rate)
 	{
 		Synchronizer *sync = Synchronizer::getInstance();
 		assert(sync);
 
-		float loopLengthMs		= (float)sync->getOneBarMs();
-		float now				= (float)CrossPlatformTime::getTimeMillis();
-		float elapsed			= now - last;
-		float positionChange	= (elapsed / loopLengthMs) * (rate * RATE_MULTIPLIER);
+		double loopLengthMs		= (double)sync->getOneBarMs();
+		double now				= (double)CrossPlatformTime::getTimeMillis();
+		double elapsed			= now - last;
+		double positionChange	= (elapsed / loopLengthMs) * (rate * RATE_MULTIPLIER);
 		last					= now;
 
-		loopPosition = fmodf(loopPosition + positionChange, 1.0f);
+		loopPosition = fmodf(loopPosition + positionChange, 1.0);
 	}
 }

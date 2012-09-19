@@ -20,6 +20,7 @@ namespace JDHUtility
 { 
 	class GLMatrixf; 
 	class GLTexture;
+    class GLVbo;
 	class Colour3f;
 	class Colour4f;
 }
@@ -132,8 +133,6 @@ namespace PhysicsSynth
 		static const std::string	TRACK_FONT;
 		static const unsigned int	VELOCITY_ITERATIONS;
 		
-		unsigned int							backgroundDl;
-		unsigned int							borderDl;
 		CreateObjectRequestedCallback			createObjectRequested;
 		Finger									*finger;
 		bool									fingerDown;
@@ -145,7 +144,6 @@ namespace PhysicsSynth
 		b2Body									*limitBody;
 		std::vector<PhysicsObject *>			objects;
 		ObjectSelectedCallback					objectSelected;
-		unsigned int							outlineDl;
 		PhysicsDebugger							*physicsDebugger;
 		std::map<unsigned int, PressAndHold *>	pressAndHolds;
 		double									remainder;
@@ -157,6 +155,9 @@ namespace PhysicsSynth
 		std::queue<SoundEvent *>				soundEvents;
 		unsigned char							track;
 		b2World									*world;
+        GLVbo                                   *outlineVbo;
+        GLVbo                                   *backgroundVbo;
+        GLVbo                                   *borderVbo;
 		
 		void checkObjectsContained			(void);
 		void deselectOtherObjects			(PhysicsObject *exempt);
@@ -174,6 +175,7 @@ namespace PhysicsSynth
 		void renderWorld					(void);
 		void updatePressAndHolds			(void);
 		void updateSize						(void);
+        void updateVertices                 (void);
 		void wakeAll						(void);
 	};
 }

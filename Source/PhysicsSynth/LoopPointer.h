@@ -19,16 +19,16 @@ namespace PhysicsSynth
 		LoopPointer(float loopPosition);
 		~LoopPointer(void);
 
-		float	getLoopPosition	(void) const;
-		void	setLoopPosition	(float loopPosition);
-		void	update			(float rate = DEFAULT_RATE);
+		double	getLoopPosition	(void) const;
+		void	setLoopPosition	(double loopPosition);
+		void	update			(double rate = DEFAULT_RATE);
 
 	private:
-		static const float DEFAULT_RATE;
-		static const float RATE_MULTIPLIER;
+		static const double DEFAULT_RATE;
+		static const double RATE_MULTIPLIER;
 
-		float last;
-		float loopPosition;
+		double last;
+		double loopPosition;
 	};
 }
 

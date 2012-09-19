@@ -10,6 +10,8 @@
 
 class b2Fixture;
 
+namespace JDHUtility { class GLVbo; }
+
 namespace PhysicsSynth
 {
 	class Wheel :
@@ -45,9 +47,8 @@ namespace PhysicsSynth
 
 		b2Body						*body;
 		std::vector<b2Fixture *>	fixtures;
-		unsigned int				boundsDl;
 		float						spokeAngle;
-		unsigned int				spokeDl;
+        GLVbo                       *spokeVbo;
 
 		float	getSpokeRad		(void) const;
 		void	initSpokes		(void);

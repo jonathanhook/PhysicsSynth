@@ -5,7 +5,9 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #include <math.h>
-#include <GLPrimitives.h>
+#include <Ndelete.h>
+#include <JDHUtility/GLPrimitives.h>
+#include <JDHUtility/GLVbo.h>
 #include "TargetButton.h"
 
 namespace PhysicsSynth
@@ -17,9 +19,20 @@ namespace PhysicsSynth
 	TargetButton::TargetButton(std::string text, const Point2i &position, unsigned int width) :
 		LabelledUIElement(text, position, width)
 	{
-		hLineDisplayList	= -1;
-		vLineDisplayList	= -1;
-	
+        GLfloat hVerts[6] =
+        {
+            0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f
+        };
+        hVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, hVerts, 2);
+        
+        GLfloat vVerts[6] =
+        {
+            0.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f
+        };
+        vVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, vVerts, 2);
+        
 		targetPosition.setX(0.0f);
 		targetPosition.setY(0.0f);
 
@@ -28,6 +41,8 @@ namespace PhysicsSynth
 
 	TargetButton::~TargetButton(void)
 	{
+        NDELETE(vVbo);
+        NDELETE(hVbo);
 	}
 
 	/* Public Member Functions */
@@ -81,52 +96,31 @@ namespace PhysicsSynth
 		glPushMatrix();
 		glTranslatef(0.0f, (targetPosition.getY() / 2.0f) + 0.5f, 0.0f);
 
-		if(hLineDisplayList == -1)
-		{
-			hLineDisplayList = glGenLists(1);
-			glNewList(hLineDisplayList, GL_COMPILE);
+        glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glLineWidth(1.0f);
+        VALUE_COLOUR.use();
 
-			glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glLineWidth(1.0f);
-			VALUE_COLOUR.use();
+        vVbo->render();
 
-			glBegin(GL_LINES);
-				glVertex3f(0.0f, 0.0f, 0.0f);
-				glVertex3f(1.0f, 0.0f, 0.0f);
-			glEnd();
-
-			glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(hLineDisplayList);
+        glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT
 		glPopMatrix();
 
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glTranslatef((targetPosition.getX() / 2.0f) + 0.5f, 0.0f, 0.0f);
 
-		if(vLineDisplayList == -1)
-		{
-			vLineDisplayList = glGenLists(1);
-			glNewList(vLineDisplayList, GL_COMPILE);
+        glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glLineWidth(1.0f);
+        VALUE_COLOUR.use();
 
-			glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glLineWidth(1.0f);
-			VALUE_COLOUR.use();
+        hVbo->render();
 
-			glBegin(GL_LINES);
-				glVertex3f(0.0f, 0.0f, 0.0f);
-				glVertex3f(0.0f, 1.0f, 0.0f);
-			glEnd();
+        glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT
 
-			glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT
-			glEndList();
-		}
-		glCallList(vLineDisplayList);
 		glPopMatrix();
 		glPopMatrix();
 	}

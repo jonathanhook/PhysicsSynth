@@ -13,7 +13,8 @@
 namespace JDHUtility
 {
 	class GLTexture;
-
+    class GLVbo;
+    
 	class GLTextureFont
 	{
 	public:
@@ -46,5 +47,6 @@ namespace JDHUtility
 		int						scaleW;
 		int						scaleH;
 		std::map<unsigned int, FontInfo *>	info;
+        GLVbo                   *vbo;
 	};
 }

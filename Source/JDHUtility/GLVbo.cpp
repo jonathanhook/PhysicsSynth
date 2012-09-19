@@ -60,9 +60,12 @@ namespace JDHUtility
         this->mode  = mode;
         this->count = count;
         
-        glBindBuffer(GL_ARRAY_BUFFER, id);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * COORDS_IN_VERTEX * count, vertices, usage);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+        if(vertices != NULL)
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, id);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * COORDS_IN_VERTEX * count, vertices, usage);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+        }
         
         if(textureCoords != NULL)
         {
