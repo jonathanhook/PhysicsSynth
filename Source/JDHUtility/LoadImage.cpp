@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <JDHUtility/OpenGL.h>
 #include "LoadImage.h"
 
 
@@ -1333,19 +1334,6 @@ void *loadImage(const char *filename, int *outWidth, int *outHeight, bool *outAl
 }
 
 
-
-
-
-#if (GL_FUNCS == 1)
-#ifdef _WIN32
-#include <windows.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#elif defined __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#endif
-
 int createTexture(const char *filename) {
   int tWidth = 0, tHeight = 0;
   bool tAlpha = false;
@@ -1359,8 +1347,10 @@ int createTexture(const char *filename) {
     glBindTexture(GL_TEXTURE_2D, textureId);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
+#ifdef GLUT_WINDOWING
 	gluBuild2DMipmaps(GL_TEXTURE_2D, tAlpha?4:3, tWidth, tHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
-
+#endif
+    
   if (!glIsTexture(textureId)) { textureId = (int)-1; }
   return (int)textureId;
 }
@@ -1373,6 +1363,4 @@ bool setTexture(int id) {
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
   return true;
 }
-
-#endif
 

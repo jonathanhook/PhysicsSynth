@@ -4,7 +4,7 @@
  * Email:	j.d.hook@ncl.ac.uk
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
-#include "JDHUtility/OpenGL.h"
+#include <JDHUtility/OpenGL.h>
 #include "Colour3f.h"
 
 namespace JDHUtility
@@ -60,6 +60,6 @@ namespace JDHUtility
 
 	void Colour3f::use(void) const
 	{
-		glColor3f(r, g, b);
+		glColor4f(r, g, b, 1.0f);
 	}
 }

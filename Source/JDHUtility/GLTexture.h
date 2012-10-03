@@ -21,8 +21,8 @@ namespace JDHUtility
 		void			bind(	GLenum mode			= GL_MODULATE, 
 								GLenum minFilter	= GL_NEAREST, 
 								GLenum magFilter	= GL_LINEAR, 
-								GLenum wrapS		= GL_CLAMP, 
-								GLenum wrapT		= GL_CLAMP) const;
+								GLenum wrapS		= GL_CLAMP_TO_EDGE,
+								GLenum wrapT		= GL_CLAMP_TO_EDGE) const;
 		unsigned int	getId(void) const;
 		bool			isTexture(void) const;
 

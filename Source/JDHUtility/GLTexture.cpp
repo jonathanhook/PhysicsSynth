@@ -16,11 +16,7 @@ namespace JDHUtility
 	/* Constructors */
 	GLTexture::GLTexture(std::string path)
 	{
-		glPushAttrib(GL_ENABLE_BIT);
-		
 		id = createTexture(path.c_str());
-		
-		glPopAttrib();
 	}
 
 	GLTexture::~GLTexture(void)

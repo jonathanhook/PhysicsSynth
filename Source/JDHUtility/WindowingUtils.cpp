@@ -7,14 +7,7 @@
 #include <JDHUtility/OpenGL.h>
 #include "WindowingUtils.h"
 
-// WIN32 and APPLE
-#if defined _WIN32
-#include <glut.h>
-#elif defined __APPLE__
-#include <GLUT/glut.h>
-#endif
-
-#if defined _WIN32 || defined __APPLE__
+#ifdef GLUT_WINDOWING
 namespace JDHUtility
 {
 	const Point2f &WindowingUtils::getWindowPosition(void)
