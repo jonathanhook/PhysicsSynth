@@ -120,13 +120,11 @@ namespace PhysicsSynth
 		glPushMatrix();
 		glScalef(blSize, blSize, 1.0f);
 
-        glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
         glEnable(GL_BLEND);
         glEnable(GL_LINE_SMOOTH);
-        glEnable(GL_LINE_STIPPLE);
+        //glEnable(GL_LINE_STIPPLE);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-        glLineStipple(LINE_STIPPLE_FACTOR, LINE_PATTERN);
+        //glLineStipple(LINE_STIPPLE_FACTOR, LINE_PATTERN);
         glLineWidth(1.0f);
         glColor4f(1.0f, 1.0f, 1.0f, BLAST_RADIUS_OPACITY);
 		
@@ -137,7 +135,6 @@ namespace PhysicsSynth
         
         GLPrimitives::getInstance()->renderCircle();
         
-        glPopAttrib(); // GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT
 		glPopMatrix();
 	}
 

@@ -95,8 +95,8 @@ namespace PhysicsSynth
             0.0f, 1.0f
         };
 
-        backgroundVbo   = new GLVbo(GL_QUADS, GL_STATIC_DRAW, vertices, 12, uv);
-        overlayVbo      = new GLVbo(GL_QUADS, GL_STATIC_DRAW, vertices, 12, overlayUv);
+        backgroundVbo   = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, vertices, 12, uv);
+        overlayVbo      = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, vertices, 12, overlayUv);
         
 		initMenus();
 	}
@@ -540,7 +540,6 @@ namespace PhysicsSynth
 		glMultMatrixf(transform);
 		saveTransform();
         
-        glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -552,8 +551,6 @@ namespace PhysicsSynth
         // overlay
         overlay->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
         overlayVbo->render();
-        
-        glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
         
 		renderWorlds();
 		glPopMatrix();

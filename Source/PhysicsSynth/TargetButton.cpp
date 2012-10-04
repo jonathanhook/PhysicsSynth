@@ -83,20 +83,15 @@ namespace PhysicsSynth
 		glTranslatef(px, py, 0.0f);
 		glScalef(width, height, 1.0f);
 
-        glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         DARK_COLOUR.use();
         GLPrimitives::getInstance()->renderSquare();
-        
-        glPopAttrib();
 
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glTranslatef(0.0f, (targetPosition.getY() / 2.0f) + 0.5f, 0.0f);
-
-        glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glLineWidth(1.0f);
@@ -104,22 +99,17 @@ namespace PhysicsSynth
 
         vVbo->render();
 
-        glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT
 		glPopMatrix();
 
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glTranslatef((targetPosition.getX() / 2.0f) + 0.5f, 0.0f, 0.0f);
-
-        glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glLineWidth(1.0f);
         VALUE_COLOUR.use();
 
         hVbo->render();
-
-        glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT
 
 		glPopMatrix();
 		glPopMatrix();

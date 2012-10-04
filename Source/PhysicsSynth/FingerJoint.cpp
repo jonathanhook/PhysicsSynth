@@ -26,8 +26,8 @@ namespace PhysicsSynth
 		this->world		= world;
         
         GLfloat dummyVertices[6];
-        pointVbo = new GLVbo(GL_POINT, GL_DYNAMIC_DRAW, dummyVertices, 2);
-        lineVbo = new GLVbo(GL_POINT, GL_DYNAMIC_DRAW, dummyVertices, 2);
+        pointVbo = new GLVbo(GL_POINTS, GL_DYNAMIC_DRAW, dummyVertices, 2);
+        lineVbo = new GLVbo(GL_POINTS, GL_DYNAMIC_DRAW, dummyVertices, 2);
 
 		init(target);
 	}
@@ -60,7 +60,6 @@ namespace PhysicsSynth
 		float p2x = Manager::descale(p2.x);
 		float p2y = Manager::descale(p2.y);
 
-		glPushAttrib(GL_LINE_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT);
 		glEnable(GL_BLEND);
 		glEnable(GL_LINE_SMOOTH);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -73,13 +72,12 @@ namespace PhysicsSynth
             p1x, p1y, 0.0f,
             p2x, p2y, 0.0f
         };
+        
         pointVbo->update(GL_POINTS, GL_DYNAMIC_DRAW, vertices, 2);
         lineVbo->update(GL_LINES, GL_DYNAMIC_DRAW, vertices, 2);
         
         pointVbo->render();
         lineVbo->render();
-
-		glPopAttrib();
 	}
 
 	void FingerJoint::updateTarget(const b2Vec2 &target)

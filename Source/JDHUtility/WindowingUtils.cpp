@@ -26,4 +26,17 @@ namespace JDHUtility
 		return Vector2f(w, h);
 	}
 }
+#elif defined(IOS_WINDOWING)
+namespace JDHUtility
+{
+	const Point2f &WindowingUtils::getWindowPosition(void)
+	{
+        return Point2f(0.0f, 0.0f);
+	}
+    
+	const Vector2f &WindowingUtils::getWindowDimensions(void)
+	{
+		return Vector2f(1024.0f, 768.0f);
+	}
+}
 #endif 

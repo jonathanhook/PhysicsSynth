@@ -30,7 +30,6 @@ namespace PhysicsSynth
 
 		completed		= NULL;
 		dirty			= true;
-		dl				= glGenLists(1);
 		halfWay			= NULL;
 		halfWayFired	= false;
 		markedForDelete	= false;
@@ -49,6 +48,7 @@ namespace PhysicsSynth
 
 	void PressAndHold::render(void)
 	{
+        /*
 		if(dirty)
 		{
 			float x = position.getX();
@@ -114,6 +114,7 @@ namespace PhysicsSynth
 			dirty = false;
 		}
 		glCallList(dl);
+         */
 	}
 
 	void PressAndHold::update(void)

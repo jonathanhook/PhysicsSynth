@@ -326,20 +326,14 @@ namespace PhysicsSynth
 				glRotatef(angle * (180.0f / (float)M_PI), 0.0f, 0.0f, 1.0f);
 				glScalef(p->size, p->size, 1.0f);
 
-				glPushAttrib(GL_CURRENT_BIT);
-
 				// background
 				const Colour3f &c = sound->getColour();
 				glColor4f(c.getR(), c.getG(), c.getB(), opacity * 0.5f);
-
-                glPushAttrib(GL_ENABLE_BIT);
                 glEnable(GL_BLEND);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
                 GLPrimitives::getInstance()->renderCircle();
         
-                glPopAttrib(); // GL_ENABLE_BIT
-
 				// border
 				if(isSelected)
 				{
@@ -351,7 +345,6 @@ namespace PhysicsSynth
 					glColor4f(c.getR(), c.getG(), c.getB(), opacity);
 				}
 
-                glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT);
                 glEnable(GL_BLEND);
                 glEnable(GL_LINE_SMOOTH);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -359,8 +352,6 @@ namespace PhysicsSynth
 
                 GLPrimitives::getInstance()->renderCircleOutline();
                 
-                glPopAttrib(); // GL_ENABLE_BIT | GL_LINE_BIT
-				glPopAttrib(); // GL_CURRENT_BIT
 				glPopMatrix();
 			}
 		}

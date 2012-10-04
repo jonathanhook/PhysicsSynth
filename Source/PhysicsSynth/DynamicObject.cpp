@@ -238,8 +238,6 @@ namespace PhysicsSynth
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glScalef(ICON_SIZE, ICON_SIZE, 1.0f);
-        
-		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
@@ -252,9 +250,6 @@ namespace PhysicsSynth
         texture->bind(GL_REPLACE);
         GLPrimitives::getInstance()->renderCircle();
         
-        glPopAttrib();
-
-        glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glEnable(GL_LINE_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -272,7 +267,6 @@ namespace PhysicsSynth
         
         GLPrimitives::getInstance()->renderCircleOutline();
 
-		glPopAttrib(); // GL_CURRENT_BIT | GL_LINE_BIT
         glPopMatrix();
 	}
 }

@@ -52,14 +52,12 @@ namespace PhysicsSynth
             glTranslatef(px + b, py + b, 0.0f);
             glScalef(w, h, 1.0f);
 
-            glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
             VALUE_COLOUR.use();
             GLPrimitives::getInstance()->renderSquare();
-            
-            glPopAttrib();
+
             glPopMatrix();
 		}
 

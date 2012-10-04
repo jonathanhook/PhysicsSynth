@@ -139,10 +139,8 @@
 		FC875254161CB25D001CABF4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC875253161CB25D001CABF4 /* OpenGLES.framework */; };
 		FC87525A161CB25D001CABF4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC875258161CB25D001CABF4 /* InfoPlist.strings */; };
 		FC87525C161CB25D001CABF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC87525B161CB25D001CABF4 /* main.m */; };
-		FC875260161CB25D001CABF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC87525F161CB25D001CABF4 /* AppDelegate.m */; };
-		FC875262161CB25D001CABF4 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FC875261161CB25D001CABF4 /* Shader.fsh */; };
-		FC875264161CB25D001CABF4 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FC875263161CB25D001CABF4 /* Shader.vsh */; };
-		FC875267161CB25D001CABF4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC875266161CB25D001CABF4 /* ViewController.m */; };
+		FC875260161CB25D001CABF4 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC87525F161CB25D001CABF4 /* AppDelegate.mm */; };
+		FC875267161CB25D001CABF4 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC875266161CB25D001CABF4 /* ViewController.mm */; };
 		FC87526A161CB25D001CABF4 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC875268161CB25D001CABF4 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
@@ -421,11 +419,9 @@
 		FC87525B161CB25D001CABF4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FC87525D161CB25D001CABF4 /* SoundClash-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoundClash-Prefix.pch"; sourceTree = "<group>"; };
 		FC87525E161CB25D001CABF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		FC87525F161CB25D001CABF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FC875261161CB25D001CABF4 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		FC875263161CB25D001CABF4 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		FC87525F161CB25D001CABF4 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		FC875265161CB25D001CABF4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FC875266161CB25D001CABF4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FC875266161CB25D001CABF4 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		FC875269161CB25D001CABF4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -858,11 +854,9 @@
 				FC7991A9161CB9290010E266 /* OscPack */,
 				FC7991C4161CB92A0010E266 /* PhysicsSynth */,
 				FC87525E161CB25D001CABF4 /* AppDelegate.h */,
-				FC87525F161CB25D001CABF4 /* AppDelegate.m */,
-				FC875261161CB25D001CABF4 /* Shader.fsh */,
-				FC875263161CB25D001CABF4 /* Shader.vsh */,
+				FC87525F161CB25D001CABF4 /* AppDelegate.mm */,
 				FC875265161CB25D001CABF4 /* ViewController.h */,
-				FC875266161CB25D001CABF4 /* ViewController.m */,
+				FC875266161CB25D001CABF4 /* ViewController.mm */,
 				FC875268161CB25D001CABF4 /* ViewController.xib */,
 				FC875256161CB25D001CABF4 /* Supporting Files */,
 			);
@@ -932,8 +926,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC87525A161CB25D001CABF4 /* InfoPlist.strings in Resources */,
-				FC875262161CB25D001CABF4 /* Shader.fsh in Resources */,
-				FC875264161CB25D001CABF4 /* Shader.vsh in Resources */,
 				FC87526A161CB25D001CABF4 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -946,8 +938,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC87525C161CB25D001CABF4 /* main.m in Sources */,
-				FC875260161CB25D001CABF4 /* AppDelegate.m in Sources */,
-				FC875267161CB25D001CABF4 /* ViewController.m in Sources */,
+				FC875260161CB25D001CABF4 /* AppDelegate.mm in Sources */,
+				FC875267161CB25D001CABF4 /* ViewController.mm in Sources */,
 				FC79923B161CB92A0010E266 /* b2BroadPhase.cpp in Sources */,
 				FC79923C161CB92A0010E266 /* b2CollideCircle.cpp in Sources */,
 				FC79923D161CB92A0010E266 /* b2CollidePolygon.cpp in Sources */,

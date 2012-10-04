@@ -6,14 +6,15 @@
 //  Copyright (c) 2012 Jonathan Hook. All rights reserved.
 //
 
+#include <PhysicsSynth/Synchronizer.h>
+#include <PhysicsSynth/Manager.h>
 #import "ViewController.h"
 
 @interface ViewController ()
 {
-
 }
+
 @property (strong, nonatomic) EAGLContext *context;
-@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -22,10 +23,11 @@
 
 @implementation ViewController
 
+PhysicsSynth::Manager *manager;
+
 - (void)dealloc
 {
     [_context release];
-    [_effect release];
     [super dealloc];
 }
 
@@ -33,17 +35,16 @@
 {
     [super viewDidLoad];
     
-    self.context = [[[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2] autorelease];
-
-    if (!self.context) {
-        NSLog(@"Failed to create ES context");
-    }
+    self.context = [[[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1] autorelease];
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     [self setupGL];
+    
+    manager = new PhysicsSynth::Manager(1024, false);
+    manager->load();
 }
 
 - (void)viewDidUnload
@@ -52,23 +53,28 @@
     
     [self tearDownGL];
     
-    if ([EAGLContext currentContext] == self.context) {
+    if ([EAGLContext currentContext] == self.context)
+    {
         [EAGLContext setCurrentContext:nil];
     }
     self.context = nil;
+    
+    delete manager;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc. that aren't in use.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
+    }
+    else
+    {
         return YES;
     }
 }
@@ -76,39 +82,63 @@
 - (void)setupGL
 {
     [EAGLContext setCurrentContext:self.context];
+
+    float width = 1024.0f;
+    float height = 768.0f;
     
-    self.effect = [[[GLKBaseEffect alloc] init] autorelease];
-    self.effect.light0.enabled = GL_TRUE;
-    self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
+	if(height == 0)
+	{
+		height = 1;
+	}
     
-    glEnable(GL_DEPTH_TEST);
+	float ratio = (float)width / (float)height;
+    
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	
+    glOrthof(0.0f, 1.0f, 1.0f / ratio, 0.0f, 0.0f, 100.0f);
+    glViewport(0, 0, width, height);
+    
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
     
 }
 
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
-
-    self.effect = nil;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
 {
-    // update here
+    assert(manager);
+	manager->update();
+    
+    PhysicsSynth::Synchronizer *sync = PhysicsSynth::Synchronizer::getInstance();
+	assert(sync);
+	sync->update();
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
     
-    // Render the object with GLKit
-    [self.effect prepareToDraw];
+    assert(manager);
+	manager->render();
     
-    // draw here
+#ifdef _DEBUG
+	GLenum error = glGetError();
+	if(error != GL_NO_ERROR)
+	{
+		printf("OpenGL error: %i\n", error);
+	}
+#endif
 }
-
 
 @end

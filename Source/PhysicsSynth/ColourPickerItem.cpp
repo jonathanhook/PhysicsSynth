@@ -45,7 +45,7 @@ namespace PhysicsSynth
             1.0f,           1.0f - 0.1f,	0.0f,
             1.0f- 0.1f,     1.0f - 0.1f,	0.0f
         };
-        checkedVbo = new GLVbo(GL_QUADS, GL_STATIC_DRAW, vertices, 16);
+        checkedVbo = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, vertices, 16);
 	}
 
 	ColourPickerItem::~ColourPickerItem(void)
@@ -87,8 +87,6 @@ namespace PhysicsSynth
 		glPushMatrix();
 		glTranslatef(px + border, py + border, 0.0f);
 		glScalef(w - border, h - border, 0.0f);
-
-        glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -102,7 +100,6 @@ namespace PhysicsSynth
             GLPrimitives::getInstance()->renderSquare();
         }
         
-        glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
 		glPopMatrix();
 
 		if(checked)
@@ -115,15 +112,12 @@ namespace PhysicsSynth
 			glPushMatrix();
 			glTranslatef(px + border, py + border, 0.0f);
 			glScalef(w - border, h - border, 0.0f);
-
-            glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
             glEnable(GL_BLEND);
             glBlendFunc(GL_ONE, GL_ZERO);
 
             VALUE_COLOUR.use();
             checkedVbo->render();
 
-            glPopAttrib(); // GL_ENABLE_BIT | GL_CURRENT_BIT
 			glPopMatrix();
 		}
 	}

@@ -129,20 +129,14 @@ namespace PhysicsSynth
 	/* Private Member Functions */
 	void Circle::renderShape(void)
 	{
-		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT);
-		
 		assert(sound);
 		const Colour3f &sc = sound->getColour();
 		glColor4f(sc.getR(), sc.getG(), sc.getB(), 0.5f);
-
-        glPushAttrib(GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         GLPrimitives::getInstance()->renderCircle();
 
-        glPopAttrib(); // GL_ENABLE_BIT
-        
 		if(isSelected)
 		{
 			VALUE_COLOUR.use();
@@ -154,15 +148,11 @@ namespace PhysicsSynth
 			glLineWidth(1.0f);
 		}
 
-        glPushAttrib(GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glEnable(GL_LINE_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         GLPrimitives::getInstance()->renderCircleOutline();
-        
-        glPopAttrib(); // GL_ENABLE_BIT
-		glPopAttrib(); // GL_LINE_BIT | GL_CURRENT_BIT
 	}
 
 	void Circle::setupShape(b2Shape *shape)

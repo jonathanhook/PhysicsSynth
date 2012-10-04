@@ -203,20 +203,15 @@ namespace PhysicsSynth
 
 	void Triangle::renderShape(void)
 	{
-		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT);
-		
 		assert(sound);
 		const Colour3f &sc = sound->getColour();
+        
 		glColor4f(sc.getR(), sc.getG(), sc.getB(), 0.5f);
-
-        glPushAttrib(GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         assert(fill);
         fill->render();
-
-        glPopAttrib(); // GL_ENABLE_BIT
 
 		if(isSelected)
 		{
@@ -229,16 +224,12 @@ namespace PhysicsSynth
 			glLineWidth(1.0f);
 		}
 
-        glPushAttrib(GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glEnable(GL_LINE_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			
         assert(outline);
         outline->render();
-
-        glPopAttrib(); // GL_ENABLE_BIT
-		glPopAttrib(); // GL_CURRENT_BIT | GL_LINE_BIT
 	}
 
 	void Triangle::renderThumbnail(void)

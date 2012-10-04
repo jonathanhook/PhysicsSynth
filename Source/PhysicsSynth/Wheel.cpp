@@ -199,8 +199,7 @@ namespace PhysicsSynth
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glRotatef(spokeAngle * (180.0f / (float)M_PI), 0.0f, 0.0f, 1.0f);
-        glPushAttrib(GL_CURRENT_BIT);
-        
+
 		const Colour3f &c = sound->getColour();
 		glColor4f(c.getR(), c.getG(), c.getB(), SPOKE_OPACITY);
 
@@ -213,22 +212,18 @@ namespace PhysicsSynth
 				glRotatef(angleIncrement * (float)i, 0.0f, 0.0f, 1.0f);
 				glTranslatef(ICON_SIZE, 0.0f, 0.0f);
 				glScalef(spokeRad - ICON_SIZE, spokeRad - ICON_SIZE, 1.0f);
-
-                glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT);
                 glEnable(GL_BLEND);
                 glEnable(GL_LINE_SMOOTH);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
                 glLineWidth(2.0f);
+                
                 spokeVbo->render();
 
-                glPopAttrib();
 				glPopMatrix();
 			}
 		}
 
 		glPopMatrix();
-        glPopAttrib();
 	}
 
 	void Wheel::renderBounds(void)
@@ -238,20 +233,16 @@ namespace PhysicsSynth
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glScalef(spokeRad, spokeRad, 1.0f);
-
-        glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
         glEnable(GL_BLEND);
         glEnable(GL_LINE_SMOOTH);
-        glEnable(GL_LINE_STIPPLE);
+        //glEnable(GL_LINE_STIPPLE);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-        glLineStipple(LINE_STIPPLE_FACTOR, LINE_PATTERN);
+        //glLineStipple(LINE_STIPPLE_FACTOR, LINE_PATTERN);
         glLineWidth(1.0f);
         glColor4f(1.0f, 1.0f, 1.0f, BOUNDS_OPACITY);
             
         GLPrimitives::getInstance()->renderCircleOutline();
 
-        glPopAttrib(); // GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT
 		glPopMatrix();
 	}
 

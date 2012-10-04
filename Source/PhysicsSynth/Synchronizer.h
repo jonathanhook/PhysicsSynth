@@ -10,6 +10,7 @@ namespace JDHUtility
 {
 	class LoopPointer;
 }
+using namespace JDHUtility;
 
 namespace PhysicsSynth
 {

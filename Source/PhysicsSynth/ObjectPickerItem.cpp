@@ -41,7 +41,6 @@ namespace PhysicsSynth
 		glTranslatef(px + border, py + border, 0.0f);
 		glScalef(width - border, buttonHeight - border, 1.0f);
 
-		glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
 		glEnable(GL_BLEND);
 		glEnable(GL_LINE_SMOOTH);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -65,7 +64,6 @@ namespace PhysicsSynth
 		assert(object);
 		object->renderThumbnail();
 
-		glPopAttrib();
 		glPopMatrix();
 	}
 }

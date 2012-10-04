@@ -131,8 +131,6 @@ namespace PhysicsSynth
         glPushMatrix();
         glTranslatef(-1.0f, -1.0f, 0.0f);
         glScalef(2.0f, 2.0f, 1.0f);
-        
-		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glEnable(GL_LINE_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -156,7 +154,6 @@ namespace PhysicsSynth
 			
         GLPrimitives::getInstance()->renderSquareOutline();
 
-		glPopAttrib();
         glPopMatrix();
 	}
 

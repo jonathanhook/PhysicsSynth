@@ -243,8 +243,6 @@ namespace PhysicsSynth
 			glPushMatrix();
 			glTranslatef(x, y, 0.0f);
             glScalef(FINGER_SIZE, FINGER_SIZE, 1.0f);
-
-            glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
             glEnable(GL_BLEND);
             glEnable(GL_LINE_SMOOTH);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -252,7 +250,6 @@ namespace PhysicsSynth
 
             GLPrimitives::getInstance()->renderCircleOutline();
 
-            glPopAttrib();
 			glPopMatrix();
 		}
 #endif

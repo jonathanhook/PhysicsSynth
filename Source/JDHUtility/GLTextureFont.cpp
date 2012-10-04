@@ -29,7 +29,7 @@ namespace JDHUtility
             1.0f, 1.0f, 0.0f,
             0.0f, 1.0f, 0.0f
         };
-        vbo = new GLVbo(GL_QUADS, GL_DYNAMIC_DRAW, verts, 4);
+        vbo = new GLVbo(GL_TRIANGLE_STRIP, GL_DYNAMIC_DRAW, verts, 4);
         
 	}
 
@@ -48,7 +48,6 @@ namespace JDHUtility
 	{
 		if(texture->isTexture())
 		{
-			glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -90,7 +89,7 @@ namespace JDHUtility
                     };
                     
                     // TODO: this is inefficient
-                    vbo->update(GL_QUADS, GL_DYNAMIC_DRAW, NULL, 4, uvs);
+                    vbo->update(GL_TRIANGLE_STRIP, GL_DYNAMIC_DRAW, NULL, 4, uvs);
                     vbo->render();
       
 					glPopMatrix();
@@ -98,8 +97,6 @@ namespace JDHUtility
 					cx += getSizef(f->xAdvance);
 				}
 			}
-
-			glPopAttrib();
 		}
 	}
 

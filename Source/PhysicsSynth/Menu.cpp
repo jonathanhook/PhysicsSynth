@@ -100,16 +100,12 @@ namespace PhysicsSynth
 		float height	= getSizef(dimensions.getY() + (BORDER * 3));
 		glScalef(width, height, 1.0f);
 
-        glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         BACKGROUND_MASK_COLOUR.use();
         GLPrimitives::getInstance()->renderSquare();
 
-        glPopAttrib();
-        
-        glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				
@@ -148,7 +144,6 @@ namespace PhysicsSynth
             rightVbo->render();
         }
 
-        glPopAttrib();
 		glPopMatrix();
 
 		// render children

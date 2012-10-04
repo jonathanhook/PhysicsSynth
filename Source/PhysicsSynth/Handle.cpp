@@ -123,23 +123,17 @@ namespace PhysicsSynth
 		saveTransform();
 
 		// background mask
-        glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glColor4f(0.0f, 0.0f, 0.0f, BACKGROUND_MASK_ALPHA);
 
         glScalef(size, size, 1.0f);
         GLPrimitives::getInstance()->renderCircle();
-        
-        glPopAttrib(); // GL_CURRENT_BIT | GL_ENABLE_BIT
 
 		// border
 		float alphaModifier = fingerDown ? SELECTED_ALPHA_MODIFIER : NON_SELECTED_ALPHA_MODIFIER;
 
-		glPushAttrib(GL_CURRENT_BIT);
 		glColor4f(VALUE_COLOUR.getR(), VALUE_COLOUR.getG(), VALUE_COLOUR.getB(), alphaModifier);
-
-        glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glEnable(GL_LINE_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -147,20 +141,14 @@ namespace PhysicsSynth
 
         GLPrimitives::getInstance()->renderCircleOutline();
 
-        glPopAttrib(); // GL_LINE_BIT | GL_ENABLE_BIT
-
-		
 		// texture
 		glColor4f(1.0f, 1.0f, 1.0f, BACKGROUND_ALPHA * alphaModifier);
-        glPushAttrib(GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         texture->bind(GL_MODULATE);
         GLPrimitives::getInstance()->renderCircle();
 
-        glPopAttrib();
-		glPopAttrib(); // GL_CURRENT_BIT
 		glPopMatrix();
 	}
 

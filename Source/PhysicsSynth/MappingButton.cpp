@@ -65,15 +65,12 @@ namespace PhysicsSynth
 		glPushMatrix();
 		glTranslatef(px + buttonDim + border, py + border, 0.0f);
 		glScalef(width, height - border, 1.0f);
-
-        glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
         LIGHT_COLOUR.use();
         GLPrimitives::getInstance()->renderSquare();
 
-        glPopAttrib();
 		glPopMatrix();
 
 		glMatrixMode(GL_MODELVIEW);

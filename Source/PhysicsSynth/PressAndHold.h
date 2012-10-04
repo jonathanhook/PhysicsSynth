@@ -46,7 +46,6 @@ namespace PhysicsSynth
 		Point2f				createPosition;
 		CompletedCallback	completed;
 		bool				dirty;
-		unsigned int		dl;
 		unsigned int		fingerId;
 		HalfWayCallback		halfWay;
 		bool				halfWayFired;

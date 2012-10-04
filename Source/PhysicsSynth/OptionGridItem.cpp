@@ -61,7 +61,6 @@ namespace PhysicsSynth
 		glScalef(pos + dim, pos + dim, 1.0f);
 
 		// check box
-		glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
@@ -77,8 +76,7 @@ namespace PhysicsSynth
         GLPrimitives::getInstance()->renderSquare();
         
 		glPopMatrix();
-		glPopAttrib(); // GL_CURRENT_BIT
-
+        
 		// label region
 		float posX	= getSizef(BORDER + dimensions.getY());
 		float posY	= getSizef(BORDER);
@@ -89,8 +87,6 @@ namespace PhysicsSynth
 		glPushMatrix();
 		glTranslatef(px + posX, py + posY, 0.0f);
 		glScalef(dimX, posY + dimY, 1.0f);
-
-		glPushAttrib(GL_CURRENT_BIT | GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
@@ -105,7 +101,6 @@ namespace PhysicsSynth
 
         GLPrimitives::getInstance()->renderSquare();
 
-		glPopAttrib();
 		glPopMatrix();
 
 		// label

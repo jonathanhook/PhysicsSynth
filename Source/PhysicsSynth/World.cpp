@@ -763,7 +763,6 @@ namespace PhysicsSynth
 	{
 		float alphaModifier = fingerDown ? ALPHA_MODIFIER : 1.0f;
 
-		glPushAttrib(GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT);
 		glEnable(GL_BLEND);
 		glEnable(GL_LINE_SMOOTH);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -782,25 +781,17 @@ namespace PhysicsSynth
         outlineVbo->render();
         
 		glColor4f(1.0f, 1.0f, 1.0f, BACKGROUND_ALPHA * alphaModifier);
-        glPushAttrib(GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         backgroundVbo->render();
 
-        glPopAttrib();
-        glEndList();
-
 		// TODO: can this be in DL now?
 		glColor4f(1.0f, 1.0f, 1.0f, BORDER_ALPHA * alphaModifier);
-        glPushAttrib(GL_ENABLE_BIT);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         borderVbo->render();
-
-        glPopAttrib(); // GL_ENABLE_BIT
-		glPopAttrib(); // GL_CURRENT_BIT | GL_LINE_BIT | GL_ENABLE_BIT
 	}
 
 	void World::updatePressAndHolds(void)
@@ -867,11 +858,11 @@ namespace PhysicsSynth
         
         if(backgroundVbo == NULL)
         {
-            backgroundVbo = new GLVbo(GL_POLYGON, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
+            //backgroundVbo = new GLVbo(GL_POLYGON, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
         }
         else
         {
-            backgroundVbo->update(GL_POLYGON, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
+            //backgroundVbo->update(GL_POLYGON, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
         }
         
         // border
@@ -906,11 +897,11 @@ namespace PhysicsSynth
         
         if(borderVbo == NULL)
         {
-            borderVbo = new GLVbo(GL_QUAD_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
+            //borderVbo = new GLVbo(GL_QUAD_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
         }
         else
         {
-            borderVbo->update(GL_QUAD_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
+            //borderVbo->update(GL_QUAD_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
         }
         
         // outlines
