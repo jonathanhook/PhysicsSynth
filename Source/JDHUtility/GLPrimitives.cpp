@@ -12,7 +12,6 @@
 #include "GLVbo.h"
 #include "GLPrimitives.h"
 
-
 namespace JDHUtility
 {
     /* Constants */
