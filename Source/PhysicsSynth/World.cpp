@@ -858,11 +858,11 @@ namespace PhysicsSynth
         
         if(backgroundVbo == NULL)
         {
-            //backgroundVbo = new GLVbo(GL_POLYGON, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
+            backgroundVbo = new GLVbo(GL_TRIANGLE_FAN, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
         }
         else
         {
-            //backgroundVbo->update(GL_POLYGON, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
+            backgroundVbo->update(GL_TRIANGLE_FAN, GL_DYNAMIC_DRAW, backgroundVerts, (GLsizei)limits.size());
         }
         
         // border
@@ -897,11 +897,11 @@ namespace PhysicsSynth
         
         if(borderVbo == NULL)
         {
-            //borderVbo = new GLVbo(GL_QUAD_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
+            borderVbo = new GLVbo(GL_TRIANGLE_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
         }
         else
         {
-            //borderVbo->update(GL_QUAD_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
+            borderVbo->update(GL_TRIANGLE_STRIP, GL_DYNAMIC_DRAW, borderVerts, (GLsizei)(limits.size() + 1) * 2);
         }
         
         // outlines

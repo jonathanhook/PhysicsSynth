@@ -114,7 +114,7 @@ namespace JDHUtility
             circleTextureData[j++] = (py + 1.0f) / 2.0f;
         }
         
-        circleVbo           = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, circleData, CIRCLE_VERTICES, circleTextureData);
+        circleVbo           = new GLVbo(GL_TRIANGLE_FAN, GL_STATIC_DRAW, circleData, CIRCLE_VERTICES, circleTextureData);
         circleOutlineVbo    = new GLVbo(GL_LINE_LOOP, GL_STATIC_DRAW, circleData, CIRCLE_VERTICES);
 	}
 }
