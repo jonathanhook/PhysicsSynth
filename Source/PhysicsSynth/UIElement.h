@@ -50,6 +50,7 @@ namespace PhysicsSynth
 		static const unsigned int	LABEL_HEIGHT_DIV;
 		static const Colour4f		LIGHT_COLOUR;
 		static const Colour4f		VALUE_COLOUR;
+        static const Colour4f       FONT_COLOUR;
 
 		bool				captured;
 		unsigned int		capturedId;

@@ -781,17 +781,13 @@ namespace PhysicsSynth
         outlineVbo->render();
         
 		glColor4f(1.0f, 1.0f, 1.0f, BACKGROUND_ALPHA * alphaModifier);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
         backgroundVbo->render();
 
-		// TODO: can this be in DL now?
 		glColor4f(1.0f, 1.0f, 1.0f, BORDER_ALPHA * alphaModifier);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
         borderVbo->render();
+        
+        glDisable(GL_BLEND);
+		glDisable(GL_LINE_SMOOTH);
 	}
 
 	void World::updatePressAndHolds(void)

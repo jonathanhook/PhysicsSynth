@@ -56,8 +56,11 @@ namespace PhysicsSynth
 		GLFontManager *f = GLFontManager::getInstance();
 		assert(f);
 
+        FONT_COLOUR.use();
 		f->renderString(GLFontManager::LARGE, label, Point2f(borderf * 4.0f, borderf));
 
+        glDisable(GL_BLEND);
+		glDisable(GL_LINE_SMOOTH);
 		glPopMatrix();
 	}
 }

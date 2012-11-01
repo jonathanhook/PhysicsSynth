@@ -64,6 +64,8 @@ namespace PhysicsSynth
 		assert(object);
 		object->renderThumbnail();
 
+        glDisable(GL_BLEND);
+		glDisable(GL_LINE_SMOOTH);
 		glPopMatrix();
 	}
 }

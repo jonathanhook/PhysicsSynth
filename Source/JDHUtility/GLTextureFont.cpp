@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "FileLocationUtility.h"
 #include "WindowingUtils.h"
 #include "Ndelete.h"
 #include "GLTexture.h"
@@ -20,14 +21,16 @@ namespace JDHUtility
 	GLTextureFont::GLTextureFont(const std::string &fontPath, const std::string &texturePath)
 	{
 		texture = new GLTexture(texturePath);
-		parseFontInfo(fontPath);
+        
+        std::string resourcePath = FileLocationUtility::getFileInResourcePath(fontPath);   
+		parseFontInfo(resourcePath);
         
         GLfloat verts[12] =
         {
             0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
             1.0f, 0.0f, 0.0f,
-            1.0f, 1.0f, 0.0f,
-            0.0f, 1.0f, 0.0f
+            1.0f, 1.0f, 0.0f
         };
         vbo = new GLVbo(GL_TRIANGLE_STRIP, GL_DYNAMIC_DRAW, verts, 4);
         
@@ -83,9 +86,9 @@ namespace JDHUtility
                     GLfloat uvs[8] =
                     {
                         u0, v0,
+                        u0, v1,
                         u1, v0,
-                        u1, v1,
-                        u0, v1
+                        u1, v1
                     };
                     
                     // TODO: this is inefficient
@@ -97,6 +100,9 @@ namespace JDHUtility
 					cx += getSizef(f->xAdvance);
 				}
 			}
+            
+            texture->unbind();
+            glDisable(GL_BLEND);
 		}
 	}
 

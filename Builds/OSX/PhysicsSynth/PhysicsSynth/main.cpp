@@ -9,6 +9,7 @@
 #include <JDHUtility/GLTextureFont.h>
 #include <JDHUtility/WindowingUtils.h>
 #include <JDHUtility/GLPrimitives.h>
+#include <JDHUtility/FileLocationUtility.h>
 #include <MultiTouchEvents/FingerEventArgs.h>
 #include <PhysicsSynth/Manager.h>
 #include <PhysicsSynth/Synchronizer.h>
@@ -62,6 +63,8 @@ void idle(void)
 
 void initPhysicsSynth(unsigned int width, const char *address, unsigned int port)
 {
+    FileLocationUtility::setResourcePath("Resources");
+    
 	manager = new Manager(width, false);
 	Manager::setOscSender(new OSCSender(address, port));
 
@@ -140,8 +143,6 @@ void mouse(int button, int state, int x, int y)
 	if(button == GLUT_LEFT_BUTTON)
 	{
 		int width	= glutGet(GLUT_WINDOW_WIDTH);
-		int height	= glutGet(GLUT_WINDOW_HEIGHT);
-        
 		float fx = (float)x / (float)width;
 		float fy = (float)y / (float)width;
         
@@ -157,8 +158,6 @@ void motion(int x, int y)
 	if(mouseDown)
 	{
 		int width	= glutGet(GLUT_WINDOW_WIDTH);
-		int height	= glutGet(GLUT_WINDOW_HEIGHT);
-        
 		float fx = (float)x / (float)width;
 		float fy = (float)y / (float)width;
         

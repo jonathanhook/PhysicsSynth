@@ -63,6 +63,7 @@ namespace PhysicsSynth
 
         GLPrimitives::getInstance()->renderSquare();
 
+        glDisable(GL_BLEND);
 		glPopMatrix();
 	}
 

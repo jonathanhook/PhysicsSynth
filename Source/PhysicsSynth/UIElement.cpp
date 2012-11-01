@@ -18,6 +18,7 @@ namespace PhysicsSynth
 	const unsigned int	UIElement::LABEL_HEIGHT_DIV	= 27;
 	const Colour4f		UIElement::LIGHT_COLOUR		(1.0f, 1.0f, 1.0f, 0.25f);
 	const Colour4f		UIElement::VALUE_COLOUR		(0.11f, 0.53f, 0.71f, 0.5f);
+    const Colour4f      UIElement::FONT_COLOUR      (1.0f, 1.0f, 1.0f, 0.75f);
 
 	/* Static Functions */
 	float UIElement::getSizef(unsigned int pixels)

@@ -36,7 +36,7 @@ namespace PhysicsSynth
 	const float			ParticleEmitter::MAX_IMPULSE		= 1.0f;
 	const float			ParticleEmitter::MAX_PARTICLE_SIZE	= 0.0075f;
 	const float			ParticleEmitter::MIN_PARTICLE_SIZE	= 0.0001f;
-	const std::string	ParticleEmitter::TEXTURE_PATH		= "../../../Data/Textures/ParticleEmitter/emitter.tga";
+	const std::string	ParticleEmitter::TEXTURE_PATH		= "emitter.tga";
 
 	/* Private Static Member Variables */
 	unsigned int ParticleEmitter::globalParticleCounter = 0;
@@ -330,6 +330,7 @@ namespace PhysicsSynth
 				const Colour3f &c = sound->getColour();
 				glColor4f(c.getR(), c.getG(), c.getB(), opacity * 0.5f);
                 glEnable(GL_BLEND);
+                glEnable(GL_LINE_SMOOTH);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
                 GLPrimitives::getInstance()->renderCircle();
@@ -345,13 +346,11 @@ namespace PhysicsSynth
 					glColor4f(c.getR(), c.getG(), c.getB(), opacity);
 				}
 
-                glEnable(GL_BLEND);
-                glEnable(GL_LINE_SMOOTH);
-                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glLineWidth(1.0f);
-
                 GLPrimitives::getInstance()->renderCircleOutline();
                 
+                glDisable(GL_BLEND);
+                glDisable(GL_LINE_SMOOTH);
 				glPopMatrix();
 			}
 		}

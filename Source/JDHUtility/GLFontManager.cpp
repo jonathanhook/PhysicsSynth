@@ -11,12 +11,12 @@
 
 namespace JDHUtility
 {
-	const std::string GLFontManager::LARGE_FONT		= "../../../Data/Fonts/courier20.fnt";
-	const std::string GLFontManager::MEDIUM_FONT	= "../../../Data/Fonts/courier18.fnt";
-	const std::string GLFontManager::SMALL_FONT		= "../../../Data/Fonts/courier18.fnt";
-	const std::string GLFontManager::LARGE_TEX		= "../../../Data/Fonts/courier20_0.tga";
-	const std::string GLFontManager::MEDIUM_TEX		= "../../../Data/Fonts/courier18_0.tga";
-	const std::string GLFontManager::SMALL_TEX		= "../../../Data/Fonts/courier18_0.tga";
+	const std::string GLFontManager::LARGE_FONT		= "courier20.fnt";
+	const std::string GLFontManager::MEDIUM_FONT	= "courier18.fnt";
+	const std::string GLFontManager::SMALL_FONT		= "courier18.fnt";
+	const std::string GLFontManager::LARGE_TEX		= "courier20_0.tga";
+	const std::string GLFontManager::MEDIUM_TEX		= "courier18_0.tga";
+	const std::string GLFontManager::SMALL_TEX		= "courier18_0.tga";
 
 	/* Private Constructors */
 	GLFontManager::GLFontManager(void)

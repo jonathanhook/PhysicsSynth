@@ -250,6 +250,8 @@ namespace PhysicsSynth
 
             GLPrimitives::getInstance()->renderCircleOutline();
 
+            glDisable(GL_BLEND);
+            glDisable(GL_LINE_SMOOTH);
 			glPopMatrix();
 		}
 #endif

@@ -23,6 +23,7 @@ namespace JDHUtility
 								GLenum magFilter	= GL_LINEAR, 
 								GLenum wrapS		= GL_CLAMP_TO_EDGE,
 								GLenum wrapT		= GL_CLAMP_TO_EDGE) const;
+        void            unbind(void) const;
 		unsigned int	getId(void) const;
 		bool			isTexture(void) const;
 

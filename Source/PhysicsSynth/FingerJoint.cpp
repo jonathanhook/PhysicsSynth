@@ -78,6 +78,9 @@ namespace PhysicsSynth
         
         pointVbo->render();
         lineVbo->render();
+        
+        glDisable(GL_BLEND);
+		glDisable(GL_LINE_SMOOTH);
 	}
 
 	void FingerJoint::updateTarget(const b2Vec2 &target)

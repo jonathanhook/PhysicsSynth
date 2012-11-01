@@ -92,8 +92,6 @@ namespace PhysicsSynth
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glTranslatef(0.0f, (targetPosition.getY() / 2.0f) + 0.5f, 0.0f);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glLineWidth(1.0f);
         VALUE_COLOUR.use();
 
@@ -104,13 +102,12 @@ namespace PhysicsSynth
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glTranslatef((targetPosition.getX() / 2.0f) + 0.5f, 0.0f, 0.0f);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glLineWidth(1.0f);
         VALUE_COLOUR.use();
 
         hVbo->render();
 
+        glDisable(GL_BLEND);
 		glPopMatrix();
 		glPopMatrix();
 	}

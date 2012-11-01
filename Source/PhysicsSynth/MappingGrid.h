@@ -16,7 +16,7 @@ namespace PhysicsSynth
 		public LabelledUIElement
 	{
 	public:
-		typedef struct MappingGridItem
+        struct MappingGridItem
 		{
 			unsigned int	item;
 			std::string		label;

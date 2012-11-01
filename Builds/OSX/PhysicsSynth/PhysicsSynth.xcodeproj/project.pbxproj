@@ -136,6 +136,7 @@
 		FC0A29B215EED06F00030CB2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0A29B115EED06F00030CB2 /* GLUT.framework */; };
 		FC0F806115F3C94A005F3B72 /* GLVbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0F805F15F3C94A005F3B72 /* GLVbo.cpp */; };
 		FC69F38115F28CC600CC6603 /* GLPrimitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC69F37F15F28CC600CC6603 /* GLPrimitives.cpp */; };
+		FCD072FF1641A45300515AC6 /* FileLocationUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD072FD1641A45300515AC6 /* FileLocationUtility.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -420,6 +421,24 @@
 		FC0F806015F3C94A005F3B72 /* GLVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVbo.h; sourceTree = "<group>"; };
 		FC69F37F15F28CC600CC6603 /* GLPrimitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLPrimitives.cpp; sourceTree = "<group>"; };
 		FC69F38015F28CC600CC6603 /* GLPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLPrimitives.h; sourceTree = "<group>"; };
+		FCD072EE1641A43D00515AC6 /* background.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = background.bmp; path = ../../../../Resources/background.bmp; sourceTree = "<group>"; };
+		FCD072EF1641A43D00515AC6 /* bomb.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = bomb.tga; path = ../../../../Resources/bomb.tga; sourceTree = "<group>"; };
+		FCD072F01641A43D00515AC6 /* courier18_0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = courier18_0.tga; path = ../../../../Resources/courier18_0.tga; sourceTree = "<group>"; };
+		FCD072F11641A43D00515AC6 /* courier18.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = courier18.fnt; path = ../../../../Resources/courier18.fnt; sourceTree = "<group>"; };
+		FCD072F21641A43D00515AC6 /* courier20_0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = courier20_0.tga; path = ../../../../Resources/courier20_0.tga; sourceTree = "<group>"; };
+		FCD072F31641A43D00515AC6 /* courier20.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = courier20.fnt; path = ../../../../Resources/courier20.fnt; sourceTree = "<group>"; };
+		FCD072F41641A43D00515AC6 /* CreateIcon.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = CreateIcon.tga; path = ../../../../Resources/CreateIcon.tga; sourceTree = "<group>"; };
+		FCD072F51641A43D00515AC6 /* emitter.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = emitter.tga; path = ../../../../Resources/emitter.tga; sourceTree = "<group>"; };
+		FCD072F61641A43D00515AC6 /* EraseIcon.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = EraseIcon.tga; path = ../../../../Resources/EraseIcon.tga; sourceTree = "<group>"; };
+		FCD072F71641A43D00515AC6 /* left.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = left.tga; path = ../../../../Resources/left.tga; sourceTree = "<group>"; };
+		FCD072F81641A43D00515AC6 /* lock.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = lock.tga; path = ../../../../Resources/lock.tga; sourceTree = "<group>"; };
+		FCD072F91641A43D00515AC6 /* move.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = move.tga; path = ../../../../Resources/move.tga; sourceTree = "<group>"; };
+		FCD072FA1641A43D00515AC6 /* overlay.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = overlay.tga; path = ../../../../Resources/overlay.tga; sourceTree = "<group>"; };
+		FCD072FB1641A43D00515AC6 /* right.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = right.tga; path = ../../../../Resources/right.tga; sourceTree = "<group>"; };
+		FCD072FC1641A43D00515AC6 /* wheel.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = wheel.tga; path = ../../../../Resources/wheel.tga; sourceTree = "<group>"; };
+		FCD072FD1641A45300515AC6 /* FileLocationUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileLocationUtility.cpp; sourceTree = "<group>"; };
+		FCD072FE1641A45300515AC6 /* FileLocationUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLocationUtility.h; sourceTree = "<group>"; };
+		FCD073001641A64600515AC6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +457,7 @@
 		FC0A280015EECF9800030CB2 = {
 			isa = PBXGroup;
 			children = (
+				FCD073001641A64600515AC6 /* CoreFoundation.framework */,
 				FC0A29B115EED06F00030CB2 /* GLUT.framework */,
 				FC0A29AF15EED06900030CB2 /* OpenGL.framework */,
 				FC0A281015EECFB000030CB2 /* PhysicsSynth */,
@@ -456,6 +476,7 @@
 		FC0A281015EECFB000030CB2 /* PhysicsSynth */ = {
 			isa = PBXGroup;
 			children = (
+				FCD072ED1641A42A00515AC6 /* Resources */,
 				FC0A281815EECFDC00030CB2 /* Box2D */,
 				FC0A286615EECFDC00030CB2 /* JDHUtility */,
 				FC0A288F15EECFDC00030CB2 /* MultiTouchEvents */,
@@ -597,6 +618,8 @@
 		FC0A286615EECFDC00030CB2 /* JDHUtility */ = {
 			isa = PBXGroup;
 			children = (
+				FCD072FD1641A45300515AC6 /* FileLocationUtility.cpp */,
+				FCD072FE1641A45300515AC6 /* FileLocationUtility.h */,
 				FC69F37F15F28CC600CC6603 /* GLPrimitives.cpp */,
 				FC69F38015F28CC600CC6603 /* GLPrimitives.h */,
 				FC0A286715EECFDC00030CB2 /* Colour3f.cpp */,
@@ -842,6 +865,28 @@
 			path = ../../../../Source/PhysicsSynth;
 			sourceTree = "<group>";
 		};
+		FCD072ED1641A42A00515AC6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FCD072EE1641A43D00515AC6 /* background.bmp */,
+				FCD072EF1641A43D00515AC6 /* bomb.tga */,
+				FCD072F01641A43D00515AC6 /* courier18_0.tga */,
+				FCD072F11641A43D00515AC6 /* courier18.fnt */,
+				FCD072F21641A43D00515AC6 /* courier20_0.tga */,
+				FCD072F31641A43D00515AC6 /* courier20.fnt */,
+				FCD072F41641A43D00515AC6 /* CreateIcon.tga */,
+				FCD072F51641A43D00515AC6 /* emitter.tga */,
+				FCD072F61641A43D00515AC6 /* EraseIcon.tga */,
+				FCD072F71641A43D00515AC6 /* left.tga */,
+				FCD072F81641A43D00515AC6 /* lock.tga */,
+				FCD072F91641A43D00515AC6 /* move.tga */,
+				FCD072FA1641A43D00515AC6 /* overlay.tga */,
+				FCD072FB1641A43D00515AC6 /* right.tga */,
+				FCD072FC1641A43D00515AC6 /* wheel.tga */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1018,6 +1063,7 @@
 				FC0A29AE15EECFDC00030CB2 /* WorldMenu.cpp in Sources */,
 				FC69F38115F28CC600CC6603 /* GLPrimitives.cpp in Sources */,
 				FC0F806115F3C94A005F3B72 /* GLVbo.cpp in Sources */,
+				FCD072FF1641A45300515AC6 /* FileLocationUtility.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -208,6 +208,7 @@ namespace PhysicsSynth
         
 		glColor4f(sc.getR(), sc.getG(), sc.getB(), 0.5f);
         glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         assert(fill);
@@ -223,13 +224,12 @@ namespace PhysicsSynth
 			sound->getColour().use();
 			glLineWidth(1.0f);
 		}
-
-        glEnable(GL_BLEND);
-        glEnable(GL_LINE_SMOOTH);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			
         assert(outline);
         outline->render();
+        
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
 	}
 
 	void Triangle::renderThumbnail(void)

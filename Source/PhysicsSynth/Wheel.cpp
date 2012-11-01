@@ -33,7 +33,7 @@ namespace PhysicsSynth
 	const float				Wheel::MIN_SPOKE_RAD		= 0.015f;
 	const float				Wheel::SPOKE_END			= 0.1f;
 	const float				Wheel::SPOKE_OPACITY		= 0.66f;
-	const std::string		Wheel::TEXTURE_PATH			= "../../../Data/Textures/Wheel/wheel.tga";
+	const std::string		Wheel::TEXTURE_PATH			= "wheel.tga";
 
 	/* Constructors */
 	Wheel::Wheel(float rate, unsigned int pattern, float size, SoundConfig *sound) :
@@ -219,6 +219,8 @@ namespace PhysicsSynth
                 
                 spokeVbo->render();
 
+                glDisable(GL_BLEND);
+                glDisable(GL_LINE_SMOOTH);
 				glPopMatrix();
 			}
 		}
@@ -235,14 +237,14 @@ namespace PhysicsSynth
 		glScalef(spokeRad, spokeRad, 1.0f);
         glEnable(GL_BLEND);
         glEnable(GL_LINE_SMOOTH);
-        //glEnable(GL_LINE_STIPPLE);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        //glLineStipple(LINE_STIPPLE_FACTOR, LINE_PATTERN);
         glLineWidth(1.0f);
         glColor4f(1.0f, 1.0f, 1.0f, BOUNDS_OPACITY);
             
         GLPrimitives::getInstance()->renderCircleOutline();
 
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
 		glPopMatrix();
 	}
 

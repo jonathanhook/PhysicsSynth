@@ -14,8 +14,8 @@
 namespace PhysicsSynth
 {
 	/* Protected Constants */
-	const std::string Menu::CREATE_TEXTURE	= "../../../Data/Textures/Menu/CreateIcon.tga";
-	const std::string Menu::ERASE_TEXTURE	= "../../../Data/Textures/Menu/EraseIcon.tga";
+	const std::string Menu::CREATE_TEXTURE	= "CreateIcon.tga";
+	const std::string Menu::ERASE_TEXTURE	= "EraseIcon.tga";
 
 	/* Private Constants */
 	const Colour4f Menu::BACKGROUND_MASK_COLOUR	= Colour4f(0.0f, 0.0f, 0.0f, 0.9f);
@@ -105,10 +105,7 @@ namespace PhysicsSynth
 
         BACKGROUND_MASK_COLOUR.use();
         GLPrimitives::getInstance()->renderSquare();
-
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				
+        
         if(mode == CREATE)
         {
             BORDER_COLOUR.use();
@@ -144,6 +141,7 @@ namespace PhysicsSynth
             rightVbo->render();
         }
 
+        glDisable(GL_BLEND);
 		glPopMatrix();
 
 		// render children

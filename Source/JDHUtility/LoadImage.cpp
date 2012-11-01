@@ -19,13 +19,8 @@
 
 // extern void *loadImage(const char *filename, int *outWidth, int *outHeight, bool *outAlphaUsed = NULL, int *outTWidth = NULL, int *outTHeight = NULL, bool scaleUp = false);
 
-
 // Use printf for debugging output
 #define dprintf printf
-
-
-
-
 
 // Byte-order independent
 #define BMP_READ_BYTE(C)  *c++
@@ -1334,11 +1329,18 @@ void *loadImage(const char *filename, int *outWidth, int *outHeight, bool *outAl
 }
 
 
-int createTexture(const char *filename) {
+int createTexture(const char *filename)
+{
   int tWidth = 0, tHeight = 0;
   bool tAlpha = false;
+    
   void *textureData = loadImage(filename, NULL, NULL, &tAlpha, &tWidth, &tHeight, 2, true);
-  if (textureData == NULL) { return -1; }
+  
+  if (textureData == NULL)
+  {
+      return -1;
+  }
+    
   GLuint textureId = 0;
 
   glEnable(GL_TEXTURE_2D);
@@ -1355,7 +1357,8 @@ int createTexture(const char *filename) {
   return (int)textureId;
 }
 
-bool setTexture(int id) {
+bool setTexture(int id)
+{
   glEnable(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, id);
   glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);

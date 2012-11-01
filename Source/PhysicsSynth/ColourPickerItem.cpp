@@ -112,7 +112,6 @@ namespace PhysicsSynth
 			glPushMatrix();
 			glTranslatef(px + border, py + border, 0.0f);
 			glScalef(w - border, h - border, 0.0f);
-            glEnable(GL_BLEND);
             glBlendFunc(GL_ONE, GL_ZERO);
 
             VALUE_COLOUR.use();
@@ -120,6 +119,8 @@ namespace PhysicsSynth
 
 			glPopMatrix();
 		}
+        
+        glDisable(GL_BLEND);
 	}
 
 	void ColourPickerItem::setChecked(bool checked)

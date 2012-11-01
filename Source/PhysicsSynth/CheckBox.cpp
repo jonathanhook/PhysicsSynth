@@ -58,6 +58,7 @@ namespace PhysicsSynth
             VALUE_COLOUR.use();
             GLPrimitives::getInstance()->renderSquare();
 
+            glDisable(GL_BLEND);
             glPopMatrix();
 		}
 

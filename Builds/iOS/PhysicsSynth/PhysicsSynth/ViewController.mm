@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Jonathan Hook. All rights reserved.
 //
 
+#include <FileLocationUtility.h>
 #include <PhysicsSynth/Synchronizer.h>
 #include <PhysicsSynth/Manager.h>
 #import "ViewController.h"
@@ -42,6 +43,9 @@ PhysicsSynth::Manager *manager;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     [self setupGL];
+    
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    FileLocationUtility::setResourcePath([resourcePath UTF8String]);
     
     manager = new PhysicsSynth::Manager(1024, false);
     manager->load();
@@ -127,7 +131,7 @@ PhysicsSynth::Manager *manager;
 	glLoadIdentity();
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+    glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
     
     assert(manager);
 	manager->render();

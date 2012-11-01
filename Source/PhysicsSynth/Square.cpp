@@ -154,6 +154,8 @@ namespace PhysicsSynth
 			
         GLPrimitives::getInstance()->renderSquareOutline();
 
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
         glPopMatrix();
 	}
 

@@ -55,8 +55,10 @@ namespace PhysicsSynth
         {
             texture->bind(GL_REPLACE);
             GLPrimitives::getInstance()->renderSquare();
+            texture->unbind();
         }
         
+        glDisable(GL_BLEND);
 		glPopMatrix();
 	}
 }

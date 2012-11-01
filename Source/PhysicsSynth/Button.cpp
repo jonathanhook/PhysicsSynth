@@ -68,8 +68,12 @@ namespace PhysicsSynth
 		glPushMatrix();
 		glTranslatef(px + border + (width / 2.0f) - (dims.getX() / 2.0f), py + border + (buttonHeight / 2.0f) - (dims.getY() / 2.0f), 0.0f);
 
+        FONT_COLOUR.use();
 		f->renderString(GLFontManager::LARGE, label, Point2f(0, 0));
 
+        glDisable(GL_BLEND);
+		glDisable(GL_LINE_SMOOTH);
+        
 		glPopMatrix();
 	}
 }

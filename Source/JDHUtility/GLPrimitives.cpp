@@ -83,9 +83,9 @@ namespace JDHUtility
         GLfloat squareTextureData[8] =
 		{
 			0.0f, 0.0f,
+			0.0f, 1.0f,
 			1.0f, 0.0f,
-			1.0f, 1.0f,
-			0.0f, 1.0f
+			1.0f, 1.0f
 		};
 
         squareVbo = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, squareData, 4, squareTextureData);

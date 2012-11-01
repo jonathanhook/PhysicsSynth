@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC131C1116418C74004DF18F /* FileLocationUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC131C0F16418C74004DF18F /* FileLocationUtility.cpp */; };
+		FC131C23164195A2004DF18F /* background.bmp in Resources */ = {isa = PBXBuildFile; fileRef = FC131C14164195A2004DF18F /* background.bmp */; };
+		FC131C24164195A2004DF18F /* bomb.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C15164195A2004DF18F /* bomb.tga */; };
+		FC131C25164195A2004DF18F /* courier18_0.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C16164195A2004DF18F /* courier18_0.tga */; };
+		FC131C27164195A2004DF18F /* courier20_0.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C18164195A2004DF18F /* courier20_0.tga */; };
+		FC131C29164195A2004DF18F /* CreateIcon.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C1A164195A2004DF18F /* CreateIcon.tga */; };
+		FC131C2A164195A2004DF18F /* emitter.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C1B164195A2004DF18F /* emitter.tga */; };
+		FC131C2B164195A2004DF18F /* EraseIcon.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C1C164195A2004DF18F /* EraseIcon.tga */; };
+		FC131C2C164195A2004DF18F /* left.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C1D164195A2004DF18F /* left.tga */; };
+		FC131C2D164195A2004DF18F /* lock.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C1E164195A2004DF18F /* lock.tga */; };
+		FC131C2E164195A2004DF18F /* move.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C1F164195A2004DF18F /* move.tga */; };
+		FC131C2F164195A2004DF18F /* overlay.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C20164195A2004DF18F /* overlay.tga */; };
+		FC131C30164195A2004DF18F /* right.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C21164195A2004DF18F /* right.tga */; };
+		FC131C31164195A2004DF18F /* wheel.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C22164195A2004DF18F /* wheel.tga */; };
 		FC134BD9161EF1B40085FF0F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC134BD8161EF1B40085FF0F /* UIKit.framework */; };
 		FC134BDB161EF1B40085FF0F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC134BDA161EF1B40085FF0F /* Foundation.framework */; };
 		FC134BDD161EF1B40085FF0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC134BDC161EF1B40085FF0F /* CoreGraphics.framework */; };
@@ -142,9 +156,26 @@
 		FCA3DD9D161EF228004F272F /* WheelMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DD1A161EF227004F272F /* WheelMenu.cpp */; };
 		FCA3DD9E161EF228004F272F /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DD1C161EF227004F272F /* World.cpp */; };
 		FCA3DD9F161EF228004F272F /* WorldMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DD1E161EF227004F272F /* WorldMenu.cpp */; };
+		FCCD664816419F40000A3DF3 /* courier18.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FCCD664716419F40000A3DF3 /* courier18.fnt */; };
+		FCCD664B16419F4B000A3DF3 /* courier20.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FCCD664A16419F4B000A3DF3 /* courier20.fnt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC131C0F16418C74004DF18F /* FileLocationUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileLocationUtility.cpp; sourceTree = "<group>"; };
+		FC131C1016418C74004DF18F /* FileLocationUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLocationUtility.h; sourceTree = "<group>"; };
+		FC131C14164195A2004DF18F /* background.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = background.bmp; path = ../../../../../../github/local/PhysicsSynth/Resources/background.bmp; sourceTree = "<group>"; };
+		FC131C15164195A2004DF18F /* bomb.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = bomb.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/bomb.tga; sourceTree = "<group>"; };
+		FC131C16164195A2004DF18F /* courier18_0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = courier18_0.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/courier18_0.tga; sourceTree = "<group>"; };
+		FC131C18164195A2004DF18F /* courier20_0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = courier20_0.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/courier20_0.tga; sourceTree = "<group>"; };
+		FC131C1A164195A2004DF18F /* CreateIcon.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = CreateIcon.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/CreateIcon.tga; sourceTree = "<group>"; };
+		FC131C1B164195A2004DF18F /* emitter.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = emitter.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/emitter.tga; sourceTree = "<group>"; };
+		FC131C1C164195A2004DF18F /* EraseIcon.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = EraseIcon.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/EraseIcon.tga; sourceTree = "<group>"; };
+		FC131C1D164195A2004DF18F /* left.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = left.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/left.tga; sourceTree = "<group>"; };
+		FC131C1E164195A2004DF18F /* lock.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = lock.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/lock.tga; sourceTree = "<group>"; };
+		FC131C1F164195A2004DF18F /* move.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = move.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/move.tga; sourceTree = "<group>"; };
+		FC131C20164195A2004DF18F /* overlay.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = overlay.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/overlay.tga; sourceTree = "<group>"; };
+		FC131C21164195A2004DF18F /* right.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = right.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/right.tga; sourceTree = "<group>"; };
+		FC131C22164195A2004DF18F /* wheel.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = wheel.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/wheel.tga; sourceTree = "<group>"; };
 		FC134BD4161EF1B40085FF0F /* PhysicsSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC134BD8161EF1B40085FF0F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC134BDA161EF1B40085FF0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -423,6 +454,8 @@
 		FCA3DD1D161EF227004F272F /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
 		FCA3DD1E161EF227004F272F /* WorldMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldMenu.cpp; sourceTree = "<group>"; };
 		FCA3DD1F161EF227004F272F /* WorldMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldMenu.h; sourceTree = "<group>"; };
+		FCCD664716419F40000A3DF3 /* courier18.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = courier18.fnt; path = ../../../../../../github/local/PhysicsSynth/Resources/courier18.fnt; sourceTree = "<group>"; };
+		FCCD664A16419F4B000A3DF3 /* courier20.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = courier20.fnt; path = ../../../../../../github/local/PhysicsSynth/Resources/courier20.fnt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -473,6 +506,7 @@
 		FC134BE2161EF1B40085FF0F /* PhysicsSynth */ = {
 			isa = PBXGroup;
 			children = (
+				FCCC83F5161F527000590C8C /* Resources */,
 				FCA3DC06161EF227004F272F /* Box2D */,
 				FCA3DC54161EF227004F272F /* JDHUtility */,
 				FCA3DC81161EF227004F272F /* MultiTouchEvents */,
@@ -673,6 +707,8 @@
 				FCA3DC7E161EF227004F272F /* WindowingUtils.h */,
 				FCA3DC7F161EF227004F272F /* XPlatformMutex.cpp */,
 				FCA3DC80161EF227004F272F /* XPlatformMutex.h */,
+				FC131C0F16418C74004DF18F /* FileLocationUtility.cpp */,
+				FC131C1016418C74004DF18F /* FileLocationUtility.h */,
 			);
 			name = JDHUtility;
 			path = ../../../../Source/JDHUtility;
@@ -874,6 +910,29 @@
 			path = ../../../../Source/PhysicsSynth;
 			sourceTree = "<group>";
 		};
+		FCCC83F5161F527000590C8C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FCCD664A16419F4B000A3DF3 /* courier20.fnt */,
+				FCCD664716419F40000A3DF3 /* courier18.fnt */,
+				FC131C14164195A2004DF18F /* background.bmp */,
+				FC131C15164195A2004DF18F /* bomb.tga */,
+				FC131C16164195A2004DF18F /* courier18_0.tga */,
+				FC131C18164195A2004DF18F /* courier20_0.tga */,
+				FC131C1A164195A2004DF18F /* CreateIcon.tga */,
+				FC131C1B164195A2004DF18F /* emitter.tga */,
+				FC131C1C164195A2004DF18F /* EraseIcon.tga */,
+				FC131C1D164195A2004DF18F /* left.tga */,
+				FC131C1E164195A2004DF18F /* lock.tga */,
+				FC131C1F164195A2004DF18F /* move.tga */,
+				FC131C20164195A2004DF18F /* overlay.tga */,
+				FC131C21164195A2004DF18F /* right.tga */,
+				FC131C22164195A2004DF18F /* wheel.tga */,
+			);
+			name = Resources;
+			path = "../../../../../../../Library/Developer/Xcode/DerivedData/PhysicsSynth-cfevnvupjarqkifmpmqafyxbmerc/Data";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -927,6 +986,21 @@
 			files = (
 				FC134BE7161EF1B40085FF0F /* InfoPlist.strings in Resources */,
 				FC134BF7161EF1B40085FF0F /* ViewController.xib in Resources */,
+				FC131C23164195A2004DF18F /* background.bmp in Resources */,
+				FC131C24164195A2004DF18F /* bomb.tga in Resources */,
+				FC131C25164195A2004DF18F /* courier18_0.tga in Resources */,
+				FC131C27164195A2004DF18F /* courier20_0.tga in Resources */,
+				FC131C29164195A2004DF18F /* CreateIcon.tga in Resources */,
+				FC131C2A164195A2004DF18F /* emitter.tga in Resources */,
+				FC131C2B164195A2004DF18F /* EraseIcon.tga in Resources */,
+				FC131C2C164195A2004DF18F /* left.tga in Resources */,
+				FC131C2D164195A2004DF18F /* lock.tga in Resources */,
+				FC131C2E164195A2004DF18F /* move.tga in Resources */,
+				FC131C2F164195A2004DF18F /* overlay.tga in Resources */,
+				FC131C30164195A2004DF18F /* right.tga in Resources */,
+				FC131C31164195A2004DF18F /* wheel.tga in Resources */,
+				FCCD664816419F40000A3DF3 /* courier18.fnt in Resources */,
+				FCCD664B16419F4B000A3DF3 /* courier20.fnt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1065,6 +1139,7 @@
 				FCA3DD9D161EF228004F272F /* WheelMenu.cpp in Sources */,
 				FCA3DD9E161EF228004F272F /* World.cpp in Sources */,
 				FCA3DD9F161EF228004F272F /* WorldMenu.cpp in Sources */,
+				FC131C1116418C74004DF18F /* FileLocationUtility.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,7 +1224,9 @@
 					"../../../Source/OscPack/**",
 				);
 				INFOPLIST_FILE = "PhysicsSynth/PhysicsSynth-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1164,7 +1241,9 @@
 					"../../../Source/OscPack/**",
 				);
 				INFOPLIST_FILE = "PhysicsSynth/PhysicsSynth-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

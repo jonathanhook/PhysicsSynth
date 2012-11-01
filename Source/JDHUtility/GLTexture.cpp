@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #include <exception>
+#include <JDHUtility/FileLocationUtility.h>
 #include "GLTexture.h"
 #include "LoadImage.h"
 
@@ -16,7 +17,8 @@ namespace JDHUtility
 	/* Constructors */
 	GLTexture::GLTexture(std::string path)
 	{
-		id = createTexture(path.c_str());
+        std::string resourcePath = FileLocationUtility::getFileInResourcePath(path);        
+        id = createTexture(resourcePath.c_str());
 	}
 
 	GLTexture::~GLTexture(void)
@@ -35,6 +37,12 @@ namespace JDHUtility
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapT);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, mode);
 	}
+    
+    void GLTexture::unbind(void) const
+    {
+        glDisable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, NULL);
+    }
 
 	unsigned int GLTexture::getId(void) const
 	{

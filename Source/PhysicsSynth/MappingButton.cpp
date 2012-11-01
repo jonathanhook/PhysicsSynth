@@ -16,8 +16,8 @@
 namespace PhysicsSynth
 {
 	/* Private Constants */
-	const std::string MappingButton::LEFT_TEXTURE_PATH	= "../../../Data/Textures/MappingButton/left.tga";
-	const std::string MappingButton::RIGHT_TEXTURE_PATH	= "../../../Data/Textures/MappingButton/right.tga";
+	const std::string MappingButton::LEFT_TEXTURE_PATH	= "left.tga";
+	const std::string MappingButton::RIGHT_TEXTURE_PATH	= "right.tga";
 
 	/* Constructors */
 	MappingButton::MappingButton(MappingGrid::MappingGridItem from, std::vector<MappingGrid::MappingGridItem> options, const Point2i &position, const Point2i &dimensions) :
@@ -80,9 +80,11 @@ namespace PhysicsSynth
 		GLFontManager *f = GLFontManager::getInstance();
 		assert(f);
 
+        FONT_COLOUR.use();
 		f->renderString(GLFontManager::MEDIUM, from.label, Point2f(border * 6.0f, border * 3.0f));
 		f->renderString(GLFontManager::MEDIUM, to.label, Point2f(border * 6.0f, height + (border * 3.0f)));
 
+        glDisable(GL_BLEND);
 		glPopMatrix();
 
 		// render buttons

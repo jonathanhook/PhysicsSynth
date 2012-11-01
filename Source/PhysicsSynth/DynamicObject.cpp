@@ -239,6 +239,7 @@ namespace PhysicsSynth
         glPushMatrix();
         glScalef(ICON_SIZE, ICON_SIZE, 1.0f);
         glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
 		assert(sound);
@@ -249,10 +250,7 @@ namespace PhysicsSynth
         
         texture->bind(GL_REPLACE);
         GLPrimitives::getInstance()->renderCircle();
-        
-        glEnable(GL_BLEND);
-        glEnable(GL_LINE_SMOOTH);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        texture->unbind();
         
         if(isSelected)
 		{
@@ -267,6 +265,8 @@ namespace PhysicsSynth
         
         GLPrimitives::getInstance()->renderCircleOutline();
 
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
         glPopMatrix();
 	}
 }

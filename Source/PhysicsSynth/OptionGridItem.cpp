@@ -72,7 +72,7 @@ namespace PhysicsSynth
 		{
 			LIGHT_COLOUR.use();
 		}
-		
+
         GLPrimitives::getInstance()->renderSquare();
         
 		glPopMatrix();
@@ -87,9 +87,7 @@ namespace PhysicsSynth
 		glPushMatrix();
 		glTranslatef(px + posX, py + posY, 0.0f);
 		glScalef(dimX, posY + dimY, 1.0f);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        
+
 		if(selected)
 		{
 			LIGHT_COLOUR.use();
@@ -101,6 +99,7 @@ namespace PhysicsSynth
 
         GLPrimitives::getInstance()->renderSquare();
 
+        glDisable(GL_BLEND);
 		glPopMatrix();
 
 		// label
@@ -111,6 +110,7 @@ namespace PhysicsSynth
 		GLFontManager *f = GLFontManager::getInstance();
 		assert(f);
 
+        FONT_COLOUR.use();
 		f->renderString(GLFontManager::MEDIUM, option.label, Point2f(dim / 2.0f, dim / 7.0f));
 
 		glPopMatrix();

@@ -133,6 +133,7 @@ namespace PhysicsSynth
 		const Colour3f &sc = sound->getColour();
 		glColor4f(sc.getR(), sc.getG(), sc.getB(), 0.5f);
         glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         GLPrimitives::getInstance()->renderCircle();
@@ -147,12 +148,11 @@ namespace PhysicsSynth
 			sound->getColour().use();
 			glLineWidth(1.0f);
 		}
-
-        glEnable(GL_BLEND);
-        glEnable(GL_LINE_SMOOTH);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+        
         GLPrimitives::getInstance()->renderCircleOutline();
+        
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
 	}
 
 	void Circle::setupShape(b2Shape *shape)

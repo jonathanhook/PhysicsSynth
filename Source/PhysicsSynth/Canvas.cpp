@@ -41,8 +41,8 @@ namespace PhysicsSynth
 	const unsigned int	Canvas::MENU_MARGIN				= 5;
 	//const unsigned int	Canvas::menuWidth				= 256;
 	const float			Canvas::SIZE					= 1.0f;
-	const std::string	Canvas::TEXTURE_BACKGROUND		= "../../../Data/Textures/Canvas/background.bmp";
-	const std::string	Canvas::TEXTURE_OVERLAY			= "../../../Data/Textures/Canvas/overlay.tga";
+	const std::string	Canvas::TEXTURE_BACKGROUND		= "background.bmp";
+	const std::string	Canvas::TEXTURE_OVERLAY			= "overlay.tga";
 	const unsigned int	Canvas::TEXTURE_REPEATS			= 10;
 	const Point2f		Canvas::TOOLS_POSITION			= Point2f(0.0f, 0.0f);
 	const Vector2f		Canvas::TOOLS_DIMENSIONS		= Vector2f(0.175f, 0.0f);
@@ -74,29 +74,29 @@ namespace PhysicsSynth
         GLfloat vertices[12] =
         {
             0.0f, 0.0f, 0.0f,
+            0.0f, SIZE, 0.0f,
             SIZE, 0.0f, 0.0f,
-            SIZE, SIZE, 0.0f,
-            0.0f, SIZE, 0.0f
+            SIZE, SIZE, 0.0f
         };
         
         GLfloat uv[8] =
         {
             0.0f,                   0.0f,
-            (float)TEXTURE_REPEATS,	0.0f,
-            (float)TEXTURE_REPEATS, (float)TEXTURE_REPEATS,
-            0.0f,                   (float)TEXTURE_REPEATS
+            0.0f,                   (float)TEXTURE_REPEATS,
+            (float)TEXTURE_REPEATS, 0.0f,
+            (float)TEXTURE_REPEATS, (float)TEXTURE_REPEATS
         };
         
         GLfloat overlayUv[8] =
         {
             0.0f, 0.0f,
+            0.0f, 1.0f,
             1.0f, 0.0f,
-            1.0f, 1.0f,
-            0.0f, 1.0f
+            1.0f, 1.0f
         };
 
-        backgroundVbo   = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, vertices, 12, uv);
-        overlayVbo      = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, vertices, 12, overlayUv);
+        backgroundVbo   = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, vertices, 4, uv);
+        overlayVbo      = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, vertices, 4, overlayUv);
         
 		initMenus();
 	}
@@ -542,17 +542,20 @@ namespace PhysicsSynth
         
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
         // background
         background->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
         backgroundVbo->render();
+        background->unbind();
     
         // overlay
         overlay->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
         overlayVbo->render();
+        overlay->unbind();
         
 		renderWorlds();
+        
+        glDisable(GL_BLEND);
 		glPopMatrix();
 	}
 
@@ -565,6 +568,7 @@ namespace PhysicsSynth
 		assert(f);
 
 		Vector2f dims = f->queryBox(GLFontManager::LARGE, buff);
+        glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		f->renderString(GLFontManager::LARGE, buff, Point2f(1.0f - (dims.getX() * 1.1f), 0.0));
 	}
 

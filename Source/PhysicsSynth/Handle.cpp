@@ -25,7 +25,7 @@ namespace PhysicsSynth
 	const float			Handle::CIRCLE_VERTICES				= 32;
 	const float			Handle::NON_SELECTED_ALPHA_MODIFIER	= 0.75f;
 	const float			Handle::SELECTED_ALPHA_MODIFIER		= 1.0f;
-	const std::string	Handle::TEXTURE_PATH				= "../../../Data/Textures/Handle/move.tga";
+	const std::string	Handle::TEXTURE_PATH				= "move.tga";
 	const Colour4f		Handle::VALUE_COLOUR				= Colour4f(0.11f, 0.53f, 0.71f, 0.5f);
 
 	/* Constructors */
@@ -124,6 +124,7 @@ namespace PhysicsSynth
 
 		// background mask
         glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glColor4f(0.0f, 0.0f, 0.0f, BACKGROUND_MASK_ALPHA);
 
@@ -134,21 +135,19 @@ namespace PhysicsSynth
 		float alphaModifier = fingerDown ? SELECTED_ALPHA_MODIFIER : NON_SELECTED_ALPHA_MODIFIER;
 
 		glColor4f(VALUE_COLOUR.getR(), VALUE_COLOUR.getG(), VALUE_COLOUR.getB(), alphaModifier);
-        glEnable(GL_BLEND);
-        glEnable(GL_LINE_SMOOTH);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glLineWidth(1.0f);
 
         GLPrimitives::getInstance()->renderCircleOutline();
 
 		// texture
 		glColor4f(1.0f, 1.0f, 1.0f, BACKGROUND_ALPHA * alphaModifier);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         texture->bind(GL_MODULATE);
         GLPrimitives::getInstance()->renderCircle();
+        texture->unbind();
 
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
 		glPopMatrix();
 	}
 

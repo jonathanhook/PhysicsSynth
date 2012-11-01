@@ -35,7 +35,7 @@ namespace PhysicsSynth
 	const float				Bomb::MIN_BLAST_RAD_SIZE	= 0.0075f;
 	const float				Bomb::MAX_INTENSITY			= 1.0f;
 	const float				Bomb::MIN_INTENSITY			= 0.1f;
-	const std::string		Bomb::TEXTURE_PATH			= "../../../Data/Textures/Bomb/bomb.tga";
+	const std::string		Bomb::TEXTURE_PATH			= "bomb.tga";
 
 	/* Constructors */
 	Bomb::Bomb(float intensity, float rate, unsigned int pattern, float size, SoundConfig *sound) :
@@ -122,9 +122,7 @@ namespace PhysicsSynth
 
         glEnable(GL_BLEND);
         glEnable(GL_LINE_SMOOTH);
-        //glEnable(GL_LINE_STIPPLE);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        //glLineStipple(LINE_STIPPLE_FACTOR, LINE_PATTERN);
         glLineWidth(1.0f);
         glColor4f(1.0f, 1.0f, 1.0f, BLAST_RADIUS_OPACITY);
 		
@@ -134,6 +132,9 @@ namespace PhysicsSynth
         glScalef(0.95f, 0.95f, 1.0f);
         
         GLPrimitives::getInstance()->renderCircle();
+        
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
         
 		glPopMatrix();
 	}
