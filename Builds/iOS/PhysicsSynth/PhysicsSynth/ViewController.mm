@@ -54,7 +54,6 @@ PhysicsSynth::Manager *manager;
 - (void)viewDidUnload
 {    
     [super viewDidUnload];
-    
     [self tearDownGL];
     
     if ([EAGLContext currentContext] == self.context)
