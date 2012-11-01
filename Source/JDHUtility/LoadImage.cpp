@@ -1331,30 +1331,32 @@ void *loadImage(const char *filename, int *outWidth, int *outHeight, bool *outAl
 
 int createTexture(const char *filename)
 {
-  int tWidth = 0, tHeight = 0;
-  bool tAlpha = false;
+    int tWidth = 0, tHeight = 0;
+    bool tAlpha = false;
     
-  void *textureData = loadImage(filename, NULL, NULL, &tAlpha, &tWidth, &tHeight, 2, true);
+    void *textureData = loadImage(filename, NULL, NULL, &tAlpha, &tWidth, &tHeight, 2, true);
   
-  if (textureData == NULL)
-  {
-      return -1;
-  }
+    if (textureData == NULL)
+    {
+        return -1;
+    }
     
-  GLuint textureId = 0;
+    GLuint textureId = 0;
 
-  glEnable(GL_TEXTURE_2D);
-  glGenTextures(1, &textureId);
+    glEnable(GL_TEXTURE_2D);
+    glGenTextures(1, &textureId);
   
     glBindTexture(GL_TEXTURE_2D, textureId);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 #ifdef GLUT_WINDOWING
 	gluBuild2DMipmaps(GL_TEXTURE_2D, tAlpha?4:3, tWidth, tHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+#else 
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA/*tAlpha?4:3*/, tWidth, tHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
 #endif
     
-  if (!glIsTexture(textureId)) { textureId = (int)-1; }
-  return (int)textureId;
+    if (!glIsTexture(textureId)) { textureId = (int)-1; }
+    return (int)textureId;
 }
 
 bool setTexture(int id)
