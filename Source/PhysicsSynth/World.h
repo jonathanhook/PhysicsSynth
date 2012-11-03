@@ -44,8 +44,8 @@ namespace PhysicsSynth
 		public MultiTouchEventHandler, public b2ContactListener
 	{
 	public:
-		typedef enum RenderMode { GRAPHICS, DEBUG_RENDER, BOTH };
-		typedef	enum WorldType	{ CIRCULAR, SQUARE }; 
+		enum RenderMode { GRAPHICS, DEBUG_RENDER, BOTH };
+		enum WorldType	{ CIRCULAR, SQUARE }; 
 
 		typedef FastDelegate2<World *, Point2f>			CreateObjectRequestedCallback;
 		typedef FastDelegate2<World *, PhysicsObject *>	ObjectSelectedCallback;

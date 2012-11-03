@@ -19,7 +19,7 @@ namespace PhysicsSynth
 		public Menu
 	{
 	public:
-		typedef enum MenuState { WORLDS, OBJECTS, SETTINGS, SOUNDS };
+        enum MenuState { WORLDS, OBJECTS, SETTINGS, SOUNDS };
 		
 		typedef FastDelegate0<>	ObjectsSelectedCallback;
 		typedef FastDelegate0<>	SettingsSelectedCallback;

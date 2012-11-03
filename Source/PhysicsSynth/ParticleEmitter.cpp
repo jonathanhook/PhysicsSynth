@@ -168,6 +168,8 @@ namespace PhysicsSynth
 				fixtureDef.friction		= friction;
 				fixtureDef.restitution	= restitution * MAX_RESTITUTION;
 				fixtureDef.userData		= this;
+                
+                fixture = body->CreateFixture(&fixtureDef);
 			}
 
 			// bring into world and force

@@ -21,7 +21,7 @@ namespace PhysicsSynth
 	class PersistenceManager
 	{
 	public:
-		typedef enum Type { WORLD, OBJECT, SOUND };
+		enum Type { WORLD, OBJECT, SOUND };
 
 		static std::vector<World *>	load(std::string fname);
 		static void					save(std::string fname, std::vector<World *> worlds);

@@ -27,7 +27,7 @@ namespace PhysicsSynth
 
 	bool RegionQueryCallback::ReportFixture(b2Fixture* fixture)
 	{
-		b2Body* body = fixture->GetBody();
+		//b2Body* body = fixture->GetBody();
 		//if (body->GetType() == b2_dynamicBody) // possibly check if is physicsobject using dynamic_cast instead
 		//{
 			fixtures.push_back(fixture);

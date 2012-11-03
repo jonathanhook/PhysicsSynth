@@ -15,7 +15,7 @@ namespace PhysicsSynth
 		public UIElement
 	{
 	public:
-		typedef enum Borders
+		enum Borders
 		{
 			TOP		= 0x1,
 			BOTTOM	= 0x2,
@@ -23,7 +23,7 @@ namespace PhysicsSynth
 			RIGHT	= 0x8
 		};
 
-		typedef enum MenuMode { CREATE, INSPECT };
+		enum MenuMode { CREATE, INSPECT };
 
 		Menu(const Point2i &position, unsigned int width, unsigned char borderState = (TOP | BOTTOM | LEFT | RIGHT), MenuMode mode = CREATE);
 		~Menu(void);

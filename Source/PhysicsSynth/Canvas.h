@@ -61,7 +61,7 @@ namespace PhysicsSynth
 		void					updatePhysics	(void);
 
 	private:
-		typedef enum MenuState { CREATE_WORLD, CREATE_OBJECT, INSPECT_WORLD, INSPECT_OBJECT, SOUNDS, SETTINGS };
+		enum MenuState { CREATE_WORLD, CREATE_OBJECT, INSPECT_WORLD, INSPECT_OBJECT, SOUNDS, SETTINGS };
 
 		static const float			ADD_DISTANCE_THRESHOLD;
 		static const unsigned int	ADD_TIME_THRESHOLD;
