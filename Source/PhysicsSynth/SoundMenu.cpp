@@ -38,10 +38,20 @@ namespace PhysicsSynth
 		soundConfig = new ColourPicker(Sounds::getSounds(true), "Sounds", position, width);
 		soundConfig->setSelectionChangedCallback(MakeDelegate(this, &SoundMenu::soundConfig_SelectionChanged));
 		addMenuItem(*soundConfig);
-
-		Point2i pos = position;
+        
+        Point2i pos = position;
 		pos.translateY(soundConfig->getDimensions().getY());
+        
+        std::vector<OptionGrid::Option> options;
+		options.push_back(OptionGrid::Option(true, "Enabled"));
+		options.push_back(OptionGrid::Option(false, "Disabled"));
+		enabledGrid = new OptionGrid(options, "OSC Sending", pos, dimensions.getX());
+        enabledGrid->setSelectionChangedCallback(MakeDelegate(this, &SoundMenu::enabledGrid_SelectionChanged));
+        addMenuItem(*enabledGrid);
+
+        pos.translateY(enabledGrid->getDimensions().getY());
 		impulseMenu = new ImpulseEventMenu(selectedSound, pos, width);
+        registerEventHandler(impulseMenu);
 
 		// init menu
 		soundConfig->setSelectedItem(selectedSound);
@@ -60,11 +70,19 @@ namespace PhysicsSynth
 		assert(selectedSound);
 		assert(soundConfig);
 		assert(impulseMenu);
+        assert(enabledGrid);
 		
 		impulseMenu->setSound(selectedSound);
+        enabledGrid->setSelectedItem(selectedSound->getIsEnabled());
 	}
 
 	/* Private Member Functions */
+    void SoundMenu::enabledGrid_SelectionChanged(const OptionGrid::Option &selected)
+    {
+        assert(selectedSound);
+        selectedSound->setIsEnabled(selected.id);
+    }
+    
 	void SoundMenu::soundConfig_SelectionChanged(SoundConfig *selectedSound)
 	{
 		this->selectedSound = selectedSound;

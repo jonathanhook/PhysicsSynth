@@ -594,12 +594,15 @@ namespace PhysicsSynth
 	void World::object_SoundEvent(SoundConfig *sound, float x, float y, float angle, float velocity, float spin, float inertia, float contactImpulse)
 	{
 		assert(sound);
+        
+        if(sound->getIsEnabled())
+        {
+            float renderSize	= Manager::scale(getRenderSize());
+            float positionX		= (x / (renderSize * 2.0f)) + 0.5f;
+            float positionY		= (y / (renderSize * 2.0f)) + 0.5f;
 
-		float renderSize	= Manager::scale(getRenderSize());				
-		float positionX		= (x / (renderSize * 2.0f)) + 0.5f;
-		float positionY		= (y / (renderSize * 2.0f)) + 0.5f;
-
-		soundEvents.push(sound->getSoundEvent(track, positionX, positionY, angle, velocity, spin, inertia, contactImpulse));
+            soundEvents.push(sound->getSoundEvent(track, positionX, positionY, angle, velocity, spin, inertia, contactImpulse));
+        }
 	}
 
 	void World::object_Translated(PhysicsObject *obj, Point2f fPos)

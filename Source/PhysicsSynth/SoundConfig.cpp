@@ -12,10 +12,11 @@
 namespace PhysicsSynth
 {
 	/* Constructors */
-	SoundConfig::SoundConfig(const Colour3f	&colour, unsigned int sampleId)
+	SoundConfig::SoundConfig(const Colour3f	&colour, unsigned int sampleId, bool isEnabled)
 	{
-		this->colour			= colour;
-		this->sampleId			= sampleId;
+		this->colour    = colour;
+		this->sampleId  = sampleId;
+        this->isEnabled = isEnabled;
 
 		initMapping();
 	}
@@ -34,13 +35,25 @@ namespace PhysicsSynth
 	{
 		return impulseMappings;
 	}
+    
+    bool SoundConfig::getIsEnabled() const
+    {
+        return isEnabled;
+    }
 
 	unsigned int SoundConfig::getSampleId(void) const
 	{
 		return sampleId;
 	}
 
-	SoundEvent *SoundConfig::getSoundEvent(unsigned int worldId, float positionX, float positionY, float angle, float velocity, float spin, float inertia, float contactImpulse) const
+	SoundEvent *SoundConfig::getSoundEvent(unsigned int worldId,
+                                           float positionX,
+                                           float positionY,
+                                           float angle,
+                                           float velocity,
+                                           float spin,
+                                           float inertia,
+                                           float contactImpulse) const
 	{
 		float p0 = getMappedValue(0, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
 		float p1 = getMappedValue(1, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
@@ -52,6 +65,11 @@ namespace PhysicsSynth
 
 		return new ImpulseSoundEvent(worldId, sampleId, p0, p1, p2, p3, p4, p5, p6);
 	}
+    
+    void SoundConfig::setIsEnabled(bool isEnabled)
+    {
+        this->isEnabled = isEnabled;
+    }
 
 	void SoundConfig::setSampleId(unsigned int sampleId)
 	{

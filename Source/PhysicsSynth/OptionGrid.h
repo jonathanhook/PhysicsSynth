@@ -15,7 +15,7 @@ namespace PhysicsSynth
 		public LabelledUIElement
 	{
 	public:
-		typedef struct Option
+        struct Option
 		{
 			unsigned int	id;
 			std::string		label;

@@ -19,22 +19,40 @@ namespace PhysicsSynth
 	public:
 		enum PhysicalProperty	{ POS_X, POS_Y, ANGLE, VELOCITY, SPIN, INERTIA, CONTACT_IMPULSE };
         
-		SoundConfig	(const Colour3f	&colour, unsigned int sampleId);
+		SoundConfig	(const Colour3f	&colour, unsigned int sampleId, bool isEnabled);
 		~SoundConfig(void);
+        
+        SoundEvent									*getSoundEvent		(unsigned int worldId,
+                                                                         float positionX,
+                                                                         float positionY,
+                                                                         float angle,
+                                                                         float velocity,
+                                                                         float spin,
+                                                                         float inertia,
+                                                                         float contactImpulse) const;
 
 		const Colour3f								&getColour			(void) const;
 		std::map<unsigned int, PhysicalProperty>	getImpulseMappings	(void) const;
+        bool                                        getIsEnabled        (void) const;
 		unsigned int								getSampleId			(void) const;
-		SoundEvent									*getSoundEvent		(unsigned int worldId, float positionX, float positionY, float angle, float velocity, float spin, float inertia, float contactImpulse) const;
 		void										setSampleId			(unsigned int sampleId);
+        void                                        setIsEnabled        (bool isEnabled);
 		void										updateMapping(unsigned int from, PhysicalProperty to);
 
 	private:
 		Colour3f									colour;
 		std::map<unsigned int, PhysicalProperty>	impulseMappings;
+        bool                                        isEnabled;
 		unsigned int								sampleId;
 
-		float	getMappedValue	(unsigned int parameter, float positionX, float positionY, float angle, float velocity, float spin, float inertia, float contactImpulse) const;
+		float	getMappedValue	(unsigned int parameter,
+                                 float positionX,
+                                 float positionY,
+                                 float angle,
+                                 float velocity,
+                                 float spin,
+                                 float inertia,
+                                 float contactImpulse) const;
 		void	initMapping		(void);
 	};
 }

@@ -121,7 +121,7 @@ namespace PhysicsSynth
 		registerEventHandler(rightButton);
 	}
 
-	void MappingButton::leftButton_Clicked	(UIElement *sender)
+	void MappingButton::leftButton_Clicked(UIElement *sender)
 	{
 		to = options[(--toId) % options.size()];
 

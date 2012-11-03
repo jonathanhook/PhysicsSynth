@@ -6,6 +6,7 @@
  */
 #pragma once
 #include "Menu.h"
+#include "OptionGrid.h"
 
 namespace PhysicsSynth
 {
@@ -27,7 +28,9 @@ namespace PhysicsSynth
 		ImpulseEventMenu	*impulseMenu;
 		SoundConfig			*selectedSound;
 		ColourPicker		*soundConfig;
+        OptionGrid          *enabledGrid;
 
+        void enabledGrid_SelectionChanged(const OptionGrid::Option &selected);
 		void soundConfig_SelectionChanged(SoundConfig *soundConfig);
 	};
 }

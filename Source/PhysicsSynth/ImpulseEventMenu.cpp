@@ -7,6 +7,7 @@
 #include <assert.h>
 #include "ImpulseEventMenu.h"
 #include "MappingGrid.h"
+#include "OptionGrid.h"
 #include "SoundConfig.h"
 
 namespace PhysicsSynth
@@ -45,7 +46,7 @@ namespace PhysicsSynth
 		froms.push_back(MappingGrid::MappingGridItem(4, "Param 4"));
 		froms.push_back(MappingGrid::MappingGridItem(5, "Param 5"));
 		froms.push_back(MappingGrid::MappingGridItem(6, "Param 6"));
-
+    
 		mappingGrid = new MappingGrid(froms, tos, "Mappings", position, dimensions);
 		mappingGrid->setMappingChangedCallback(MakeDelegate(this, &ImpulseEventMenu::mappingGrid_MappingChanged));
 		addMenuItem(*mappingGrid);
