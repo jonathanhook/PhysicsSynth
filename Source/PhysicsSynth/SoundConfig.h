@@ -17,29 +17,24 @@ namespace PhysicsSynth
 	class SoundConfig
 	{
 	public:
-		typedef enum ImpulseProperty	{ TRANSPOSE, STRETCH, DRIVE, FREQUENCY, RESONANCE, DECAY, PAN };
-		typedef enum PhysicalProperty	{ POS_X, POS_Y, ANGLE, VELOCITY, SPIN, INERTIA, CONTACT_IMPULSE };
-		typedef enum Type				{ RAW, IMPULSE };
-
-		SoundConfig	(const Colour3f	&colour, unsigned int sampleId, Type type);
+		enum PhysicalProperty	{ POS_X, POS_Y, ANGLE, VELOCITY, SPIN, INERTIA, CONTACT_IMPULSE };
+        
+		SoundConfig	(const Colour3f	&colour, unsigned int sampleId);
 		~SoundConfig(void);
 
 		const Colour3f								&getColour			(void) const;
-		std::map<ImpulseProperty, PhysicalProperty>	getImpulseMappings	(void) const;
+		std::map<unsigned int, PhysicalProperty>	getImpulseMappings	(void) const;
 		unsigned int								getSampleId			(void) const;
 		SoundEvent									*getSoundEvent		(unsigned int worldId, float positionX, float positionY, float angle, float velocity, float spin, float inertia, float contactImpulse) const;
-		Type										getType				(void) const;
 		void										setSampleId			(unsigned int sampleId);
-		void										setType				(Type type);
-		void										updateImpulseMapping(ImpulseProperty from, PhysicalProperty to);
+		void										updateMapping(unsigned int from, PhysicalProperty to);
 
 	private:
 		Colour3f									colour;
-		std::map<ImpulseProperty, PhysicalProperty>	impulseMappings;
+		std::map<unsigned int, PhysicalProperty>	impulseMappings;
 		unsigned int								sampleId;
-		Type										type;
 
-		float	getMappedValue	(ImpulseProperty ip, float positionX, float positionY, float angle, float velocity, float spin, float inertia, float contactImpulse) const;
+		float	getMappedValue	(unsigned int parameter, float positionX, float positionY, float angle, float velocity, float spin, float inertia, float contactImpulse) const;
 		void	initMapping		(void);
 	};
 }

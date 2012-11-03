@@ -38,12 +38,14 @@ namespace PhysicsSynth
         };
         topVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, topv, 2);
         
-        GLfloat bottomv[6] =
+        GLfloat bottomv[12] =
         {
+            0.0f,	0.0f,	0.0f,
+            0.0f,	1.0f,	0.0f,
             1.0f,	1.0f,	0.0f,
-            0.0f,	1.0f,	0.0f
+            1.0f,   0.0f,   0.0f
         };
-        bottomVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, bottomv, 2);
+        bottomVbo = new GLVbo(GL_LINE_STRIP, GL_STATIC_DRAW, bottomv, 4);
         
         GLfloat leftv[6] =
         {
@@ -88,45 +90,38 @@ namespace PhysicsSynth
 	}
 
 	void Menu::render(void)
-	{
+	{        
 		float px = getSizef(position.getX() - BORDER);
-		float py = getSizef(position.getY() - BORDER);
+		float py = getSizef(position.getY());
 
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glTranslatef(px, py, 0.0f);
 
-		float width		= getSizef(dimensions.getX() + (BORDER * 3));
-		float height	= getSizef(dimensions.getY() + (BORDER * 3));
+		float width		= getSizef(dimensions.getX() + (BORDER * 2));
+		float height	= getSizef(dimensions.getY());
 		glScalef(width, height, 1.0f);
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+        glLineWidth(1.0f);
+        
         BACKGROUND_MASK_COLOUR.use();
         GLPrimitives::getInstance()->renderSquare();
         
         if(mode == CREATE)
         {
             BORDER_COLOUR.use();
-            glLineWidth(1.0f);
         }
         else
         {
             VALUE_COLOUR.use();
-            glLineWidth(2.0f);
         }
 
 		// top
 		if(TOP & borderState)
 		{
             topVbo->render();
-        }
-
-        // bottom
-        if(BOTTOM & borderState)
-        {
-            bottomVbo->render();
         }
         
         // left
@@ -140,16 +135,44 @@ namespace PhysicsSynth
         {
             rightVbo->render();
         }
+        
+        glPopMatrix();
 
+        // bottom
+        if(BOTTOM & borderState)
+        {
+            glMatrixMode(GL_MODELVIEW);
+            glPushMatrix();
+            glTranslatef(px, py + height, 0.0f);
+            
+            float bh = getSizef(BORDER * 2);
+            glScalef(width, bh, 1.0f);
+            
+            BACKGROUND_MASK_COLOUR.use();
+            GLPrimitives::getInstance()->renderSquare();
+            
+            if(mode == CREATE)
+            {
+                BORDER_COLOUR.use();
+            }
+            else
+            {
+                VALUE_COLOUR.use();
+            }
+            
+            bottomVbo->render();
+            
+            glPopMatrix();
+        }
+        
         glDisable(GL_BLEND);
-		glPopMatrix();
-
-		// render children
+        
+        // render children
 		for(unsigned int i = 0; i < menuItems.size(); i++)
 		{
 			UIElement *m = menuItems[i];
 			assert(m != NULL);
-
+            
 			m->render();
 		}
 	}

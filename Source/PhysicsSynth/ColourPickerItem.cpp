@@ -24,28 +24,44 @@ namespace PhysicsSynth
 	{
 		this->colour = colour;
 
-		checked				= false;
+		checked = false;
 		
-        GLfloat vertices[48] =
+        GLfloat vertices[72] =
         {
-            0.0f,           0.0f,           0.0f,
-            1.0f,           0.0f,           0.0f,
-            1.0f,           0.1f,           0.0f,
-            0.0f,           0.1f,           0.0f,
-            0.0f,           1.0f - 0.1f,	0.0f,
-            1.0f,           1.0f - 0.1f,	0.0f,
-            1.0f,           1.0f,			0.0f,
-            0.0f,           1.0f,			0.0f,
-            0.0f,           0.1f,			0.0f,
-            0.1f,           0.1f,			0.0f,
-            0.1f,           1.0f - 0.1f,	0.0f,
-            0.0f,           1.0f - 0.1f,	0.0f,
-            1.0f - 0.1f,    0.1f,			0.0f,
-            1.0f,           0.1f,			0.0f,
-            1.0f,           1.0f - 0.1f,	0.0f,
-            1.0f- 0.1f,     1.0f - 0.1f,	0.0f
+            0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
+            0.1f, 0.0f, 0.0f,
+            
+            0.1f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
+            0.1f, 1.0f, 0.0f,
+            
+            0.1f, 1.0f, 0.0f,
+            0.9f, 1.0f, 0.0f,
+            0.1f, 0.9f, 0.0f,
+            
+            0.9f, 1.0f, 0.0f,
+            0.9f, 0.9f, 0.0f,
+            0.1f, 0.9f, 0.0f,
+            
+            0.9f, 1.0f, 0.0f,
+            1.0f, 1.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+            
+            0.9f, 0.0f, 0.0f,
+            0.9f, 1.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+            
+            0.1f, 0.0f, 0.0f,
+            0.1f, 0.1f, 0.0f,
+            0.9f, 0.1f, 0.0f,
+            
+            0.9f, 0.1f, 0.0f,
+            0.9f, 0.0f, 0.0f,
+            0.1f, 0.0f, 0.0f
+
         };
-        checkedVbo = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, vertices, 16);
+        checkedVbo = new GLVbo(GL_TRIANGLES, GL_STATIC_DRAW, vertices, 24);
 	}
 
 	ColourPickerItem::~ColourPickerItem(void)

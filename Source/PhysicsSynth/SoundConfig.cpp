@@ -12,11 +12,10 @@
 namespace PhysicsSynth
 {
 	/* Constructors */
-	SoundConfig::SoundConfig(const Colour3f	&colour, unsigned int sampleId, SoundConfig::Type type)
+	SoundConfig::SoundConfig(const Colour3f	&colour, unsigned int sampleId)
 	{
 		this->colour			= colour;
 		this->sampleId			= sampleId;
-		this->type				= type;
 
 		initMapping();
 	}
@@ -31,7 +30,7 @@ namespace PhysicsSynth
 		return colour;
 	}
 
-	std::map<SoundConfig::ImpulseProperty, SoundConfig::PhysicalProperty> SoundConfig::getImpulseMappings(void) const
+	std::map<unsigned int, SoundConfig::PhysicalProperty> SoundConfig::getImpulseMappings(void) const
 	{
 		return impulseMappings;
 	}
@@ -43,20 +42,15 @@ namespace PhysicsSynth
 
 	SoundEvent *SoundConfig::getSoundEvent(unsigned int worldId, float positionX, float positionY, float angle, float velocity, float spin, float inertia, float contactImpulse) const
 	{
-		float transpose	= getMappedValue(TRANSPOSE, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
-		float stretch	= getMappedValue(STRETCH, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
-		float drive		= getMappedValue(DRIVE, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
-		float frequency	= getMappedValue(FREQUENCY, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
-		float resonance	= getMappedValue(RESONANCE, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
-		float decay		= getMappedValue(DECAY, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
-		float pan		= getMappedValue(PAN, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
+		float p0 = getMappedValue(0, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
+		float p1 = getMappedValue(1, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
+		float p2 = getMappedValue(2, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
+		float p3 = getMappedValue(3, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
+		float p4 = getMappedValue(4, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
+		float p5 = getMappedValue(5, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
+		float p6 = getMappedValue(6, positionX, positionY, angle, velocity, spin, inertia, contactImpulse);
 
-		return new ImpulseSoundEvent(worldId, sampleId, transpose, stretch, drive, frequency, resonance, decay, pan);
-	}
-
-	SoundConfig::Type SoundConfig::getType(void) const
-	{
-		return type;
+		return new ImpulseSoundEvent(worldId, sampleId, p0, p1, p2, p3, p4, p5, p6);
 	}
 
 	void SoundConfig::setSampleId(unsigned int sampleId)
@@ -64,18 +58,13 @@ namespace PhysicsSynth
 		this->sampleId = sampleId;
 	}
 
-	void SoundConfig::setType(Type type)
-	{
-		this->type = type;
-	}
-
-	void SoundConfig::updateImpulseMapping(ImpulseProperty from, PhysicalProperty to)
+	void SoundConfig::updateMapping(unsigned int from, PhysicalProperty to)
 	{
 		impulseMappings[from] = to;
 	}
 
 	/* Private Member Functions */
-	float SoundConfig::getMappedValue(ImpulseProperty ip, float positionX, float positionY, float angle, float velocity, float spin, float inertia, float contactImpulse) const
+	float SoundConfig::getMappedValue(unsigned int ip, float positionX, float positionY, float angle, float velocity, float spin, float inertia, float contactImpulse) const
 	{
 		PhysicalProperty p = (*impulseMappings.find(ip)).second;
 
@@ -111,12 +100,12 @@ namespace PhysicsSynth
 
 	void SoundConfig::initMapping(void)
 	{
-		impulseMappings[TRANSPOSE]	= POS_X;
-		impulseMappings[STRETCH]	= POS_Y;
-		impulseMappings[DRIVE]		= ANGLE;
-		impulseMappings[FREQUENCY]	= VELOCITY;
-		impulseMappings[RESONANCE]	= SPIN;
-		impulseMappings[DECAY]		= INERTIA;
-		impulseMappings[PAN]		= CONTACT_IMPULSE;
+		impulseMappings[0] = POS_X;
+		impulseMappings[1] = POS_Y;
+		impulseMappings[2] = ANGLE;
+		impulseMappings[3] = VELOCITY;
+		impulseMappings[4] = SPIN;
+		impulseMappings[5] = INERTIA;
+		impulseMappings[6] = CONTACT_IMPULSE;
 	}
 }

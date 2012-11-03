@@ -212,14 +212,13 @@ namespace PhysicsSynth
 		assert(sc);
 
 		std::stringstream ss;
-		ss	<< SOUND				<< ','
-			<< sc->getSampleId()	<< ','
-			<< sc->getType();
+		ss	<< SOUND << ','
+            << sc->getSampleId();
 
-		std::map<SoundConfig::ImpulseProperty, SoundConfig::PhysicalProperty> mappings = sc->getImpulseMappings();
+		std::map<unsigned int, SoundConfig::PhysicalProperty> mappings = sc->getImpulseMappings();
 		for(unsigned int i = 0; i < 7; i++)
 		{
-			ss << ',' << mappings[(SoundConfig::ImpulseProperty)i];
+			ss << ',' << mappings[i];
 		}
 
 		ss << std::endl;
@@ -368,14 +367,13 @@ namespace PhysicsSynth
 		SoundConfig *sc						= sounds[id];
 		assert(sc);
 		
-		sc->setType((SoundConfig::Type)mode);
-		sc->updateImpulseMapping((SoundConfig::ImpulseProperty)0, (SoundConfig::PhysicalProperty)m0);
-		sc->updateImpulseMapping((SoundConfig::ImpulseProperty)1, (SoundConfig::PhysicalProperty)m1);
-		sc->updateImpulseMapping((SoundConfig::ImpulseProperty)2, (SoundConfig::PhysicalProperty)m2);
-		sc->updateImpulseMapping((SoundConfig::ImpulseProperty)3, (SoundConfig::PhysicalProperty)m3);
-		sc->updateImpulseMapping((SoundConfig::ImpulseProperty)4, (SoundConfig::PhysicalProperty)m4);
-		sc->updateImpulseMapping((SoundConfig::ImpulseProperty)5, (SoundConfig::PhysicalProperty)m5);
-		sc->updateImpulseMapping((SoundConfig::ImpulseProperty)6, (SoundConfig::PhysicalProperty)m6);
+		sc->updateMapping(0, (SoundConfig::PhysicalProperty)m0);
+		sc->updateMapping(1, (SoundConfig::PhysicalProperty)m1);
+		sc->updateMapping(2, (SoundConfig::PhysicalProperty)m2);
+		sc->updateMapping(3, (SoundConfig::PhysicalProperty)m3);
+		sc->updateMapping(4, (SoundConfig::PhysicalProperty)m4);
+		sc->updateMapping(5, (SoundConfig::PhysicalProperty)m5);
+		sc->updateMapping(6, (SoundConfig::PhysicalProperty)m6);
 	}
 
 	Wheel *PersistenceManager::loadWheel(std::string s)

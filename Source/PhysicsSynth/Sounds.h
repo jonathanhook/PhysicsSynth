@@ -25,7 +25,6 @@ namespace PhysicsSynth
 		static SoundConfig SOUND_6;
 		static SoundConfig SOUND_7;
 
-		static std::vector<SoundConfig *>	getSounds	(bool includeNoSound = true);
-		static void							setAll		(SoundConfig::Type type);
+		static std::vector<SoundConfig *> getSounds(bool includeNoSound = true);
 	};
 }

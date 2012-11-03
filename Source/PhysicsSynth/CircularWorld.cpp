@@ -14,7 +14,7 @@
 namespace PhysicsSynth
 {
 	/* Private Constants */
-	const unsigned int	CircularWorld::CIRCLE_RESOLUTION = 32;
+	const unsigned int	CircularWorld::CIRCLE_RESOLUTION = 64;
 
 	/* Constructors */
 	CircularWorld::CircularWorld(unsigned char track, const Point2f &position, const Vector2f &gravity, float size) :

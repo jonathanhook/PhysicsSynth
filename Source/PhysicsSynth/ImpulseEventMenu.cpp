@@ -28,8 +28,6 @@ namespace PhysicsSynth
 	/* Public Member Functions */
 	void ImpulseEventMenu::initMenuItems(void)
 	{
-		unsigned int width = dimensions.getX();
-
 		std::vector<MappingGrid::MappingGridItem> tos;
 		tos.push_back(MappingGrid::MappingGridItem(SoundConfig::POS_X, "Pos X"));
 		tos.push_back(MappingGrid::MappingGridItem(SoundConfig::POS_Y, "Pos Y"));
@@ -40,13 +38,13 @@ namespace PhysicsSynth
 		tos.push_back(MappingGrid::MappingGridItem(SoundConfig::CONTACT_IMPULSE, "Hit force"));
 
 		std::vector<MappingGrid::MappingGridItem> froms;
-		froms.push_back(MappingGrid::MappingGridItem(SoundConfig::TRANSPOSE, "Param 0"));
-		froms.push_back(MappingGrid::MappingGridItem(SoundConfig::STRETCH, "Param 1"));
-		froms.push_back(MappingGrid::MappingGridItem(SoundConfig::DRIVE, "Param 2"));
-		froms.push_back(MappingGrid::MappingGridItem(SoundConfig::FREQUENCY, "Param 3"));
-		froms.push_back(MappingGrid::MappingGridItem(SoundConfig::RESONANCE, "Param 4"));
-		froms.push_back(MappingGrid::MappingGridItem(SoundConfig::DECAY, "Param 5"));
-		froms.push_back(MappingGrid::MappingGridItem(SoundConfig::PAN, "Param 6"));
+		froms.push_back(MappingGrid::MappingGridItem(0, "Param 0"));
+		froms.push_back(MappingGrid::MappingGridItem(1, "Param 1"));
+		froms.push_back(MappingGrid::MappingGridItem(2, "Param 2"));
+		froms.push_back(MappingGrid::MappingGridItem(3, "Param 3"));
+		froms.push_back(MappingGrid::MappingGridItem(4, "Param 4"));
+		froms.push_back(MappingGrid::MappingGridItem(5, "Param 5"));
+		froms.push_back(MappingGrid::MappingGridItem(6, "Param 6"));
 
 		mappingGrid = new MappingGrid(froms, tos, "Mappings", position, dimensions);
 		mappingGrid->setMappingChangedCallback(MakeDelegate(this, &ImpulseEventMenu::mappingGrid_MappingChanged));
@@ -64,9 +62,9 @@ namespace PhysicsSynth
 		assert(sound);
 		assert(mappingGrid);
 
-		std::map<SoundConfig::ImpulseProperty, SoundConfig::PhysicalProperty> impulseMappings = sound->getImpulseMappings();
+		std::map<unsigned int, SoundConfig::PhysicalProperty> impulseMappings = sound->getImpulseMappings();
 		
-		std::map<SoundConfig::ImpulseProperty, SoundConfig::PhysicalProperty>::iterator it;
+		std::map<unsigned int, SoundConfig::PhysicalProperty>::iterator it;
 		for(it = impulseMappings.begin(); it != impulseMappings.end(); it++)
 		{
 			mappingGrid->setMapping((*it).first, (*it).second);
@@ -77,6 +75,6 @@ namespace PhysicsSynth
 	void ImpulseEventMenu::mappingGrid_MappingChanged(MappingGrid::MappingGridItem from, MappingGrid::MappingGridItem to)
 	{
 		assert(sound);
-		sound->updateImpulseMapping((SoundConfig::ImpulseProperty)from.item, (SoundConfig::PhysicalProperty)to.item);
+		sound->updateMapping((unsigned int)from.item, (SoundConfig::PhysicalProperty)to.item);
 	}
 }

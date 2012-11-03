@@ -35,7 +35,7 @@ namespace PhysicsSynth
 	{
 		unsigned int width = dimensions.getX();
 
-		soundConfig = new ColourPicker(Sounds::getSounds(false), "Sounds", position, width);
+		soundConfig = new ColourPicker(Sounds::getSounds(true), "Sounds", position, width);
 		soundConfig->setSelectionChangedCallback(MakeDelegate(this, &SoundMenu::soundConfig_SelectionChanged));
 		addMenuItem(*soundConfig);
 
@@ -50,12 +50,9 @@ namespace PhysicsSynth
 	void SoundMenu::render(void)
 	{
 		Menu::render();
-
-		if(selectedSound->getType() == SoundConfig::IMPULSE)
-		{
-			assert(impulseMenu);
-			impulseMenu->render();
-		}
+        
+        assert(impulseMenu);
+        impulseMenu->render();
 	}
 
 	void SoundMenu::setValues(void)
@@ -65,35 +62,12 @@ namespace PhysicsSynth
 		assert(impulseMenu);
 		
 		impulseMenu->setSound(selectedSound);
-
-		updateTypeState();		
 	}
 
 	/* Private Member Functions */
-	void SoundMenu::eventType_SelectionChanged(const OptionGrid::Option &option)
-	{
-		assert(selectedSound);
-		selectedSound->setType((SoundConfig::Type)option.id);
-		updateTypeState();
-	}
-
 	void SoundMenu::soundConfig_SelectionChanged(SoundConfig *selectedSound)
 	{
 		this->selectedSound = selectedSound;
 		setValues();
-	}
-
-	void SoundMenu::updateTypeState(void)
-	{
-		if(selectedSound->getType() == SoundConfig::IMPULSE)
-		{
-			borderState	= (TOP | LEFT | RIGHT);
-			registerEventHandler(impulseMenu);
-		}
-		else
-		{
-			borderState	= (TOP | BOTTOM | LEFT | RIGHT);
-			registerEventHandler(impulseMenu);
-		}
 	}
 }

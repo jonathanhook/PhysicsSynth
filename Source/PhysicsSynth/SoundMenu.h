@@ -28,9 +28,7 @@ namespace PhysicsSynth
 		SoundConfig			*selectedSound;
 		ColourPicker		*soundConfig;
 
-		void eventType_SelectionChanged		(const OptionGrid::Option &option);
-		void soundConfig_SelectionChanged	(SoundConfig *soundConfig);
-		void updateTypeState				(void);
+		void soundConfig_SelectionChanged(SoundConfig *soundConfig);
 	};
 }
 
