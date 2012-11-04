@@ -66,13 +66,13 @@ namespace PhysicsSynth
 		pattern->setPatternChangedCallback(MakeDelegate(this, &WheelMenu::pattern_PatternChanged));
 		addMenuItem(*pattern);
 
-		sync = new Button("Sync", position, width / 2);
+		sync = new Button("Sync", position, width);
 		sync->setClickedCallback(MakeDelegate(this, &WheelMenu::sync_Clicked));
 		addMenuItem(*sync);
 
 		if(mode == INSPECT)
 		{
-			erase = new Button("Erase", position, width / 2);
+			erase = new Button("Erase", position, width);
 			erase->setClickedCallback(MakeDelegate(this, &WheelMenu::erase_Clicked));
 			addMenuItem(*erase);
 		}

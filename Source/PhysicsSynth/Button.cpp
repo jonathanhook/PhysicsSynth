@@ -52,7 +52,7 @@ namespace PhysicsSynth
 		}
 		else
 		{
-			DARK_COLOUR.use();
+			MID_COLOUR.use();
 		}
 
         GLPrimitives::getInstance()->renderSquare();

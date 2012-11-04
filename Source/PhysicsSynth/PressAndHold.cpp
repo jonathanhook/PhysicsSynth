@@ -5,7 +5,10 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #define _USE_MATH_DEFINES
+#include <assert.h>
 #include <JDHUtility/CrossPlatformTime.h>
+#include <JDHUtility/GLVbo.h>
+#include <JDHUtility/Ndelete.h>
 #include <JDHUtility/OpenGL.h>
 #include <math.h>
 #include <stdlib.h>
@@ -16,8 +19,9 @@ namespace PhysicsSynth
 	/* Private Constants */
 	const unsigned int	PressAndHold::CIRCLE_SEGS	= 32;
 	const float			PressAndHold::INNER_RAD		= 0.025f;
-	const float			PressAndHold::MAX_OPACITY	= 0.75f;
-	const float			PressAndHold::OUTER_RAD		= 0.04f;
+	const float			PressAndHold::MAX_FILL_OPACITY	= 0.25f;
+    const float			PressAndHold::MAX_LINE_OPACITY	= 0.5f;
+	const float			PressAndHold::OUTER_RAD		= 0.033f;
 	const float			PressAndHold::THRESHOLD		= 0.01f;
 	const unsigned int	PressAndHold::TIMEOUT		= 750;
 
@@ -34,10 +38,63 @@ namespace PhysicsSynth
 		halfWayFired	= false;
 		markedForDelete	= false;
 		timeCreated		= CrossPlatformTime::getTimeMillis();
+        
+        // VBOs
+        float radius	= OUTER_RAD;
+        float iRadius	= INNER_RAD;
+
+        unsigned int fillVertexCount = CIRCLE_SEGS * 2;
+        unsigned int fillArrayLength = fillVertexCount * 3;
+        GLfloat fillVertices[fillArrayLength];
+        
+        unsigned int lineVertexCount = CIRCLE_SEGS;
+        unsigned int lineArrayLength = lineVertexCount * 3;
+        GLfloat innerVertices[lineArrayLength];
+        GLfloat outerVertices[lineArrayLength];
+        
+        for(unsigned int i = 0; i < CIRCLE_SEGS; i++)
+        {
+            float theta = (2.0f * (float)M_PI) * ((float)i / (float)(CIRCLE_SEGS - 2));
+
+            float x = cos(theta) * radius;
+            float y = sin(theta) * radius;
+            
+            float ix = cos(theta) * iRadius;
+            float iy = sin(theta) * iRadius;
+            
+            // fill
+            unsigned int index = i * 6;
+            
+            fillVertices[index] = x;
+            fillVertices[index + 1] = y;
+            fillVertices[index + 2] = 0.0f;
+            
+            fillVertices[index + 3] = ix;
+            fillVertices[index + 4] = iy;
+            fillVertices[index + 5] = 0.0f;
+            
+            // lines
+            unsigned int lIndex = i * 3;
+            
+            innerVertices[lIndex] = x;
+            innerVertices[lIndex + 1] = y;
+            innerVertices[lIndex + 2] = 0.0f;
+            
+            outerVertices[lIndex] = ix;
+            outerVertices[lIndex + 1] = iy;
+            outerVertices[lIndex + 2] = 0.0f;
+        }
+
+        fillVbo = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, fillVertices, fillVertexCount);
+        innerLineVbo = new GLVbo(GL_LINE_STRIP, GL_STATIC_DRAW, innerVertices, lineVertexCount);
+        outerLineVbo = new GLVbo(GL_LINE_STRIP, GL_STATIC_DRAW, outerVertices, lineVertexCount);
 	}
 
 	PressAndHold::~PressAndHold(void)
 	{
+        NDELETE(fillVbo);
+        NDELETE(innerLineVbo);
+        NDELETE(outerLineVbo);
 	}
 
 	/* Public Member Functions */
@@ -48,74 +105,37 @@ namespace PhysicsSynth
 
 	void PressAndHold::render(void)
 	{
-        /*
-		if(dirty)
-		{
-			float x = position.getX();
-			float y = position.getY();
-			float o = pow(progress, 4.0f);
+        float x = position.getX();
+        float y = position.getY();
+        float o = pow(progress, 4.0f);
 
-			glNewList(dl, GL_COMPILE);
-			glMatrixMode(GL_MODELVIEW);
-			glPushMatrix();
-			glTranslatef(x, y, 0.0f);
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glTranslatef(x, y, 0.0f);
 				
-			glPushAttrib(GL_ENABLE_BIT | GL_LINE_BIT | GL_CURRENT_BIT);
-			glEnable(GL_BLEND);
-			glEnable(GL_LINE_SMOOTH);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glColor4f(1.0f, 1.0f, 1.0f, o * MAX_OPACITY);
-
-			float radius	= OUTER_RAD;
-			float iRadius	= INNER_RAD;
-			float increment = 1.0f / (float)CIRCLE_SEGS;
-
-			glBegin(GL_TRIANGLE_STRIP);
-				for(float f = 0; f < progress; f += increment)
-				{
-					float theta = (2.0f * (float)M_PI) * f;
-					float x = cos(theta) * radius;
-					float y = sin(theta) * radius;
-
-					float ix = cos(theta) * iRadius;
-					float iy = sin(theta) * iRadius;
-
-					glVertex3f(x, y, 0.0f);
-					glVertex3f(ix, iy, 0.0f);
-				}
-			glEnd();
-
-			glBegin(GL_LINE_STRIP);
-				for(float f = 0; f < progress; f += increment)
-				{
-					float theta = (2.0f * (float)M_PI) * f;
-					float x = cos(theta) * radius;
-					float y = sin(theta) * radius;
-
-					glVertex3f(x, y, 0.0f);
-				}
-			glEnd();
-
-			glBegin(GL_LINE_STRIP);
-				for(float f = 0; f < progress; f += increment)
-				{
-					float theta = (2.0f * (float)M_PI) * f;
-					float ix = cos(theta) * iRadius;
-					float iy = sin(theta) * iRadius;
-
-					glVertex3f(ix, iy, 0.0f);
-				}
-			glEnd();
-				
-			glPopAttrib();
-			glPopMatrix();
-			glEndList();
-            
-			dirty = false;
-		}
-		glCallList(dl);
-         */
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glColor4f(1.0f, 1.0f, 1.0f, o * MAX_FILL_OPACITY);
         
+        assert(fillVbo);
+        fillVbo->update(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, NULL, ((float)CIRCLE_SEGS * 2.0f) * o);
+        fillVbo->render();
+        
+        glEnable(GL_LINE_SMOOTH);
+        glLineWidth(1.0f);
+        glColor4f(1.0f, 1.0f, 1.0f, o * MAX_LINE_OPACITY);
+        
+        assert(innerLineVbo);
+        innerLineVbo->update(GL_LINE_STRIP, GL_STATIC_DRAW, NULL, (float)CIRCLE_SEGS * o);
+        innerLineVbo->render();
+        
+        assert(outerLineVbo);
+        outerLineVbo->update(GL_LINE_STRIP, GL_STATIC_DRAW, NULL, (float)CIRCLE_SEGS * o);
+        outerLineVbo->render();
+        
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
+        glPopMatrix();
 	}
 
 	void PressAndHold::update(void)

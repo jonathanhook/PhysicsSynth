@@ -32,11 +32,11 @@ namespace PhysicsSynth
 	{
 		unsigned int width = dimensions.getX();
 
-		save = new Button("Save", position, width / 2);
+		save = new Button("Save", position, width);
 		save->setClickedCallback(MakeDelegate(this, &SettingsMenu::save_Clicked));
 		addMenuItem(*save);
 
-		quit = new Button("Quit", position, width / 2);
+		quit = new Button("Quit", position, width);
 		quit->setClickedCallback(MakeDelegate(this, &SettingsMenu::quit_Clicked));
 		addMenuItem(*quit);
 	}

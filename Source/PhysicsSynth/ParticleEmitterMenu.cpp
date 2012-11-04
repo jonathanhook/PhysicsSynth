@@ -85,26 +85,19 @@ namespace PhysicsSynth
 		pattern->setPatternChangedCallback(MakeDelegate(this, &ParticleEmitterMenu::pattern_PatternChanged));
 		addMenuItem(*pattern);
 
-		impulse = new TargetButton("Impulse", position, width / 2);
+		impulse = new TargetButton("Particle Impulse", position, width);
 		impulse->setTargetChangedCallback(MakeDelegate(this, &ParticleEmitterMenu::impulse_TargetChanged));
 		addMenuItem(*impulse);
 
-		sync = new Button("Sync", position, width / 2);
+		sync = new Button("Sync", position, width);
 		sync->setClickedCallback(MakeDelegate(this, &ParticleEmitterMenu::sync_Clicked));
 		addMenuItem(*sync);
 
 		if(mode == INSPECT)
 		{
-			erase = new Button("Erase", position, width / 2);
+			erase = new Button("Erase", position, width);
 			erase->setClickedCallback(MakeDelegate(this, &ParticleEmitterMenu::erase_Clicked));
 			addMenuItem(*erase);
-
-			// HACK: manuall position last button
-			Point2i sp = sync->getPosition();
-			sp.setY(sp.getY() + getLabelHeight() * 2);
-			erase->setPosition(sp);
-
-			dimensions.setY(dimensions.getY() - (getLabelHeight() * 2));
 		}
 	}
 

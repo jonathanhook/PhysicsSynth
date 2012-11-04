@@ -88,13 +88,13 @@ namespace PhysicsSynth
 		size->setValueChangedCallback(MakeDelegate(this, &SimpleObjectMenu::size_ValueChanged));
 		addMenuItem(*size);
 
-		isLocked = new CheckBox("Locked", position, width / 2);
+		isLocked = new CheckBox("Locked", position, width);
 		isLocked->setCheckedChangedCallback(MakeDelegate(this, &SimpleObjectMenu::isLocked_CheckedChanged));
 		addMenuItem(*isLocked);
 
 		if(mode == INSPECT)
 		{
-			erase = new Button("Erase", position, width / 2);
+			erase = new Button("Erase", position, width);
 			erase->setClickedCallback(MakeDelegate(this, &SimpleObjectMenu::erase_Clicked));
 			addMenuItem(*erase);
 		}

@@ -38,7 +38,7 @@ namespace PhysicsSynth
 	const float			Canvas::INITIAL_SCALE			= 1.0f;
 	const unsigned int	Canvas::LINE_COUNT				= 20;
 	const float			Canvas::MAX_SCALE				= 2.5f;
-	const unsigned int	Canvas::MENU_MARGIN				= 6;
+	const unsigned int	Canvas::MENU_MARGIN				= 2;
 	//const unsigned int	Canvas::menuWidth				= 256;
 	const float			Canvas::SIZE					= 1.0f;
 	const std::string	Canvas::TEXTURE_BACKGROUND		= "background.bmp";
@@ -448,7 +448,7 @@ namespace PhysicsSynth
 	void Canvas::initMenus(void)
 	{
 		// main menu
-		mainMenu = new MainMenu(Point2i(MENU_MARGIN / 2, MENU_MARGIN), menuWidth);
+		mainMenu = new MainMenu(Point2i(MENU_MARGIN, MENU_MARGIN), menuWidth);
 		mainMenu->setWorldsSelectedCallback(MakeDelegate(this, &Canvas::mainMenu_WorldsSelected));
 		mainMenu->setSettingsSelectedCallback(MakeDelegate(this, &Canvas::mainMenu_SettingsSelected));
 		mainMenu->setSoundsSelectedCallback(MakeDelegate(this, &Canvas::mainMenu_SoundsSelected));
@@ -456,7 +456,7 @@ namespace PhysicsSynth
 		registerEventHandler(mainMenu);
 
 		Point2i wPos = mainMenu->getPosition();
-		wPos.translateY(mainMenu->getDimensions().getY() + MENU_MARGIN);
+		wPos.translateY(mainMenu->getDimensions().getY() + MENU_MARGIN * 2);
 		
 		// world menus
 		worldCreateMenu	= new WorldMenu(wPos, menuWidth, Menu::CREATE);

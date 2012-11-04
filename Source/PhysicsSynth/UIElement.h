@@ -49,6 +49,7 @@ namespace PhysicsSynth
 		static const Colour4f		DARK_COLOUR;
 		static const unsigned int	LABEL_HEIGHT_DIV;
 		static const Colour4f		LIGHT_COLOUR;
+        static const Colour4f       MID_COLOUR;
 		static const Colour4f		VALUE_COLOUR;
         static const Colour4f       FONT_COLOUR;
 

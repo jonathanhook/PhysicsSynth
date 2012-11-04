@@ -67,13 +67,13 @@ namespace PhysicsSynth
 		size->setValueChangedCallback(MakeDelegate(this, &WorldMenu::size_ValueChanged));
 		addMenuItem(*size);
 
-		gravity = new TargetButton("Gravity", position, width / 2);
+		gravity = new TargetButton("Gravity", position, width);
 		gravity->setTargetChangedCallback(MakeDelegate(this, &WorldMenu::gravity_TargetChanged));
 		addMenuItem(*gravity);
 
 		if(mode == INSPECT)
 		{
-			erase = new Button("Erase", position, width / 2);
+			erase = new Button("Erase", position, width);
 			erase->setClickedCallback(MakeDelegate(this, &WorldMenu::erase_Clicked));
 			addMenuItem(*erase);
 

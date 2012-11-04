@@ -7,6 +7,7 @@
 //
 
 #include <FileLocationUtility.h>
+#include <JDHUtility/WindowingUtils.h>
 #include <PhysicsSynth/Synchronizer.h>
 #include <PhysicsSynth/Manager.h>
 #import "ViewController.h"
@@ -47,7 +48,16 @@ PhysicsSynth::Manager *manager;
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     FileLocationUtility::setResourcePath([resourcePath UTF8String]);
     
-    manager = new PhysicsSynth::Manager(1024, false);
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height);
+    
+    float width = screenSize.height;
+    float height = screenSize.width;
+
+    WindowingUtils::DEVICE_WINDOW_WIDTH = width;
+    WindowingUtils::DEVICE_WINDOW_HEIGHT = height;
+    
+    manager = new PhysicsSynth::Manager(width, false);
     manager->load();
 }
 

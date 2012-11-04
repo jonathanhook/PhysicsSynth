@@ -36,7 +36,7 @@ namespace PhysicsSynth
 		targetPosition.setX(0.0f);
 		targetPosition.setY(0.0f);
 
-		dimensions.setY(getLabelHeight() * 4);
+		dimensions.setY(getLabelHeight() * 6);
 	}
 
 	TargetButton::~TargetButton(void)

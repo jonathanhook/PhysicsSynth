@@ -13,6 +13,11 @@ using namespace fastdelegate;
 using namespace MultiTouchEvents;
 using namespace JDHUtility;
 
+namespace JDHUtility
+{
+    class GLVbo;
+}
+
 namespace PhysicsSynth
 {
 	class PressAndHold
@@ -37,7 +42,8 @@ namespace PhysicsSynth
 	private:
 		static const unsigned int	CIRCLE_SEGS;
 		static const float			INNER_RAD;
-		static const float			MAX_OPACITY;
+		static const float			MAX_FILL_OPACITY;
+        static const float			MAX_LINE_OPACITY;
 		static const float			OUTER_RAD;
 		static const float			THRESHOLD;
 		static const unsigned int	TIMEOUT;
@@ -53,6 +59,9 @@ namespace PhysicsSynth
 		Point2f				position;
 		float				progress;
 		unsigned int		timeCreated;
+        GLVbo               *fillVbo;
+        GLVbo               *innerLineVbo;
+        GLVbo               *outerLineVbo;
 	};
 }
 
