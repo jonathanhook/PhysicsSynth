@@ -27,6 +27,12 @@
 
 PhysicsSynth::Manager *manager;
 
+- (void) save
+{
+    assert(manager);
+    manager->save();
+}
+
 - (void)dealloc
 {
     [_context release];
@@ -73,7 +79,6 @@ PhysicsSynth::Manager *manager;
         [EAGLContext setCurrentContext:nil];
     }
     self.context = nil;
-    
     delete manager;
 }
 
@@ -117,6 +122,9 @@ PhysicsSynth::Manager *manager;
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
     
+    glDisable(GL_DEPTH_TEST);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    
 }
 
 - (void)tearDownGL
@@ -129,31 +137,29 @@ PhysicsSynth::Manager *manager;
 - (void)update
 {
     assert(manager);
-	manager->update();
+    manager->update();
     
     PhysicsSynth::Synchronizer *sync = PhysicsSynth::Synchronizer::getInstance();
-	assert(sync);
-	sync->update();
+    assert(sync);
+    sync->update();
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);// | GL_DEPTH_BUFFER_BIT);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glClear(GL_COLOR_BUFFER_BIT);
     glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
-    glDisable(GL_DEPTH_TEST);
     
     assert(manager);
-	manager->render();
+    manager->render();
     
 #ifdef _DEBUG
-	GLenum error = glGetError();
-	if(error != GL_NO_ERROR)
-	{
-		printf("OpenGL error: %i\n", error);
-	}
+    GLenum error = glGetError();
+    if(error != GL_NO_ERROR)
+    {
+        printf("OpenGL error: %i\n", error);
+    }
 #endif
 }
 

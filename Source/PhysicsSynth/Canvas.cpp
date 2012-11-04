@@ -38,7 +38,7 @@ namespace PhysicsSynth
 	const float			Canvas::INITIAL_SCALE			= 1.0f;
 	const unsigned int	Canvas::LINE_COUNT				= 20;
 	const float			Canvas::MAX_SCALE				= 2.5f;
-	const unsigned int	Canvas::MENU_MARGIN				= 2;
+	const unsigned int	Canvas::MENU_MARGIN				= 3;
 	//const unsigned int	Canvas::menuWidth				= 256;
 	const float			Canvas::SIZE					= 1.0f;
 	const std::string	Canvas::TEXTURE_BACKGROUND		= "background.tga";
@@ -476,8 +476,11 @@ namespace PhysicsSynth
 
 		// settings menu
 		settingsMenu = new SettingsMenu(wPos, menuWidth);
+        
+#ifdef GLUT_WINDOWING
 		settingsMenu->setSavedCallback(MakeDelegate(this, &Canvas::settingsMenu_Saved));
-
+#endif
+        
 		updateMenuState(CREATE_WORLD);
 	}
 

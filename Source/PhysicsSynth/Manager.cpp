@@ -13,6 +13,7 @@
 #include <JDHUtility/GLPrimitives.h>
 #include <JDHUtility/Ndelete.h>
 #include <JDHUtility/Vector2f.h>
+#include <JDHUtility/FileLocationUtility.h>
 #include "Canvas.h"
 #include "Manager.h"
 #include "PersistenceManager.h"
@@ -132,7 +133,8 @@ namespace PhysicsSynth
 	/* Public Member Functions */
 	void Manager::load(void)
 	{
-		std::vector<World *> worlds = PersistenceManager::load(SAVE_FILE);
+        std::string saveRes = FileLocationUtility::getFileInResourcePath(SAVE_FILE);
+		std::vector<World *> worlds = PersistenceManager::load(saveRes);
 
 		assert(canvas);
 		canvas->loadWorlds(worlds);
@@ -177,7 +179,9 @@ namespace PhysicsSynth
 	{
 		assert(canvas);
 		std::vector<World *> worlds = canvas->getWorlds();
-		PersistenceManager::save(SAVE_FILE, worlds);
+        
+        std::string saveRes = FileLocationUtility::getFileInResourcePath(SAVE_FILE);
+		PersistenceManager::save(saveRes, worlds);
 	}
 
 	void Manager::update(void)

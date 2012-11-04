@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #pragma once
+#include <JDHUtility/OpenGL.h>
 #include "Menu.h"
 
 namespace PhysicsSynth
@@ -22,16 +23,21 @@ namespace PhysicsSynth
 
 		void initMenuItems		(void);
 		void render				(void);
-		void setSavedCallback	(SavedCallback saved);
 		void setValues			(void);
 
+#ifdef GLUT_WINDOWING // no save and quit buttons on iOS
+        void setSavedCallback	(SavedCallback saved);
+#endif
+
 	private:
-		Button			*save;
+#ifdef GLUT_WINDOWING
+        Button			*save;
 		SavedCallback	saved;
 		Button			*quit;
 
 		void save_Clicked	(UIElement *sender);
 		void quit_Clicked	(UIElement *sender);
+#endif
 	};
 }
 

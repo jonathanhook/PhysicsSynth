@@ -213,7 +213,8 @@ namespace PhysicsSynth
 
 		std::stringstream ss;
 		ss	<< SOUND << ','
-            << sc->getSampleId();
+            << sc->getSampleId() << ','
+            << (int)sc->getIsEnabled();
 
 		std::map<unsigned int, SoundConfig::PhysicalProperty> mappings = sc->getImpulseMappings();
 		for(unsigned int i = 0; i < 7; i++)
@@ -350,18 +351,18 @@ namespace PhysicsSynth
 
 	void PersistenceManager::loadSoundConfig(std::string s)
 	{
-		unsigned int type	= 0;
-		unsigned int id		= 0;
-		unsigned int mode	= 0;
-		unsigned int m0		= 0;
-		unsigned int m1		= 0;
-		unsigned int m2		= 0;
-		unsigned int m3		= 0;
-		unsigned int m4		= 0;
-		unsigned int m5		= 0;
-		unsigned int m6		= 0;
+		unsigned int type	 = 0;
+		unsigned int id		 = 0;
+		unsigned int enabled = 0;
+		unsigned int m0      = 0;
+		unsigned int m1      = 0;
+		unsigned int m2		 = 0;
+		unsigned int m3		 = 0;
+		unsigned int m4		 = 0;
+		unsigned int m5	 	 = 0;
+		unsigned int m6		 = 0;
 
-		sscanf(s.c_str(), "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d", &type, &id, &mode, &m0, &m1, &m2, &m3, &m4, &m5, &m6);
+		sscanf(s.c_str(), "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d", &type, &id, &enabled, &m0, &m1, &m2, &m3, &m4, &m5, &m6);
 
 		std::vector<SoundConfig *> sounds	= Sounds::getSounds();
 		SoundConfig *sc						= sounds[id];
@@ -374,6 +375,8 @@ namespace PhysicsSynth
 		sc->updateMapping(4, (SoundConfig::PhysicalProperty)m4);
 		sc->updateMapping(5, (SoundConfig::PhysicalProperty)m5);
 		sc->updateMapping(6, (SoundConfig::PhysicalProperty)m6);
+        
+        sc->setIsEnabled(enabled);
 	}
 
 	Wheel *PersistenceManager::loadWheel(std::string s)

@@ -17,8 +17,10 @@ namespace PhysicsSynth
 	SettingsMenu::SettingsMenu(const Point2i &position, unsigned int width) :
 		Menu(position, width, TOP | LEFT | RIGHT | BOTTOM, Menu::CREATE)
 	{
+#ifdef GLUT_WINDOWING
 		saved = NULL;
-
+#endif
+    
 		initMenuItems();
 		setValues();
 	}
@@ -31,7 +33,8 @@ namespace PhysicsSynth
 	void SettingsMenu::initMenuItems(void)
 	{
 		unsigned int width = dimensions.getX();
-
+        
+#ifdef GLUT_WINDOWING
 		save = new Button("Save", position, width);
 		save->setClickedCallback(MakeDelegate(this, &SettingsMenu::save_Clicked));
 		addMenuItem(*save);
@@ -39,6 +42,7 @@ namespace PhysicsSynth
 		quit = new Button("Quit", position, width);
 		quit->setClickedCallback(MakeDelegate(this, &SettingsMenu::quit_Clicked));
 		addMenuItem(*quit);
+#endif
 	}
 
 	void SettingsMenu::render(void)
@@ -46,16 +50,17 @@ namespace PhysicsSynth
 		Menu::render();
 	}
 
-	void SettingsMenu::setSavedCallback(SavedCallback saved)
-	{
-		this->saved = saved;
-	}
-
 	void SettingsMenu::setValues(void)
 	{
 
 	}
 
+#ifdef GLUT_WINDOWING 
+    void SettingsMenu::setSavedCallback(SavedCallback saved)
+	{
+		this->saved = saved;
+	}
+    
 	/* Private Member Functions */
 	void SettingsMenu::save_Clicked(UIElement *sender)
 	{
@@ -69,4 +74,5 @@ namespace PhysicsSynth
 	{
 		exit(0);
 	}
+#endif
 }
