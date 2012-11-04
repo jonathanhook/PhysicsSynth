@@ -1352,7 +1352,7 @@ int createTexture(const char *filename)
 #ifdef GLUT_WINDOWING
 	gluBuild2DMipmaps(GL_TEXTURE_2D, tAlpha?4:3, tWidth, tHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
 #else 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA/*tAlpha?4:3*/, tWidth, tHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tWidth, tHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
 #endif
     
     if (!glIsTexture(textureId)) { textureId = (int)-1; }

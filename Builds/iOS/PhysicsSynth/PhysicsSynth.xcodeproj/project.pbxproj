@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		FC131C1116418C74004DF18F /* FileLocationUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC131C0F16418C74004DF18F /* FileLocationUtility.cpp */; };
-		FC131C23164195A2004DF18F /* background.bmp in Resources */ = {isa = PBXBuildFile; fileRef = FC131C14164195A2004DF18F /* background.bmp */; };
 		FC131C24164195A2004DF18F /* bomb.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C15164195A2004DF18F /* bomb.tga */; };
 		FC131C25164195A2004DF18F /* courier18_0.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C16164195A2004DF18F /* courier18_0.tga */; };
 		FC131C27164195A2004DF18F /* courier20_0.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C18164195A2004DF18F /* courier20_0.tga */; };
@@ -30,6 +29,7 @@
 		FC134BE9161EF1B40085FF0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC134BE8161EF1B40085FF0F /* main.m */; };
 		FC134BED161EF1B40085FF0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC134BEC161EF1B40085FF0F /* AppDelegate.m */; };
 		FC134BF7161EF1B40085FF0F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC134BF5161EF1B40085FF0F /* ViewController.xib */; };
+		FC9A6CCF16469F9E0016EE61 /* background.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC9A6CCE16469F9E0016EE61 /* background.tga */; };
 		FCA3DC05161EF20E004F272F /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC04161EF20E004F272F /* ViewController.mm */; };
 		FCA3DD20161EF228004F272F /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC09161EF227004F272F /* b2BroadPhase.cpp */; };
 		FCA3DD21161EF228004F272F /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC0B161EF227004F272F /* b2CollideCircle.cpp */; };
@@ -163,7 +163,6 @@
 /* Begin PBXFileReference section */
 		FC131C0F16418C74004DF18F /* FileLocationUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileLocationUtility.cpp; sourceTree = "<group>"; };
 		FC131C1016418C74004DF18F /* FileLocationUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLocationUtility.h; sourceTree = "<group>"; };
-		FC131C14164195A2004DF18F /* background.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = background.bmp; path = ../../../../../../github/local/PhysicsSynth/Resources/background.bmp; sourceTree = "<group>"; };
 		FC131C15164195A2004DF18F /* bomb.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = bomb.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/bomb.tga; sourceTree = "<group>"; };
 		FC131C16164195A2004DF18F /* courier18_0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = courier18_0.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/courier18_0.tga; sourceTree = "<group>"; };
 		FC131C18164195A2004DF18F /* courier20_0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = courier20_0.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/courier20_0.tga; sourceTree = "<group>"; };
@@ -190,6 +189,7 @@
 		FC134BEC161EF1B40085FF0F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FC134BF2161EF1B40085FF0F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FC134BF6161EF1B40085FF0F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		FC9A6CCE16469F9E0016EE61 /* background.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = background.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/background.tga; sourceTree = "<group>"; };
 		FCA3DC04161EF20E004F272F /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		FCA3DC07161EF227004F272F /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		FCA3DC09161EF227004F272F /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2BroadPhase.cpp; sourceTree = "<group>"; };
@@ -913,9 +913,9 @@
 		FCCC83F5161F527000590C8C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC9A6CCE16469F9E0016EE61 /* background.tga */,
 				FCCD664A16419F4B000A3DF3 /* courier20.fnt */,
 				FCCD664716419F40000A3DF3 /* courier18.fnt */,
-				FC131C14164195A2004DF18F /* background.bmp */,
 				FC131C15164195A2004DF18F /* bomb.tga */,
 				FC131C16164195A2004DF18F /* courier18_0.tga */,
 				FC131C18164195A2004DF18F /* courier20_0.tga */,
@@ -986,7 +986,6 @@
 			files = (
 				FC134BE7161EF1B40085FF0F /* InfoPlist.strings in Resources */,
 				FC134BF7161EF1B40085FF0F /* ViewController.xib in Resources */,
-				FC131C23164195A2004DF18F /* background.bmp in Resources */,
 				FC131C24164195A2004DF18F /* bomb.tga in Resources */,
 				FC131C25164195A2004DF18F /* courier18_0.tga in Resources */,
 				FC131C27164195A2004DF18F /* courier20_0.tga in Resources */,
@@ -1001,6 +1000,7 @@
 				FC131C31164195A2004DF18F /* wheel.tga in Resources */,
 				FCCD664816419F40000A3DF3 /* courier18.fnt in Resources */,
 				FCCD664B16419F4B000A3DF3 /* courier20.fnt in Resources */,
+				FC9A6CCF16469F9E0016EE61 /* background.tga in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,7 +41,7 @@ namespace PhysicsSynth
 	const unsigned int	Canvas::MENU_MARGIN				= 2;
 	//const unsigned int	Canvas::menuWidth				= 256;
 	const float			Canvas::SIZE					= 1.0f;
-	const std::string	Canvas::TEXTURE_BACKGROUND		= "background.bmp";
+	const std::string	Canvas::TEXTURE_BACKGROUND		= "background.tga";
 	const std::string	Canvas::TEXTURE_OVERLAY			= "overlay.tga";
 	const unsigned int	Canvas::TEXTURE_REPEATS			= 10;
 	const Point2f		Canvas::TOOLS_POSITION			= Point2f(0.0f, 0.0f);
@@ -552,7 +552,7 @@ namespace PhysicsSynth
         overlay->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
         overlayVbo->render();
         overlay->unbind();
-        
+    
 		renderWorlds();
         
         glDisable(GL_BLEND);
