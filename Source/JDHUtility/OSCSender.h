@@ -14,14 +14,13 @@ namespace JDHUtility
 	class OSCSender
 	{
 	public:
-		OSCSender	(const char *address, unsigned int port);
+		OSCSender	(int addressA, int addressB, int addressC, int addressD, int port);
 		~OSCSender	(void);
 
 		void send(osc::OutboundPacketStream p) const;
-
+        void setDestination(int addressA, int addressB, int addressC, int addressD, int port);
+        
 	private:
-		const char			*address;
-		unsigned int		port;
 		UdpTransmitSocket	*transmitSocket;
 	};
 }

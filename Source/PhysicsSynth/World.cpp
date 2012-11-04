@@ -427,7 +427,6 @@ namespace PhysicsSynth
 	void World::update(void)
 	{
 		// update objects
-
 		std::vector<PhysicsObject *>::iterator it;
 		for(it = objects.begin(); it != objects.end(); )
 		{
@@ -455,7 +454,7 @@ namespace PhysicsSynth
 			SoundEvent *se = soundEvents.front();
 			assert(se);
 
-			//se->send();
+			se->send();
 
 			soundEvents.pop();
 			NDELETE(se);

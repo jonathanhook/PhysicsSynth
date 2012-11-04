@@ -7,6 +7,7 @@
 //
 
 #include <FileLocationUtility.h>
+#include <JDHUtility/OSCSender.h>
 #include <JDHUtility/WindowingUtils.h>
 #include <PhysicsSynth/Synchronizer.h>
 #include <PhysicsSynth/Manager.h>
@@ -50,7 +51,6 @@ PhysicsSynth::Manager *manager;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    //CGFloat screenScale = [[UIScreen mainScreen] scale];
     CGFloat screenScale = 1.0f; // No scale to maintain DPI of original app on retina
     CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
     
@@ -65,7 +65,10 @@ PhysicsSynth::Manager *manager;
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     FileLocationUtility::setResourcePath([resourcePath UTF8String]);
     
+    OSCSender *sender = new OSCSender(127, 0, 0, 1, 3333);
+    
     manager = new PhysicsSynth::Manager(width, false);
+    manager->setOscSender(sender);
     manager->load();
 }
 
@@ -116,7 +119,7 @@ PhysicsSynth::Manager *manager;
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
-    glOrthof(0.0f, 1.0f, 1.0f / ratio, 0.0f, 0.0f, 100.0f);
+    glOrthof(0.0f, 1.0f, 1.0f / ratio, 0.0f, 0.0f, 1.0f);
     glViewport(0, 0, width, height);
     
 	glMatrixMode(GL_MODELVIEW);
@@ -124,7 +127,6 @@ PhysicsSynth::Manager *manager;
     
     glDisable(GL_DEPTH_TEST);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    
 }
 
 - (void)tearDownGL
