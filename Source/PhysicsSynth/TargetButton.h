@@ -31,6 +31,7 @@ namespace PhysicsSynth
 
 	private:
 		static const float SNAP_THRESHOLD;
+        static const float TARGET_SIZE;
 
 		TargetChangedCallback	targetChanged;
 		Vector2f				targetPosition;

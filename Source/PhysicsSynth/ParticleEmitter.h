@@ -13,6 +13,12 @@
 #include "PhysicsObject.h"
 
 using namespace fastdelegate;
+using namespace JDHUtility;
+
+namespace JDHUtility
+{
+    class GLVbo;
+}
 
 class b2Fixture;
 
@@ -81,6 +87,7 @@ namespace PhysicsSynth
 			}
 		};
 
+        GLVbo               *centreLineVbo;
 		Vector2f			impulse;
 		float				lifespan;
 		unsigned int		particlePtr;

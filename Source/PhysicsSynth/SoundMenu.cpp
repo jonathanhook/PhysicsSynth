@@ -45,7 +45,7 @@ namespace PhysicsSynth
         std::vector<OptionGrid::Option> options;
 		options.push_back(OptionGrid::Option(true, "Enabled"));
 		options.push_back(OptionGrid::Option(false, "Disabled"));
-		enabledGrid = new OptionGrid(options, "OSC Sending", pos, dimensions.getX());
+		enabledGrid = new OptionGrid(options, "Playback", pos, dimensions.getX());
         enabledGrid->setSelectionChangedCallback(MakeDelegate(this, &SoundMenu::enabledGrid_SelectionChanged));
         addMenuItem(*enabledGrid);
 

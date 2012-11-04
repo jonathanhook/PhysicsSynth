@@ -43,19 +43,21 @@ PhysicsSynth::Manager *manager;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    //CGFloat screenScale = [[UIScreen mainScreen] scale];
+    CGFloat screenScale = 1.0f; // No scale to maintain DPI of original app on retina
+    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    
+    float width = screenSize.height;
+    float height = screenSize.width;
+    
+    WindowingUtils::DEVICE_WINDOW_WIDTH = width;
+    WindowingUtils::DEVICE_WINDOW_HEIGHT = height;
+    
     [self setupGL];
     
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     FileLocationUtility::setResourcePath([resourcePath UTF8String]);
-    
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height);
-    
-    float width = screenSize.height;
-    float height = screenSize.width;
-
-    WindowingUtils::DEVICE_WINDOW_WIDTH = width;
-    WindowingUtils::DEVICE_WINDOW_HEIGHT = height;
     
     manager = new PhysicsSynth::Manager(width, false);
     manager->load();
@@ -96,8 +98,8 @@ PhysicsSynth::Manager *manager;
 {
     [EAGLContext setCurrentContext:self.context];
 
-    float width = 1024.0f;
-    float height = 768.0f;
+    float width = WindowingUtils::DEVICE_WINDOW_WIDTH;
+    float height = WindowingUtils::DEVICE_WINDOW_HEIGHT;
     
 	if(height == 0)
 	{
@@ -139,8 +141,9 @@ PhysicsSynth::Manager *manager;
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);// | GL_DEPTH_BUFFER_BIT);
     glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+    glDisable(GL_DEPTH_TEST);
     
     assert(manager);
 	manager->render();
@@ -162,8 +165,8 @@ PhysicsSynth::Manager *manager;
     UITouch *touch = [[allTouches allObjects] objectAtIndex:(0)];
     CGPoint p = [touch locationInView:(self.view)];
     
-    CGFloat x = p.x / 1024.0f;
-    CGFloat y = p.y / 1024.0f;
+    CGFloat x = p.x / WindowingUtils::DEVICE_WINDOW_WIDTH;
+    CGFloat y = p.y / WindowingUtils::DEVICE_WINDOW_WIDTH;
     
     assert(manager);
     manager->raiseEvent(0, x, y, FingerEventArgs::FINGER_ADDED);
@@ -177,8 +180,8 @@ PhysicsSynth::Manager *manager;
     UITouch *touch = [[allTouches allObjects] objectAtIndex:(0)];
     CGPoint p = [touch locationInView:(self.view)];
     
-    CGFloat x = p.x / 1024.0f;
-    CGFloat y = p.y / 1024.0f;
+    CGFloat x = p.x / WindowingUtils::DEVICE_WINDOW_WIDTH;
+    CGFloat y = p.y / WindowingUtils::DEVICE_WINDOW_WIDTH;
     
     assert(manager);
     manager->raiseEvent(0, x, y, FingerEventArgs::FINGER_UPDATED);
@@ -192,8 +195,8 @@ PhysicsSynth::Manager *manager;
     UITouch *touch = [[allTouches allObjects] objectAtIndex:(0)];
     CGPoint p = [touch locationInView:(self.view)];
     
-    CGFloat x = p.x / 1024.0f;
-    CGFloat y = p.y / 1024.0f;
+    CGFloat x = p.x / WindowingUtils::DEVICE_WINDOW_WIDTH;
+    CGFloat y = p.y / WindowingUtils::DEVICE_WINDOW_WIDTH;
     
     assert(manager);
     manager->raiseEvent(0, x, y, FingerEventArgs::FINGER_REMOVED);

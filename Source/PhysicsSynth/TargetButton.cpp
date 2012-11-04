@@ -13,8 +13,9 @@
 namespace PhysicsSynth
 {
 	/* Private Constants */
-	const float			TargetButton::SNAP_THRESHOLD	= 0.05f;
-
+	const float	TargetButton::SNAP_THRESHOLD = 0.05f;
+    const float	TargetButton::TARGET_SIZE = 0.05f;
+    
 	/* Constructors */
 	TargetButton::TargetButton(std::string text, const Point2i &position, unsigned int width) :
 		LabelledUIElement(text, position, width)
@@ -107,8 +108,19 @@ namespace PhysicsSynth
 
         hVbo->render();
 
-        glDisable(GL_BLEND);
 		glPopMatrix();
+        
+        glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glTranslatef((targetPosition.getX() / 2.0f) + 0.5f, (targetPosition.getY() / 2.0f) + 0.5f, 0.0f);
+        glScalef(TARGET_SIZE, TARGET_SIZE * 2.0f, 1.0f);
+        glTranslatef(-0.5f, -0.5f, 0.0f);
+        
+        GLPrimitives::getInstance()->renderSquareOutline();
+        
+        glPopMatrix();
+        
+        glDisable(GL_BLEND);
 		glPopMatrix();
 	}
 

@@ -53,7 +53,11 @@ namespace PhysicsSynth
         assert(texture);
         if(texture->isTexture())
         {
-            texture->bind(GL_REPLACE);
+            glColor4f(1.0f, 1.0f, 1.0f, 0.6f);
+            glTranslatef(0.125f, 0.125f, 0.0f);
+            glScalef(0.75f, 0.75f, 1.0f);
+            
+            texture->bind(GL_MODULATE, GL_LINEAR, GL_LINEAR);
             GLPrimitives::getInstance()->renderSquare();
             texture->unbind();
         }

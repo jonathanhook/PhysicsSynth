@@ -80,6 +80,14 @@ namespace JDHUtility
 			1.0f, 1.0f, 0.0f
 		};
         
+        GLfloat squareOutlineData[12] =
+		{
+			0.0f, 0.0f, 0.0f,
+			0.0f, 1.0f, 0.0f,
+			1.0f, 1.0f, 0.0f,
+			1.0f, 0.0f, 0.0f
+		};
+        
         GLfloat squareTextureData[8] =
 		{
 			0.0f, 0.0f,
@@ -89,7 +97,7 @@ namespace JDHUtility
 		};
 
         squareVbo = new GLVbo(GL_TRIANGLE_STRIP, GL_STATIC_DRAW, squareData, 4, squareTextureData);
-        squareOutlineVbo = new GLVbo(GL_LINE_LOOP, GL_STATIC_DRAW, squareData, 4, squareTextureData);
+        squareOutlineVbo = new GLVbo(GL_LINE_LOOP, GL_STATIC_DRAW, squareOutlineData, 4, squareTextureData);
     
         // circle
         GLsizei circleVertexCount = CIRCLE_VERTICES * 3;

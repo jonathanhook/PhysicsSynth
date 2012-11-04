@@ -540,16 +540,15 @@ namespace PhysicsSynth
 		glMultMatrixf(transform);
 		saveTransform();
         
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
         // background
         background->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
         backgroundVbo->render();
         background->unbind();
     
         // overlay
-        overlay->bind(GL_REPLACE, GL_NEAREST, GL_LINEAR, GL_REPEAT, GL_REPEAT);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        overlay->bind(GL_REPLACE, GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT);
         overlayVbo->render();
         overlay->unbind();
     

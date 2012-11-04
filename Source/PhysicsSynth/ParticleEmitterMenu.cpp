@@ -85,7 +85,7 @@ namespace PhysicsSynth
 		pattern->setPatternChangedCallback(MakeDelegate(this, &ParticleEmitterMenu::pattern_PatternChanged));
 		addMenuItem(*pattern);
 
-		impulse = new TargetButton("Particle Impulse", position, width);
+		impulse = new TargetButton("Impulse", position, width);
 		impulse->setTargetChangedCallback(MakeDelegate(this, &ParticleEmitterMenu::impulse_TargetChanged));
 		addMenuItem(*impulse);
 

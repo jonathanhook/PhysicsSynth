@@ -11,6 +11,8 @@
 #include <Box2D/Dynamics/b2Fixture.h>
 #include <Box2D/Dynamics/b2World.h>
 #include <JDHUtility/Colour4f.h>
+#include <JDHUtility/GLVbo.h>
+#include <JDHUtility/Ndelete.h>
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLMatrixf.h>
 #include <JDHUtility/GLPrimitives.h>
@@ -26,10 +28,17 @@ namespace PhysicsSynth
 	Circle::Circle(bool isStatic, float size, SoundConfig *sound, float friction, float restitution) :
 		SimpleObject(isStatic, size, sound, friction, restitution)
 	{
+        GLfloat centreLineVerts[6]
+        {
+            0.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f
+        };
+        centreLineVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, centreLineVerts, 2);
 	}
 
 	Circle::~Circle(void)
 	{
+        NDELETE(centreLineVbo);
 	}
 
 	/* Public Member Functions */
@@ -150,6 +159,9 @@ namespace PhysicsSynth
 		}
         
         GLPrimitives::getInstance()->renderCircleOutline();
+        
+        assert(centreLineVbo);
+        centreLineVbo->render();
         
         glDisable(GL_BLEND);
         glDisable(GL_LINE_SMOOTH);

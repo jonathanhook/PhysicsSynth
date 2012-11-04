@@ -7,6 +7,13 @@
 #pragma once
 #include "SimpleObject.h"
 
+using namespace JDHUtility;
+
+namespace JDHUtility
+{
+    class GLVbo;
+}
+
 namespace PhysicsSynth
 {
 	class Circle :
@@ -28,6 +35,8 @@ namespace PhysicsSynth
 
 	private:
 		static const unsigned int	CIRCLE_VERTICES;
+        
+        GLVbo *centreLineVbo;
 		
 		void renderShape	(void);
 		void setupShape		(b2Shape *shape);

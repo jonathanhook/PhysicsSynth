@@ -13,6 +13,7 @@
 #include <Box2D/Dynamics/b2World.h>
 #include <JDHUtility/Colour4f.h>
 #include <JDHUtility/CrossPlatformTime.h>
+#include <JDHUtility/GLVbo.h>
 #include <JDHUtility/OpenGL.h>
 #include <JDHUtility/GLMatrixf.h>
 #include <JDHUtility/GLTexture.h>
@@ -49,6 +50,13 @@ namespace PhysicsSynth
 		this->lifespan	= lifespan;
 
 		particlePtr	= 0;
+        
+        GLfloat centreLineVerts[6]
+        {
+            0.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f
+        };
+        centreLineVbo = new GLVbo(GL_LINES, GL_STATIC_DRAW, centreLineVerts, 2);
 	}
 
 	ParticleEmitter::~ParticleEmitter(void)
@@ -63,6 +71,8 @@ namespace PhysicsSynth
 				world->DestroyBody(p->body);
 			}
 		}
+        
+        NDELETE(centreLineVbo);
 	}
 
 	/* Public Member Functions */
@@ -350,6 +360,9 @@ namespace PhysicsSynth
 
                 glLineWidth(1.0f);
                 GLPrimitives::getInstance()->renderCircleOutline();
+                
+                assert(centreLineVbo);
+                centreLineVbo->render();
                 
                 glDisable(GL_BLEND);
                 glDisable(GL_LINE_SMOOTH);
