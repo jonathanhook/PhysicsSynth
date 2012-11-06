@@ -20,6 +20,13 @@ namespace JDHUtility
 	{
 	public:
         enum Font { LARGE, MEDIUM, SMALL };
+        
+        static const std::string LARGE_FONT;
+		static const std::string MEDIUM_FONT;
+		static const std::string SMALL_FONT;
+		static const std::string LARGE_TEX;
+		static const std::string MEDIUM_TEX;
+		static const std::string SMALL_TEX;
 
 		static GLFontManager *getInstance(void);
 		
@@ -27,13 +34,6 @@ namespace JDHUtility
 		Vector2f	queryBox		(Font font, const std::string &text) const;	
 
 	private:
-		static const std::string LARGE_FONT;
-		static const std::string MEDIUM_FONT;
-		static const std::string SMALL_FONT;
-		static const std::string LARGE_TEX;
-		static const std::string MEDIUM_TEX;
-		static const std::string SMALL_TEX;
-		
 		GLFontManager(void);
 		~GLFontManager(void);
 

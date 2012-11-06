@@ -10,7 +10,9 @@
 
 namespace PhysicsSynth
 {
+    class AddressPicker;
 	class Button;
+    class OptionGrid;
 
 	class SettingsMenu :
 		public Menu
@@ -25,11 +27,15 @@ namespace PhysicsSynth
 		void render				(void);
 		void setValues			(void);
 
-#ifdef GLUT_WINDOWING // no save and quit buttons on iOS
+#ifdef GLUT_WINDOWING
         void setSavedCallback	(SavedCallback saved);
+#else
+        enum PlaybackMode { INTERNAL, OSC };
 #endif
 
 	private:
+        AddressPicker *addressPicker;
+        
 #ifdef GLUT_WINDOWING
         Button			*save;
 		SavedCallback	saved;
@@ -37,6 +43,10 @@ namespace PhysicsSynth
 
 		void save_Clicked	(UIElement *sender);
 		void quit_Clicked	(UIElement *sender);
+#else
+        OptionGrid *playbackMode;
+        
+        void playbackMode_SelectionChanged(const OptionGrid::Option & option);
 #endif
 	};
 }

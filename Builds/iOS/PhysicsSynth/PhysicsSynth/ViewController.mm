@@ -51,8 +51,7 @@ PhysicsSynth::Manager *manager;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    CGFloat screenScale = 1.0f; // No scale to maintain DPI of original app on retina
-    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    CGSize screenSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height);
     
     float width = screenSize.height;
     float height = screenSize.width;
@@ -65,10 +64,10 @@ PhysicsSynth::Manager *manager;
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     FileLocationUtility::setResourcePath([resourcePath UTF8String]);
     
-    OSCSender *sender = new OSCSender(127, 0, 0, 1, 3333);
+    OSCSender *sender = new OSCSender(127, 0, 0, 1, 3334);
+    manager->setOscSender(sender);
     
     manager = new PhysicsSynth::Manager(width, false);
-    manager->setOscSender(sender);
     manager->load();
 }
 

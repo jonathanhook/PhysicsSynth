@@ -21,7 +21,7 @@ namespace PhysicsSynth
 	class PersistenceManager
 	{
 	public:
-		enum Type { WORLD, OBJECT, SOUND };
+		enum Type { WORLD, OBJECT, SOUND, OSC_CONFIG };
 
 		static std::vector<World *>	load(std::string fname);
 		static void					save(std::string fname, std::vector<World *> worlds);
@@ -30,6 +30,7 @@ namespace PhysicsSynth
 		static const unsigned int READ_BUFFER_LENGTH = 4096;
 
 		static std::string		getBombString			(Bomb *o);
+        static std::string      getOscString            (OSCSender *sender);
 		static std::string		getParticleEmitterString(ParticleEmitter *o);
 		static std::string		getSimpleObjectString	(SimpleObject *o);
 		static SoundConfig		*getSound				(unsigned int id);
@@ -38,6 +39,7 @@ namespace PhysicsSynth
 		static std::string		getWorldString			(World *w);
 		static Bomb				*loadBomb				(std::string s);
 		static PhysicsObject	*loadObject				(std::string s, float &px, float &py);
+        static void             loadOscConfig           (std::string s);
 		static ParticleEmitter	*loadParticleEmitter	(std::string s);
 		static SimpleObject		*loadSimpleObject		(std::string s);
 		static void				loadSoundConfig			(std::string s);

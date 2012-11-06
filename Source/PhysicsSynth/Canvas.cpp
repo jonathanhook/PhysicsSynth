@@ -228,6 +228,9 @@ namespace PhysicsSynth
 			registerEventHandler(world);
 			worlds.push_back(world);
 		}
+        
+        // HACK:
+        settingsMenu->setValues();
 	}
 
 	void Canvas::render(void)

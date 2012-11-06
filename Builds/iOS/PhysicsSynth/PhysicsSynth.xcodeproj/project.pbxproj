@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC06596F1648F6EE009FE397 /* AddressPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC06596D1648F6EE009FE397 /* AddressPicker.cpp */; };
 		FC131C1116418C74004DF18F /* FileLocationUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC131C0F16418C74004DF18F /* FileLocationUtility.cpp */; };
 		FC131C24164195A2004DF18F /* bomb.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C15164195A2004DF18F /* bomb.tga */; };
 		FC131C25164195A2004DF18F /* courier18_0.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC131C16164195A2004DF18F /* courier18_0.tga */; };
@@ -158,9 +159,12 @@
 		FCA3DD9F161EF228004F272F /* WorldMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DD1E161EF227004F272F /* WorldMenu.cpp */; };
 		FCCD664816419F40000A3DF3 /* courier18.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FCCD664716419F40000A3DF3 /* courier18.fnt */; };
 		FCCD664B16419F4B000A3DF3 /* courier20.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FCCD664A16419F4B000A3DF3 /* courier20.fnt */; };
+		FCD40D3C16484346008C2772 /* NumberDial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD40D3A16484346008C2772 /* NumberDial.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC06596D1648F6EE009FE397 /* AddressPicker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AddressPicker.cpp; sourceTree = "<group>"; };
+		FC06596E1648F6EE009FE397 /* AddressPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPicker.h; sourceTree = "<group>"; };
 		FC131C0F16418C74004DF18F /* FileLocationUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileLocationUtility.cpp; sourceTree = "<group>"; };
 		FC131C1016418C74004DF18F /* FileLocationUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLocationUtility.h; sourceTree = "<group>"; };
 		FC131C15164195A2004DF18F /* bomb.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = bomb.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/bomb.tga; sourceTree = "<group>"; };
@@ -456,6 +460,8 @@
 		FCA3DD1F161EF227004F272F /* WorldMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldMenu.h; sourceTree = "<group>"; };
 		FCCD664716419F40000A3DF3 /* courier18.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = courier18.fnt; path = ../../../../../../github/local/PhysicsSynth/Resources/courier18.fnt; sourceTree = "<group>"; };
 		FCCD664A16419F4B000A3DF3 /* courier20.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = courier20.fnt; path = ../../../../../../github/local/PhysicsSynth/Resources/courier20.fnt; sourceTree = "<group>"; };
+		FCD40D3A16484346008C2772 /* NumberDial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NumberDial.cpp; sourceTree = "<group>"; };
+		FCD40D3B16484346008C2772 /* NumberDial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberDial.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -905,6 +911,10 @@
 				FCA3DD1D161EF227004F272F /* World.h */,
 				FCA3DD1E161EF227004F272F /* WorldMenu.cpp */,
 				FCA3DD1F161EF227004F272F /* WorldMenu.h */,
+				FCD40D3A16484346008C2772 /* NumberDial.cpp */,
+				FCD40D3B16484346008C2772 /* NumberDial.h */,
+				FC06596D1648F6EE009FE397 /* AddressPicker.cpp */,
+				FC06596E1648F6EE009FE397 /* AddressPicker.h */,
 			);
 			name = PhysicsSynth;
 			path = ../../../../Source/PhysicsSynth;
@@ -1140,6 +1150,8 @@
 				FCA3DD9E161EF228004F272F /* World.cpp in Sources */,
 				FCA3DD9F161EF228004F272F /* WorldMenu.cpp in Sources */,
 				FC131C1116418C74004DF18F /* FileLocationUtility.cpp in Sources */,
+				FCD40D3C16484346008C2772 /* NumberDial.cpp in Sources */,
+				FC06596F1648F6EE009FE397 /* AddressPicker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

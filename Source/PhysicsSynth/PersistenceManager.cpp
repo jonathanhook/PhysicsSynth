@@ -5,6 +5,7 @@
  * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
  */
 #include <sstream>
+#include <JDHUtility/OSCSender.h>
 #include "Bomb.h"
 #include "Circle.h"
 #include "CircularWorld.h"
@@ -46,6 +47,9 @@ namespace PhysicsSynth
 					case SOUND:
 						loadSoundConfig(ss.str());
 						break;
+                    case OSC_CONFIG:
+                        loadOscConfig(ss.str());
+                        break;
 					case WORLD:
 						cw = loadWorld(ss.str());
 						worlds.push_back(cw);
@@ -121,6 +125,10 @@ namespace PhysicsSynth
 
 			ss << getSoundConfigString(sc);
 		}
+        
+        OSCSender *sender = Manager::getOscSender();
+        assert(sender);
+        ss << getOscString(sender);
 
 		FILE *pFile = fopen(fname.c_str(), "w");
 		if(pFile != NULL)
@@ -149,6 +157,22 @@ namespace PhysicsSynth
 
 		return ss.str();
 	}
+    
+    std::string PersistenceManager::getOscString(OSCSender *sender)
+    {
+        assert(sender);
+        
+		std::stringstream ss;
+		ss	<< OSC_CONFIG << ','
+        << sender->getIsEnabled() << ','
+        << sender->getAddressA() << ','
+        << sender->getAddressB() << ','
+        << sender->getAddressC() << ','
+        << sender->getAddressD() << ','
+        << sender->getPort() << endl;
+        
+		return ss.str();
+    }
 
 	std::string PersistenceManager::getParticleEmitterString(ParticleEmitter *o)
 	{
@@ -300,7 +324,26 @@ namespace PhysicsSynth
 
 		return NULL;
 	}
-
+    
+    void PersistenceManager::loadOscConfig(std::string s)
+    {
+        unsigned int type       = 0;
+		unsigned int enabled	= 0;
+        unsigned int addressA	= 0;
+        unsigned int addressB	= 0;
+        unsigned int addressC	= 0;
+        unsigned int addressD	= 0;
+        unsigned int port       = 0;
+        
+		sscanf(s.c_str(), "%d,%d,%d,%d,%d,%d,%d", &type, &enabled, &addressA, &addressB, &addressC, &addressD, &port);
+        
+        OSCSender *sender = Manager::getOscSender();
+        assert(sender);
+        
+        sender->setDestination(addressA, addressB, addressC, addressD, port);
+        sender->setIsEnabled(enabled);
+    }
+    
 	ParticleEmitter *PersistenceManager::loadParticleEmitter(std::string s)
 	{
 		unsigned int	type		= 0;
