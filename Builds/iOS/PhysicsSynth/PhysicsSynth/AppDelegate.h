@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PdAudioController.h"
+#import "PdBase.h"
 
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (strong, nonatomic) ViewController *viewController;
+@property (nonatomic, retain) PdAudioController *audioController;
 
 @end

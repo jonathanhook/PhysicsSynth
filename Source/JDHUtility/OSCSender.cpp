@@ -74,7 +74,7 @@ namespace JDHUtility
         
         if(!isEnabled)
         {
-            setDestination(127, 0, 0, 1, 3334);
+            setDestination(127, 0, 0, 1, 8080);
         }
         else
         {
@@ -88,7 +88,7 @@ namespace JDHUtility
            addressB != 0 &&
            addressC != 0 &&
            addressD != 1 &&
-           port != 3334)
+           port != 8080)
         {
             this->addressA = addressA;
             this->addressB = addressB;

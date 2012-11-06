@@ -13,7 +13,7 @@
 namespace PhysicsSynth
 {
 	/* Private Constants */
-	const char *ImpulseSoundEvent::PROFILE = "/psynth/raw";
+	const char *ImpulseSoundEvent::PROFILE = "/psynth";
 
 	/* Constructors */
 	ImpulseSoundEvent::ImpulseSoundEvent(unsigned int worldId, unsigned int sampleId,	float transpose, float stretch, float drive, float frequency, float resonance, float decay, float pan) :

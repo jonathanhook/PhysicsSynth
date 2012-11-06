@@ -64,7 +64,7 @@ PhysicsSynth::Manager *manager;
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     FileLocationUtility::setResourcePath([resourcePath UTF8String]);
     
-    OSCSender *sender = new OSCSender(127, 0, 0, 1, 3334);
+    OSCSender *sender = new OSCSender(127, 0, 0, 1, 8080);
     manager->setOscSender(sender);
     
     manager = new PhysicsSynth::Manager(width, false);

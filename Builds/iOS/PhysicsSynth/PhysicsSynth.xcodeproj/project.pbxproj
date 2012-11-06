@@ -30,6 +30,7 @@
 		FC134BE9161EF1B40085FF0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC134BE8161EF1B40085FF0F /* main.m */; };
 		FC134BED161EF1B40085FF0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC134BEC161EF1B40085FF0F /* AppDelegate.m */; };
 		FC134BF7161EF1B40085FF0F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC134BF5161EF1B40085FF0F /* ViewController.xib */; };
+		FC6EAD4B164991E400296F26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6EAD4A164991E400296F26 /* AVFoundation.framework */; };
 		FC9A6CCF16469F9E0016EE61 /* background.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC9A6CCE16469F9E0016EE61 /* background.tga */; };
 		FCA3DC05161EF20E004F272F /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC04161EF20E004F272F /* ViewController.mm */; };
 		FCA3DD20161EF228004F272F /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC09161EF227004F272F /* b2BroadPhase.cpp */; };
@@ -160,7 +161,34 @@
 		FCCD664816419F40000A3DF3 /* courier18.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FCCD664716419F40000A3DF3 /* courier18.fnt */; };
 		FCCD664B16419F4B000A3DF3 /* courier20.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FCCD664A16419F4B000A3DF3 /* courier20.fnt */; };
 		FCD40D3C16484346008C2772 /* NumberDial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD40D3A16484346008C2772 /* NumberDial.cpp */; };
+		FCDA4F7416498E6600347FE7 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDA4F6F16498DFA00347FE7 /* libpd-ios.a */; };
+		FCDA4F7616498E7300347FE7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDA4F7516498E7300347FE7 /* AudioToolbox.framework */; };
+		FCDB89CF16499DED0049B972 /* internal.pd in Resources */ = {isa = PBXBuildFile; fileRef = FCDB89CE16499DED0049B972 /* internal.pd */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FCDA4F6E16498DFA00347FE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCDA4F6616498DFA00347FE7 /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
+		FCDA4F7016498DFA00347FE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCDA4F6616498DFA00347FE7 /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 119013AB1486450C00086F19;
+			remoteInfo = "libpd-osx";
+		};
+		FCDA4F7216498E5300347FE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCDA4F6616498DFA00347FE7 /* libpd.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		FC06596D1648F6EE009FE397 /* AddressPicker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AddressPicker.cpp; sourceTree = "<group>"; };
@@ -193,6 +221,7 @@
 		FC134BEC161EF1B40085FF0F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FC134BF2161EF1B40085FF0F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FC134BF6161EF1B40085FF0F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		FC6EAD4A164991E400296F26 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FC9A6CCE16469F9E0016EE61 /* background.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = background.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/background.tga; sourceTree = "<group>"; };
 		FCA3DC04161EF20E004F272F /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		FCA3DC07161EF227004F272F /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
@@ -462,6 +491,9 @@
 		FCCD664A16419F4B000A3DF3 /* courier20.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = courier20.fnt; path = ../../../../../../github/local/PhysicsSynth/Resources/courier20.fnt; sourceTree = "<group>"; };
 		FCD40D3A16484346008C2772 /* NumberDial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NumberDial.cpp; sourceTree = "<group>"; };
 		FCD40D3B16484346008C2772 /* NumberDial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberDial.h; sourceTree = "<group>"; };
+		FCDA4F6616498DFA00347FE7 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../libpd/libpd.xcodeproj; sourceTree = "<group>"; };
+		FCDA4F7516498E7300347FE7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FCDB89CE16499DED0049B972 /* internal.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = internal.pd; path = ../../../../../../github/local/PhysicsSynth/Resources/internal.pd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -469,6 +501,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6EAD4B164991E400296F26 /* AVFoundation.framework in Frameworks */,
+				FCDA4F7616498E7300347FE7 /* AudioToolbox.framework in Frameworks */,
+				FCDA4F7416498E6600347FE7 /* libpd-ios.a in Frameworks */,
 				FC134BD9161EF1B40085FF0F /* UIKit.framework in Frameworks */,
 				FC134BDB161EF1B40085FF0F /* Foundation.framework in Frameworks */,
 				FC134BDD161EF1B40085FF0F /* CoreGraphics.framework in Frameworks */,
@@ -483,9 +518,12 @@
 		FC134BC9161EF1B40085FF0F = {
 			isa = PBXGroup;
 			children = (
+				FC6EAD4A164991E400296F26 /* AVFoundation.framework */,
+				FCDA4F7516498E7300347FE7 /* AudioToolbox.framework */,
 				FC134BE2161EF1B40085FF0F /* PhysicsSynth */,
 				FC134BD7161EF1B40085FF0F /* Frameworks */,
 				FC134BD5161EF1B40085FF0F /* Products */,
+				FCDA4F6616498DFA00347FE7 /* libpd.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -923,6 +961,7 @@
 		FCCC83F5161F527000590C8C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FCDB89CE16499DED0049B972 /* internal.pd */,
 				FC9A6CCE16469F9E0016EE61 /* background.tga */,
 				FCCD664A16419F4B000A3DF3 /* courier20.fnt */,
 				FCCD664716419F40000A3DF3 /* courier18.fnt */,
@@ -943,6 +982,15 @@
 			path = "../../../../../../../Library/Developer/Xcode/DerivedData/PhysicsSynth-cfevnvupjarqkifmpmqafyxbmerc/Data";
 			sourceTree = "<group>";
 		};
+		FCDA4F6716498DFA00347FE7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FCDA4F6F16498DFA00347FE7 /* libpd-ios.a */,
+				FCDA4F7116498DFA00347FE7 /* libpd-osx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -957,6 +1005,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				FCDA4F7316498E5300347FE7 /* PBXTargetDependency */,
 			);
 			name = PhysicsSynth;
 			productName = PhysicsSynth;
@@ -982,12 +1031,35 @@
 			mainGroup = FC134BC9161EF1B40085FF0F;
 			productRefGroup = FC134BD5161EF1B40085FF0F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FCDA4F6716498DFA00347FE7 /* Products */;
+					ProjectRef = FCDA4F6616498DFA00347FE7 /* libpd.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FC134BD3161EF1B40085FF0F /* PhysicsSynth */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FCDA4F6F16498DFA00347FE7 /* libpd-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-ios.a";
+			remoteRef = FCDA4F6E16498DFA00347FE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FCDA4F7116498DFA00347FE7 /* libpd-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-osx.a";
+			remoteRef = FCDA4F7016498DFA00347FE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FC134BD2161EF1B40085FF0F /* Resources */ = {
@@ -1011,6 +1083,7 @@
 				FCCD664816419F40000A3DF3 /* courier18.fnt in Resources */,
 				FCCD664B16419F4B000A3DF3 /* courier20.fnt in Resources */,
 				FC9A6CCF16469F9E0016EE61 /* background.tga in Resources */,
+				FCDB89CF16499DED0049B972 /* internal.pd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1157,6 +1230,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FCDA4F7316498E5300347FE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libpd-ios";
+			targetProxy = FCDA4F7216498E5300347FE7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		FC134BE5161EF1B40085FF0F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -1234,6 +1315,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../../../Source/**",
 					"../../../Source/OscPack/**",
+					"../libpd/**",
 				);
 				INFOPLIST_FILE = "PhysicsSynth/PhysicsSynth-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1251,6 +1333,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../../../Source/**",
 					"../../../Source/OscPack/**",
+					"../libpd/**",
 				);
 				INFOPLIST_FILE = "PhysicsSynth/PhysicsSynth-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

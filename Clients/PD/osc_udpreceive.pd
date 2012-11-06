@@ -1,0 +1,12 @@
+#N canvas 395 260 450 300 10;
+#X declare -lib mrpeach;
+#X text 127 55 <-- import mrpeach objects;
+#X obj 24 116 udpreceive 9001;
+#X obj 24 149 unpackOSC;
+#X obj 24 182 print;
+#X text 127 116 <-- listen to port 9001;
+#X text 96 147 <-- unpack the OSC message;
+#X obj 25 56 import mrpeach;
+#X text 22 20 receiving OSC messages;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;

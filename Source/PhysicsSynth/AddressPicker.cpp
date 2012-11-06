@@ -116,7 +116,7 @@ namespace PhysicsSynth
         registerEventHandler(addressD);
         pos.translateX(BORDER + ipWidth);
         
-        port = new NumberDial(pos, portWidth, 0, 8000, p);
+        port = new NumberDial(pos, portWidth, 0, 9999, p);
         port->setNumberChangedCallback(MakeDelegate(this, &AddressPicker::dial_ValueChanged));
         registerEventHandler(port);
         
