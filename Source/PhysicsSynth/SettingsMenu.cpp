@@ -67,6 +67,7 @@ namespace PhysicsSynth
 
 	void SettingsMenu::setValues(void)
 	{
+#ifdef IOS_WINDOWING
         OSCSender *sender = Manager::getOscSender();
         assert(sender);
         
@@ -79,6 +80,7 @@ namespace PhysicsSynth
         {
             playbackMode->setSelectedItem(OSC);
         }
+#endif
 	}
 
 #ifdef GLUT_WINDOWING 
