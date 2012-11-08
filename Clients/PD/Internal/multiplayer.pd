@@ -1,0 +1,86 @@
+#N canvas 101 337 820 294 10;
+#X msg 74 101 1.wav;
+#X obj 41 102 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 132 101 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 226 102 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 317 103 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 409 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 500 104 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 594 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 685 106 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 165 100 2.wav;
+#X msg 259 101 3.wav;
+#X msg 350 102 4.wav;
+#X msg 442 104 5.wav;
+#X msg 533 103 6.wav;
+#X msg 627 104 7.wav;
+#X msg 718 105 8.wav;
+#X obj 41 30 inlet;
+#X obj 133 30 inlet;
+#X obj 219 33 inlet;
+#X obj 316 35 inlet;
+#X obj 405 40 inlet;
+#X obj 495 40 inlet;
+#X obj 595 40 inlet;
+#X obj 688 42 inlet;
+#X obj 41 125 player;
+#X obj 132 124 player;
+#X obj 226 125 player;
+#X obj 317 126 player;
+#X obj 409 128 player;
+#X obj 500 127 player;
+#X obj 594 128 player;
+#X obj 685 129 player;
+#X obj 38 191 outlet~;
+#X obj 0 -11 inlet;
+#X obj 0 12 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X connect 0 0 24 1;
+#X connect 1 0 24 0;
+#X connect 2 0 25 0;
+#X connect 3 0 26 0;
+#X connect 4 0 27 0;
+#X connect 5 0 28 0;
+#X connect 6 0 29 0;
+#X connect 7 0 30 0;
+#X connect 8 0 31 0;
+#X connect 9 0 25 1;
+#X connect 10 0 26 1;
+#X connect 11 0 27 1;
+#X connect 12 0 28 1;
+#X connect 13 0 29 1;
+#X connect 14 0 30 1;
+#X connect 15 0 31 1;
+#X connect 16 0 1 0;
+#X connect 17 0 2 0;
+#X connect 18 0 3 0;
+#X connect 19 0 4 0;
+#X connect 20 0 5 0;
+#X connect 21 0 6 0;
+#X connect 22 0 7 0;
+#X connect 23 0 8 0;
+#X connect 24 0 32 0;
+#X connect 25 0 32 0;
+#X connect 26 0 32 0;
+#X connect 27 0 32 0;
+#X connect 28 0 32 0;
+#X connect 29 0 32 0;
+#X connect 30 0 32 0;
+#X connect 31 0 32 0;
+#X connect 33 0 34 0;
+#X connect 34 0 0 0;
+#X connect 34 0 9 0;
+#X connect 34 0 10 0;
+#X connect 34 0 11 0;
+#X connect 34 0 12 0;
+#X connect 34 0 13 0;
+#X connect 34 0 14 0;
+#X connect 34 0 15 0;

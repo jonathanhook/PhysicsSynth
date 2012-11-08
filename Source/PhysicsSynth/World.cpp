@@ -54,10 +54,10 @@ namespace PhysicsSynth
 	const float			World::BORDER_ALPHA				= 0.3f;
 	const bool			World::DO_SLEEP					= true;
 	const float			World::MIN_COLLISION_MASS		= 0.01f;
-	const float			World::MAX_CONTACT_IMPULSE		= 100.0f;
+	const float			World::MAX_CONTACT_IMPULSE		= 1.0f;
 	const float			World::MAX_GRAVITY				= 25.0f;
-	const float			World::MAX_INERTIA				= 5.0f;
-	const float			World::MAX_VELOCITY				= 50.0f;
+	const float			World::MAX_INERTIA				= 1.0f;
+	const float			World::MAX_VELOCITY				= 1.0f;
 	const unsigned int	World::POSITION_ITERATIONS		= 2;
 	const Colour4f		World::SELECTED_COLOUR			= Colour4f(0.11f, 0.53f, 0.71f, 0.5f);
 	const std::string	World::TRACK_FONT				= "Arial";
@@ -668,7 +668,7 @@ namespace PhysicsSynth
 				inertia = 1.0f;
 			}
 
-			float contactImpulse	= impulse->normalImpulses[0] / MAX_CONTACT_IMPULSE;
+			float contactImpulse = impulse->normalImpulses[0] / MAX_CONTACT_IMPULSE;
 			if(contactImpulse > 1.0f)
 			{
 				contactImpulse = 1.0f;
