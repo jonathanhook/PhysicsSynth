@@ -1,14 +1,21 @@
 /**
- * Class:	GLMatrix
- * Author:	Jonathan David Hook
- * Email:	j.d.hook@ncl.ac.uk
- * Web:		http://homepages.cs.ncl.ac.uk/j.d.hook
+ * This file is part of PhysicsSynth.
  *
- * Matrix in the form:
- * [ m0	m4	m8	m12	]
- * [ m1	m5	m9	m13	]
- * [ m2	m6	m10 m14	]
- * [ m3	m7	m11	m15	]
+ * Created by Jonathan Hook (jonathan.hook@ncl.ac.uk)
+ * Copyright (c) 2010-2012 Jonathan Hook. All rights reserved.
+ *
+ * PhysicsSynth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * PhysicsSynth is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with PhysicsSynth.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "GLMatrixf.h"
 
