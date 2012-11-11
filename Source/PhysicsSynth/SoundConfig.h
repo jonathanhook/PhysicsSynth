@@ -30,7 +30,7 @@ namespace PhysicsSynth
 	class SoundConfig
 	{
 	public:
-		enum PhysicalProperty	{ POS_X, POS_Y, ANGLE, VELOCITY, SPIN, INERTIA, CONTACT_IMPULSE };
+		enum PhysicalProperty	{ OFF, POS_X, POS_Y, ANGLE, VELOCITY, SPIN, INERTIA, CONTACT_IMPULSE };
         
 		SoundConfig	(const Colour3f	&colour, unsigned int sampleId, bool isEnabled);
 		~SoundConfig(void);

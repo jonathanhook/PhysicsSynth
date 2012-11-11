@@ -43,7 +43,8 @@ namespace PhysicsSynth
 	void ImpulseEventMenu::initMenuItems(void)
 	{
 		std::vector<MappingGrid::MappingGridItem> tos;
-		tos.push_back(MappingGrid::MappingGridItem(SoundConfig::POS_X, "Pos X"));
+		tos.push_back(MappingGrid::MappingGridItem(SoundConfig::OFF, "Off"));
+        tos.push_back(MappingGrid::MappingGridItem(SoundConfig::POS_X, "Pos X"));
 		tos.push_back(MappingGrid::MappingGridItem(SoundConfig::POS_Y, "Pos Y"));
 		tos.push_back(MappingGrid::MappingGridItem(SoundConfig::ANGLE, "Angle"));
 		tos.push_back(MappingGrid::MappingGridItem(SoundConfig::VELOCITY, "Velocity"));

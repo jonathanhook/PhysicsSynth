@@ -101,7 +101,10 @@ namespace PhysicsSynth
 
 		switch(p)
 		{
-			case POS_X: 
+            case OFF:
+                return 0.5f;
+                
+			case POS_X:
 				return positionX;
 
 			case POS_Y: 
@@ -131,12 +134,12 @@ namespace PhysicsSynth
 
 	void SoundConfig::initMapping(void)
 	{
-		impulseMappings[0] = POS_X;
-		impulseMappings[1] = POS_Y;
-		impulseMappings[2] = ANGLE;
-		impulseMappings[3] = VELOCITY;
-		impulseMappings[4] = SPIN;
-		impulseMappings[5] = INERTIA;
-		impulseMappings[6] = CONTACT_IMPULSE;
+		impulseMappings[0] = OFF;
+		impulseMappings[1] = OFF;
+		impulseMappings[2] = OFF;
+		impulseMappings[3] = OFF;
+		impulseMappings[4] = OFF;
+		impulseMappings[5] = OFF;
+		impulseMappings[6] = OFF;
 	}
 }

@@ -16,18 +16,5 @@
          landmarkName = "PressAndHold::PressAndHold(const Point2f &amp;position, const Point2f &amp;createPosition, unsigned int fingerId)"
          landmarkType = "5">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "PhysicsSynth/AppDelegate.m"
-         timestampString = "373923450.33264"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "60"
-         endingLineNumber = "60"
-         landmarkName = "-applicationWillTerminate:"
-         landmarkType = "5">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
