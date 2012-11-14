@@ -31,6 +31,10 @@
 		FC134BED161EF1B40085FF0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC134BEC161EF1B40085FF0F /* AppDelegate.m */; };
 		FC134BF7161EF1B40085FF0F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC134BF5161EF1B40085FF0F /* ViewController.xib */; };
 		FC6EAD4B164991E400296F26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6EAD4A164991E400296F26 /* AVFoundation.framework */; };
+		FC749B121651799B00691F1D /* internal.pd in Resources */ = {isa = PBXBuildFile; fileRef = FC749B0E1651799B00691F1D /* internal.pd */; };
+		FC749B131651799B00691F1D /* osc_udpreceive.pd in Resources */ = {isa = PBXBuildFile; fileRef = FC749B0F1651799B00691F1D /* osc_udpreceive.pd */; };
+		FC749B141651799B00691F1D /* player.pd in Resources */ = {isa = PBXBuildFile; fileRef = FC749B101651799B00691F1D /* player.pd */; };
+		FC749B151651799B00691F1D /* psrawreceive.pd in Resources */ = {isa = PBXBuildFile; fileRef = FC749B111651799B00691F1D /* psrawreceive.pd */; };
 		FC9A6CCF16469F9E0016EE61 /* background.tga in Resources */ = {isa = PBXBuildFile; fileRef = FC9A6CCE16469F9E0016EE61 /* background.tga */; };
 		FCA3DC05161EF20E004F272F /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC04161EF20E004F272F /* ViewController.mm */; };
 		FCA3DD20161EF228004F272F /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC09161EF227004F272F /* b2BroadPhase.cpp */; };
@@ -85,7 +89,6 @@
 		FCA3DD51161EF228004F272F /* Point2i.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC73161EF227004F272F /* Point2i.cpp */; };
 		FCA3DD52161EF228004F272F /* Point3f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC75161EF227004F272F /* Point3f.cpp */; };
 		FCA3DD53161EF228004F272F /* PointInclusion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC77161EF227004F272F /* PointInclusion.cpp */; };
-		FCA3DD54161EF228004F272F /* Singleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC79161EF227004F272F /* Singleton.cpp */; };
 		FCA3DD55161EF228004F272F /* Vector2f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC7B161EF227004F272F /* Vector2f.cpp */; };
 		FCA3DD56161EF228004F272F /* WindowingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC7D161EF227004F272F /* WindowingUtils.cpp */; };
 		FCA3DD57161EF228004F272F /* XPlatformMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA3DC7F161EF227004F272F /* XPlatformMutex.cpp */; };
@@ -161,9 +164,9 @@
 		FCCD664816419F40000A3DF3 /* courier18.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FCCD664716419F40000A3DF3 /* courier18.fnt */; };
 		FCCD664B16419F4B000A3DF3 /* courier20.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FCCD664A16419F4B000A3DF3 /* courier20.fnt */; };
 		FCD40D3C16484346008C2772 /* NumberDial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD40D3A16484346008C2772 /* NumberDial.cpp */; };
+		FCD8D7D71654147600AC1796 /* PdSoundEventManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD8D7D51654147600AC1796 /* PdSoundEventManager.cpp */; };
 		FCDA4F7416498E6600347FE7 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDA4F6F16498DFA00347FE7 /* libpd-ios.a */; };
 		FCDA4F7616498E7300347FE7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDA4F7516498E7300347FE7 /* AudioToolbox.framework */; };
-		FCDB89CF16499DED0049B972 /* internal.pd in Resources */ = {isa = PBXBuildFile; fileRef = FCDB89CE16499DED0049B972 /* internal.pd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +225,10 @@
 		FC134BF2161EF1B40085FF0F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FC134BF6161EF1B40085FF0F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		FC6EAD4A164991E400296F26 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FC749B0E1651799B00691F1D /* internal.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = internal.pd; path = ../../../../../../github/local/PhysicsSynth/Clients/PD/internal.pd; sourceTree = "<group>"; };
+		FC749B0F1651799B00691F1D /* osc_udpreceive.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = osc_udpreceive.pd; path = ../../../../../../github/local/PhysicsSynth/Clients/PD/osc_udpreceive.pd; sourceTree = "<group>"; };
+		FC749B101651799B00691F1D /* player.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = player.pd; path = ../../../../../../github/local/PhysicsSynth/Clients/PD/player.pd; sourceTree = "<group>"; };
+		FC749B111651799B00691F1D /* psrawreceive.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = psrawreceive.pd; path = ../../../../../../github/local/PhysicsSynth/Clients/PD/psrawreceive.pd; sourceTree = "<group>"; };
 		FC9A6CCE16469F9E0016EE61 /* background.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = background.tga; path = ../../../../../../github/local/PhysicsSynth/Resources/background.tga; sourceTree = "<group>"; };
 		FCA3DC04161EF20E004F272F /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		FCA3DC07161EF227004F272F /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
@@ -331,8 +338,6 @@
 		FCA3DC76161EF227004F272F /* Point3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point3f.h; sourceTree = "<group>"; };
 		FCA3DC77161EF227004F272F /* PointInclusion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointInclusion.cpp; sourceTree = "<group>"; };
 		FCA3DC78161EF227004F272F /* PointInclusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointInclusion.h; sourceTree = "<group>"; };
-		FCA3DC79161EF227004F272F /* Singleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Singleton.cpp; sourceTree = "<group>"; };
-		FCA3DC7A161EF227004F272F /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		FCA3DC7B161EF227004F272F /* Vector2f.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector2f.cpp; sourceTree = "<group>"; };
 		FCA3DC7C161EF227004F272F /* Vector2f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector2f.h; sourceTree = "<group>"; };
 		FCA3DC7D161EF227004F272F /* WindowingUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowingUtils.cpp; sourceTree = "<group>"; };
@@ -491,9 +496,10 @@
 		FCCD664A16419F4B000A3DF3 /* courier20.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = courier20.fnt; path = ../../../../../../github/local/PhysicsSynth/Resources/courier20.fnt; sourceTree = "<group>"; };
 		FCD40D3A16484346008C2772 /* NumberDial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NumberDial.cpp; sourceTree = "<group>"; };
 		FCD40D3B16484346008C2772 /* NumberDial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberDial.h; sourceTree = "<group>"; };
+		FCD8D7D51654147600AC1796 /* PdSoundEventManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PdSoundEventManager.cpp; sourceTree = "<group>"; };
+		FCD8D7D61654147600AC1796 /* PdSoundEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdSoundEventManager.h; sourceTree = "<group>"; };
 		FCDA4F6616498DFA00347FE7 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../libpd/libpd.xcodeproj; sourceTree = "<group>"; };
 		FCDA4F7516498E7300347FE7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		FCDB89CE16499DED0049B972 /* internal.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = internal.pd; path = ../../../../../../github/local/PhysicsSynth/Resources/internal.pd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -743,8 +749,6 @@
 				FCA3DC76161EF227004F272F /* Point3f.h */,
 				FCA3DC77161EF227004F272F /* PointInclusion.cpp */,
 				FCA3DC78161EF227004F272F /* PointInclusion.h */,
-				FCA3DC79161EF227004F272F /* Singleton.cpp */,
-				FCA3DC7A161EF227004F272F /* Singleton.h */,
 				FCA3DC7B161EF227004F272F /* Vector2f.cpp */,
 				FCA3DC7C161EF227004F272F /* Vector2f.h */,
 				FCA3DC7D161EF227004F272F /* WindowingUtils.cpp */,
@@ -953,6 +957,8 @@
 				FCD40D3B16484346008C2772 /* NumberDial.h */,
 				FC06596D1648F6EE009FE397 /* AddressPicker.cpp */,
 				FC06596E1648F6EE009FE397 /* AddressPicker.h */,
+				FCD8D7D51654147600AC1796 /* PdSoundEventManager.cpp */,
+				FCD8D7D61654147600AC1796 /* PdSoundEventManager.h */,
 			);
 			name = PhysicsSynth;
 			path = ../../../../Source/PhysicsSynth;
@@ -961,7 +967,10 @@
 		FCCC83F5161F527000590C8C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FCDB89CE16499DED0049B972 /* internal.pd */,
+				FC749B0E1651799B00691F1D /* internal.pd */,
+				FC749B0F1651799B00691F1D /* osc_udpreceive.pd */,
+				FC749B101651799B00691F1D /* player.pd */,
+				FC749B111651799B00691F1D /* psrawreceive.pd */,
 				FC9A6CCE16469F9E0016EE61 /* background.tga */,
 				FCCD664A16419F4B000A3DF3 /* courier20.fnt */,
 				FCCD664716419F40000A3DF3 /* courier18.fnt */,
@@ -1083,7 +1092,10 @@
 				FCCD664816419F40000A3DF3 /* courier18.fnt in Resources */,
 				FCCD664B16419F4B000A3DF3 /* courier20.fnt in Resources */,
 				FC9A6CCF16469F9E0016EE61 /* background.tga in Resources */,
-				FCDB89CF16499DED0049B972 /* internal.pd in Resources */,
+				FC749B121651799B00691F1D /* internal.pd in Resources */,
+				FC749B131651799B00691F1D /* osc_udpreceive.pd in Resources */,
+				FC749B141651799B00691F1D /* player.pd in Resources */,
+				FC749B151651799B00691F1D /* psrawreceive.pd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,7 +1161,6 @@
 				FCA3DD51161EF228004F272F /* Point2i.cpp in Sources */,
 				FCA3DD52161EF228004F272F /* Point3f.cpp in Sources */,
 				FCA3DD53161EF228004F272F /* PointInclusion.cpp in Sources */,
-				FCA3DD54161EF228004F272F /* Singleton.cpp in Sources */,
 				FCA3DD55161EF228004F272F /* Vector2f.cpp in Sources */,
 				FCA3DD56161EF228004F272F /* WindowingUtils.cpp in Sources */,
 				FCA3DD57161EF228004F272F /* XPlatformMutex.cpp in Sources */,
@@ -1225,6 +1236,7 @@
 				FC131C1116418C74004DF18F /* FileLocationUtility.cpp in Sources */,
 				FCD40D3C16484346008C2772 /* NumberDial.cpp in Sources */,
 				FC06596F1648F6EE009FE397 /* AddressPicker.cpp in Sources */,
+				FCD8D7D71654147600AC1796 /* PdSoundEventManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

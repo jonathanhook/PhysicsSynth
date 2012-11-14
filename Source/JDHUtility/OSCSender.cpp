@@ -18,6 +18,8 @@
  * along with PhysicsSynth.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <assert.h>
+#include <iostream.h>
+#include <JDHUtility/FileLocationUtility.h>
 #include "Ndelete.h"
 #include "OSCSender.h"
 
@@ -60,10 +62,12 @@ namespace JDHUtility
         return addressD;
     }
     
+    
     bool OSCSender::getIsEnabled(void) const
     {
         return isEnabled;
     }
+    
     
     int OSCSender::getPort(void) const
     {
@@ -72,43 +76,30 @@ namespace JDHUtility
 	
     void OSCSender::send(osc::OutboundPacketStream p) const
 	{
-        assert(transmitSocket);
-        transmitSocket->Send(p.Data(), p.Size());
+        if(isEnabled)
+        {
+            assert(transmitSocket);
+            transmitSocket->Send(p.Data(), p.Size());
+        }
 	}
     
     void OSCSender::setAddressChangedCallback(AddressChangedCallback addressChanged)
     {
         this->addressChanged = addressChanged;
     }
-    
+
     void OSCSender::setIsEnabled(bool isEnabled)
     {
         this->isEnabled = isEnabled;
-        
-        if(!isEnabled)
-        {
-            setDestination(127, 0, 0, 1, 8080);
-        }
-        else
-        {
-            setDestination(addressA, addressB, addressC, addressD, port);
-        }
     }
     
     void OSCSender::setDestination(int addressA, int addressB, int addressC, int addressD, int port)
     {
-        if(addressA != 127 &&
-           addressB != 0 &&
-           addressC != 0 &&
-           addressD != 1 &&
-           port != 8080)
-        {
-            this->addressA = addressA;
-            this->addressB = addressB;
-            this->addressC = addressC;
-            this->addressD = addressD;
-            this->port = port;
-        }
+        this->addressA = addressA;
+        this->addressB = addressB;
+        this->addressC = addressC;
+        this->addressD = addressD;
+        this->port = port;
         
         UdpTransmitSocket *oldSocket = transmitSocket;
         transmitSocket = new UdpTransmitSocket(IpEndpointName(addressA, addressB, addressC, addressD, port));

@@ -17,27 +17,37 @@
  * You should have received a copy of the GNU General Public License
  * along with PhysicsSynth.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "FileLocationUtility.h"
+#include <stdlib.h>
+#include "PdSoundEventManager.h"
 
-namespace JDHUtility
+namespace PhysicsSynth
 {
-    std::string FileLocationUtility::resourcePath = "";
+    PdSoundEventManager *PdSoundEventManager::instance = NULL;
     
-    const std::string FileLocationUtility::getResourcePath(void)
+	/* Public Static Functions */
+	PdSoundEventManager *PdSoundEventManager::getInstance(void)
+	{
+		if(instance == NULL)
+		{
+			instance = new PdSoundEventManager();
+		}
+        
+		return (PdSoundEventManager *)instance;
+	}
+    
+    /* Public Member Functions */
+    void PdSoundEventManager::addMessage(std::vector<float> message)
     {
-        return resourcePath;
+        messages.push_back(message);
     }
     
-    const std::string FileLocationUtility::getFileInResourcePath(const std::string &path)
+    void PdSoundEventManager::clearMessages(void)
     {
-        std::string p = resourcePath;
-        p.append("/");
-        p.append(path);
-        return p;
+        messages.clear();
     }
     
-    void FileLocationUtility::setResourcePath(const std::string &path)
+    std::list<std::vector<float>> PdSoundEventManager::getMessages(void)
     {
-        resourcePath = path;
+        return messages;
     }
 }

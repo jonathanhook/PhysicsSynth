@@ -18,8 +18,6 @@
  * along with PhysicsSynth.  If not, see <http://www.gnu.org/licenses/>.
  */
 #import <UIKit/UIKit.h>
-#import "PdAudioController.h"
-#import "PdBase.h"
 
 @class ViewController;
 
@@ -27,6 +25,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ViewController *viewController;
-@property (nonatomic, retain) PdAudioController *audioController;
 
 @end

@@ -19,7 +19,9 @@
  */
 #include <assert.h>
 #include <osc/OscOutboundPacketStream.h>
+#include <sstream>
 #include <JDHUtility/OSCSender.h>
+#include "PdSoundEventManager.h"
 #include "ImpulseSoundEvent.h"
 #include "Manager.h"
 
@@ -50,24 +52,49 @@ namespace PhysicsSynth
 	{
 		OSCSender *sender = Manager::getOscSender();
 		assert(sender);
-
-		char buffer[BUFFER_SIZE];
-		osc::OutboundPacketStream p(buffer, BUFFER_SIZE);
-
-		p << osc::BeginBundleImmediate
-			<< osc::BeginMessage(PROFILE) 
-				<< (int)worldId
-				<< (int)sampleId 
-				<< transpose
-				<< stretch
-				<< drive
-				<< frequency
-				<< resonance
-				<< decay
-				<< pan
+        
+        if(sender->getIsEnabled())
+        {
+            char buffer[BUFFER_SIZE];
+            osc::OutboundPacketStream p(buffer, BUFFER_SIZE);
+            
+            p << osc::BeginBundleImmediate
+			<< osc::BeginMessage(PROFILE)
+            << (int)worldId
+            << (int)sampleId
+            << transpose
+            << stretch
+            << drive
+            << frequency
+            << resonance
+            << decay
+            << pan
 			<< osc::EndMessage
-        << osc::EndBundle;
-
-		sender->send(p);
+            << osc::EndBundle;
+            
+            sender->send(p);
+        }
+#ifdef IOS_WINDOWING
+        else
+        {
+            /*
+            std::stringstream ss;
+            ss << worldId << " "
+            << sampleId << " "
+            << transpose << " "
+            << stretch << " "
+            << drive << " "
+            << frequency << " "
+            << resonance << " "
+            << decay << " "
+            << pan;
+            
+            PdSoundEventManager *pd = PdSoundEventManager::getInstance();
+            assert(pd);
+            
+            std::string msg = ss.str();
+            pd->addMessage(msg);*/
+        }
+#endif
 	}
 }

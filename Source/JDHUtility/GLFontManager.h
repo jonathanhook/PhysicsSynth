@@ -22,14 +22,12 @@
 #include <string>
 #include "Point2f.h"
 #include "Vector2f.h"
-#include "Singleton.h"
 
 namespace JDHUtility
 {
 	class GLTextureFont;
 
-	class GLFontManager :
-		public Singleton
+	class GLFontManager
 	{
 	public:
         enum Font { LARGE, MEDIUM, SMALL };
@@ -47,6 +45,8 @@ namespace JDHUtility
 		Vector2f	queryBox		(Font font, const std::string &text) const;	
 
 	private:
+        static GLFontManager *instance;
+        
 		GLFontManager(void);
 		~GLFontManager(void);
 

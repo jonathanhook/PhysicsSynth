@@ -22,6 +22,7 @@
 #include <ip/IpEndpointName.h>
 #include <ip/UdpSocket.h>
 #include <osc/OscOutboundPacketStream.h>
+#include <JDHUtility/OpenGL.h>
 
 using namespace fastdelegate;
 
@@ -31,7 +32,7 @@ namespace JDHUtility
 	{
 	public:
         typedef FastDelegate0<> AddressChangedCallback;
-        
+
 		OSCSender	(int addressA, int addressB, int addressC, int addressD, int port, bool isEnabled = true);
 		~OSCSender	(void);
 
@@ -41,7 +42,6 @@ namespace JDHUtility
         int getAddressD(void) const;
         bool getIsEnabled(void) const;
         int getPort(void) const;
-        
 		void send(osc::OutboundPacketStream p) const;
         void setAddressChangedCallback(AddressChangedCallback addressChanged);
         void setDestination(int addressA, int addressB, int addressC, int addressD, int port);

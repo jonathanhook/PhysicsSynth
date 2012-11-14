@@ -19,7 +19,13 @@
  */
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
+#import "PdAudioController.h"
+#import "PdBase.h"
 
-@interface ViewController : GLKViewController
+@interface ViewController : GLKViewController <PdReceiverDelegate>
+
+@property (nonatomic, retain) PdAudioController *audioController;
+
 - (void) save;
+
 @end

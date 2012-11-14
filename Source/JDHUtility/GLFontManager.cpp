@@ -24,6 +24,8 @@
 
 namespace JDHUtility
 {
+    GLFontManager *GLFontManager::instance = NULL;
+    
 	const std::string GLFontManager::LARGE_FONT		= "courier20.fnt";
 	const std::string GLFontManager::MEDIUM_FONT	= "courier18.fnt";
 	const std::string GLFontManager::SMALL_FONT		= "courier18.fnt";

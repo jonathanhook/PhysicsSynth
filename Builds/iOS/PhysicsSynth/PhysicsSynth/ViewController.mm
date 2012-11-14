@@ -17,11 +17,14 @@
  * You should have received a copy of the GNU General Public License
  * along with PhysicsSynth.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include <list>
+#include <string>
 #include <FileLocationUtility.h>
 #include <JDHUtility/OSCSender.h>
 #include <JDHUtility/WindowingUtils.h>
 #include <PhysicsSynth/Synchronizer.h>
 #include <PhysicsSynth/Manager.h>
+#include <PhysicsSynth/PdSoundEventManager.h>
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -36,6 +39,8 @@
 @end
 
 @implementation ViewController
+
+@synthesize audioController = audioController_;
 
 PhysicsSynth::Manager *manager;
 
@@ -80,6 +85,18 @@ PhysicsSynth::Manager *manager;
     
     manager = new PhysicsSynth::Manager(width, false);
     manager->load();
+    
+    self.audioController = [[[PdAudioController alloc] init] autorelease];
+    [self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:NO mixingEnabled:YES];
+    [PdBase setDelegate:self];
+    [PdBase openFile:@"internal.pd" path:[[NSBundle mainBundle] resourcePath]];
+    [self.audioController setActive:YES];
+    [self.audioController print];
+}
+
+- (void)receivePrint:(NSString *)message
+{
+	NSLog(@"(pd) %@\r\n", message);
 }
 
 - (void)viewDidUnload
@@ -154,6 +171,29 @@ PhysicsSynth::Manager *manager;
     PhysicsSynth::Synchronizer *sync = PhysicsSynth::Synchronizer::getInstance();
     assert(sync);
     sync->update();
+    
+    PhysicsSynth::PdSoundEventManager *pd = PhysicsSynth::PdSoundEventManager::getInstance();
+    assert(pd);
+    
+    std::list<std::vector<float>> pdMessages = pd->getMessages();
+    for(std::list<std::vector<float>>::iterator it = pdMessages.begin(); it != pdMessages.end(); it++)
+    {
+        std::vector<float> m = (*it);
+        NSMutableArray *array[m.size()];
+        for(unsigned int i = 0; i < m.size(); i ++)
+        {
+            array[i] = *m[i];
+        }
+        
+        //NSString *str = [[NSString alloc] initWithUTF8String:m.c_str()];
+
+        
+        [PdBase sendList:array toReceiver:@"msg"];
+        [array release];
+        //[PdBase sendMessage:str withArguments:nil toReceiver:@"msg"];
+    }
+
+    pd->clearMessages();
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect

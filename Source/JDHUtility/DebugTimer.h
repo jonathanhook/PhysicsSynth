@@ -20,7 +20,6 @@
 #pragma once
 #include <map>
 #include <string>
-#include "JDHUtility/Singleton.h"
 
 namespace JDHUtility
 {
