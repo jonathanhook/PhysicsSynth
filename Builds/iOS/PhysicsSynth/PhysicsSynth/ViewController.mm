@@ -188,8 +188,8 @@ PhysicsSynth::Manager *manager;
         //NSString *str = [[NSString alloc] initWithUTF8String:m.c_str()];
 
         
-        [PdBase sendList:array toReceiver:@"msg"];
-        [array release];
+        //[PdBase sendList:array toReceiver:@"msg"];
+        //[array release];
         //[PdBase sendMessage:str withArguments:nil toReceiver:@"msg"];
     }
 
